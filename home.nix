@@ -39,7 +39,7 @@
   wayland.windowManager.sway = {
     enable = true;
     config = rec {
-      modifier = "Mod4";
+      modifier = "Mod1";
       terminal = "kitty";
       menu = "wofi --show run";
       keybindings = lib.mkOptionDefault {
