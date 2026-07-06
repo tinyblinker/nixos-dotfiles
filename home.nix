@@ -4,6 +4,7 @@
   home.username = "shyweeds";
   home.homeDirectory = "/home/shyweeds";
   home.stateVersion = "26.05";
+  programs.opencode.enable = true;
   programs.bash = {
     enable = true;
     shellAliases = {
