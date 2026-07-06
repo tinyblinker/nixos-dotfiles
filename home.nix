@@ -48,6 +48,7 @@
           # 使用修饰键+Shift+c 重新加载配置
           "${modifier}+Shift+c" = "reload";
       };
+      bars = [];
     };
   };
   programs.waybar = {
