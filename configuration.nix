@@ -59,7 +59,7 @@
     nerd-fonts.jetbrains-mono
     noto-fonts
     noto-fonts-cjk-sans
-    noto-fonts-emoji
+    noto-fonts-color-emoji
   ];
   nix.settings.substituters = [
     "https://mirrors.ustc.edu.cn/nix-channels/store"
