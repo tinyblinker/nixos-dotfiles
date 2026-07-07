@@ -5,7 +5,8 @@
   home.homeDirectory = "/home/shyweeds";
   home.stateVersion = "26.05";
   programs.opencode.enable = true;
-  programs.bash = {
+  programs.bash.enable = true;
+  programs.fish = {
     enable = true;
     shellAliases = {
       btw = "echo i use nixos, btw";
