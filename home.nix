@@ -80,6 +80,7 @@
   xdg.configFile."waybar/config".source = ./waybar/config;
   xdg.configFile."waybar/style.css".source = ./waybar/style.css;
   xdg.configFile."wofi/style.css".source = ./wofi/style.css;
-  xdg.configFile."nvim".source = ./nvim;
+  xdg.configFile."nvim/init.lua".source = ./nvim/init.lua;
+  xdg.configFile."nvim/lua".source = ./nvim/lua;
   programs.wofi.enable = true;
 }
