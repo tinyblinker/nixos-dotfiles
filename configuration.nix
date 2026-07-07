@@ -25,7 +25,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${lib.getExe pkgs.tuigreet} --time --remember --asterisks --cmd sway --theme 'border=#5C8374;text=#93B1A6;prompt=#5C8374;title=#93B1A6;input=#93B1A6;container=#0d1117;greet=#5C8374'";
+        command = "${lib.getExe pkgs.tuigreet} --time --remember --asterisks --cmd sway --theme 'border=#5C8374;text=#93B1A6;prompt=#5C8374;title=#93B1A6;input=#93B1A6;container=#0d1117;greet=#5C8374' >/dev/null 2>&1";
         user = "greeter";
       };
     };
