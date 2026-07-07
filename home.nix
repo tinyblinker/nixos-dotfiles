@@ -21,7 +21,6 @@
     };
   };
   home.packages = with pkgs; [
-    neovim
     ripgrep 
     yazi
     bat
@@ -34,8 +33,14 @@
     gcc
     gdb
     fastfetch
+    tree-sitter
+    fd
     lazygit
   ];
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+  };
   programs.kitty = {
     enable = true;
     settings = {
@@ -80,7 +85,11 @@
   xdg.configFile."waybar/config".source = ./waybar/config;
   xdg.configFile."waybar/style.css".source = ./waybar/style.css;
   xdg.configFile."wofi/style.css".source = ./wofi/style.css;
-  xdg.configFile."nvim/init.lua".source = ./nvim/init.lua;
-  xdg.configFile."nvim/lua".source = ./nvim/lua;
+  let 
+    configDir = builtins.toString ./.;
+  in
+  {
+    xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${configDir}/nvim";
+  }
   programs.wofi.enable = true;
 }
