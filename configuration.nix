@@ -67,6 +67,7 @@
     git
     vim 
     wget
+    networkmanagerapplet
   ];
   networking.firewall = {
     enable = true;

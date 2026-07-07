@@ -65,6 +65,7 @@
       bars = [];
       startup = [
         { command = "${pkgs.fcitx5}/bin/fcitx5 -d"; }
+        { command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"; }
       ];
     };
   };
