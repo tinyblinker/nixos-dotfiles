@@ -19,8 +19,23 @@
     ];
   };
   services.xserver.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  services.displayManager.sddm.enable = true;
+  services.displayManager.ly = {
+    enable = true;
+    settings = {
+      animation = "matrix";
+      bg_color = "#0d1117";
+      fg_color = "#5C8374";
+      hide_borders = true;
+      blank_box = true;
+      box_width = 50;
+      margin_box_h = 8;
+      margin_box_v = 4;
+    };
+  };
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
   services.mihomo = {
      enable = true;
      tunMode = true;
@@ -46,10 +61,6 @@
     enable = true;
   };
   programs.fish.enable = true;
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
   hardware.graphics.enable = true;
   environment.systemPackages = with pkgs; [
     git
