@@ -13,8 +13,10 @@
   };
   programs.git = {
     enable = true;
-    userName = "tinyblinker";
-    userEmail = "2149934895@qq.com";
+    settings = {
+      user.name = "tinyblinker";
+      user.email = "2149934895@qq.com";
+    };
   };
   home.packages = with pkgs; [
     neovim
