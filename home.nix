@@ -4,6 +4,7 @@
   home.username = "shyweeds";
   home.homeDirectory = "/home/shyweeds";
   home.stateVersion = "26.05";
+  home.sessionVariables.EDITOR = "nvim";
   programs.opencode.enable = true;
   # shell configs
   programs.bash.enable = true;
@@ -26,20 +27,15 @@
     bat
     btop
     upower
-    nixd
-    nil
-    nixfmt
     nodejs
-    gcc
-    gdb
     fastfetch
-    tree-sitter
     fd
     lazygit
   ];
-  programs.neovim = {
+  # neovim 由 nixCats 管理(插件用 nix 装,配置用 lua 写)
+  nvim = {
     enable = true;
-    defaultEditor = true;
+    packageNames = [ "nvim" ];
   };
   programs.kitty = {
     enable = true;

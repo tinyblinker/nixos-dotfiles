@@ -1,7 +1,8 @@
 return {
-	"lukas-reineke/indent-blankline.nvim",
-	main = "ibl",
-	---@module "ibl"
-	---@type ibl.config
-	opts = {},
+	"indent-blankline.nvim",
+	for_cat = "general",
+	event = "DeferredUIEnter",
+	after = function()
+		require("ibl").setup({})
+	end,
 }
