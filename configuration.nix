@@ -38,6 +38,7 @@
   programs.firefox = {
     enable = true;
   };
+  programs.fish.enable = true;
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
