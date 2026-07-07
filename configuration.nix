@@ -55,6 +55,9 @@
   networking.networkmanager.wifi.powersave = false;
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
   ];
   nix.settings.substituters = [
     "https://mirrors.ustc.edu.cn/nix-channels/store"
@@ -64,5 +67,6 @@
     "https://mirrors.nju.edu.cn/nix-channels/store"
     "https://mirrors.iscas.ac.cn/nix-channels/store"
   ];
+  # do not edit it anyway, this may mismatch the system edition, it's common
   system.stateVersion = "26.11";
 }
