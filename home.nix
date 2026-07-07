@@ -1,5 +1,8 @@
 { config, pkgs, lib, inputs, ... }:
 
+let
+  configDir = builtins.toString ./.;
+in
 {
   home.username = "shyweeds";
   home.homeDirectory = "/home/shyweeds";
@@ -85,11 +88,6 @@
   xdg.configFile."waybar/config".source = ./waybar/config;
   xdg.configFile."waybar/style.css".source = ./waybar/style.css;
   xdg.configFile."wofi/style.css".source = ./wofi/style.css;
-  let 
-    configDir = builtins.toString ./.;
-  in
-  {
-    xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${configDir}/nvim";
-  }
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${configDir}/nvim";
   programs.wofi.enable = true;
 }
