@@ -34,8 +34,11 @@
     nodejs
     fastfetch
     fd
-    lazygit
   ];
+  programs.lazygit = {
+    enable = true;
+    settings.git.autoFetch = false;
+  };
   # neovim 由 nixCats 管理(插件用 nix 装,配置用 lua 写)
   nvim = {
     enable = true;
