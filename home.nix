@@ -50,6 +50,7 @@
       output = {
         "*" = {
           scale = "1.6";
+          bg = "${./wallpaper/1.png} fill";
         };
       };
       window = {
