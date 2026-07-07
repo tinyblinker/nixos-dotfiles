@@ -59,6 +59,7 @@
           scale = "1.6";
         };
       };
+      default_border = "pixel 4";
       window.titlebar = false;
       keybindings = lib.mkOptionDefault {
           "${modifier}+Shift+Return" = "exec ${terminal}";

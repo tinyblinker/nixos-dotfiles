@@ -1,4 +1,15 @@
 { config, lib, pkgs, ... }:
+let
+  sway-env = pkgs.writeShellScript "sway-env" ''
+    export GTK_IM_MODULE=fcitx
+    export QT_IM_MODULE=fcitx
+    export XMODIFIERS=@im=fcitx
+    export SDL_IM_MODULE=fcitx
+    export GLFW_IM_MODULE=ibus
+    export INPUT_METHOD=fcitx
+    exec ${lib.getExe pkgs.sway}
+  '';
+in
 {
   imports =
     [ 
@@ -24,7 +35,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd sway --theme 'border=#5C8374;text=#93B1A6;prompt=#5C8374;title=#93B1A6;input=#93B1A6;container=#0d1117;greet=#5C8374'";
+        command = "${lib.getExe pkgs.tuigreet} --time --remember --asterisks --cmd ${sway-env} --theme 'border=#5C8374;text=#93B1A6;prompt=#5C8374;title=#93B1A6;input=#93B1A6;container=#0d1117;greet=#5C8374'";
         user = "greeter";
       };
     };
