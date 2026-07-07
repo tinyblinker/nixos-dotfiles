@@ -19,17 +19,13 @@
     ];
   };
   services.xserver.enable = true;
-  services.displayManager.ly = {
+  services.greetd = {
     enable = true;
     settings = {
-      animation = "matrix";
-      bg_color = "#0d1117";
-      fg_color = "#5C8374";
-      hide_borders = true;
-      blank_box = true;
-      box_width = 50;
-      margin_box_h = 8;
-      margin_box_v = 4;
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd sway --theme 'border=#5C8374;text=#93B1A6;prompt=#5C8374;title=#93B1A6;input=#93B1A6;container=#0d1117;greet=#5C8374'";
+        user = "greeter";
+      };
     };
   };
   programs.sway = {
