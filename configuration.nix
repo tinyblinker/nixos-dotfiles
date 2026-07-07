@@ -15,7 +15,7 @@
     enable = true;
     type = "fcitx5";
     fcitx5.addons = with pkgs; [ 
-      qt6Packages.fcitx5-chinese-addons 
+      (fcitx5-rime.override { rimeDataPkgs = [ rime-ice ]; })
       qt6Packages.fcitx5-configtool
       fcitx5-gtk 
     ];
@@ -49,7 +49,10 @@
   services.libinput.enable = true;
   users.users.shyweeds = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ 
+      "wheel"
+      "networkmanager"
+    ];
     shell = pkgs.fish;
     packages = with pkgs; [
       tree
