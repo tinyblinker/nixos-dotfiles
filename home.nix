@@ -1,4 +1,10 @@
-{ config, pkgs, lib, inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 
 {
   home.username = "shyweeds";
@@ -26,7 +32,7 @@
     };
   };
   home.packages = with pkgs; [
-    ripgrep 
+    ripgrep
     yazi
     bat
     btop
@@ -69,12 +75,12 @@
         border = 4;
       };
       keybindings = lib.mkOptionDefault {
-          "${modifier}+Shift+Return" = "exec ${terminal}";
-          "${modifier}+Shift+q" = "kill";
-          # 使用修饰键+Shift+c 重新加载配置
-          "${modifier}+Shift+c" = "reload";
+        "${modifier}+Shift+Return" = "exec ${terminal}";
+        "${modifier}+Shift+q" = "kill";
+        # 使用修饰键+Shift+c 重新加载配置
+        "${modifier}+Shift+c" = "reload";
       };
-      bars = [];
+      bars = [ ];
       startup = [
         { command = "${pkgs.fcitx5}/bin/fcitx5 -d"; }
         { command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"; }
