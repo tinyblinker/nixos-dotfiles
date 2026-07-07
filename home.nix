@@ -5,6 +5,7 @@
   home.homeDirectory = "/home/shyweeds";
   home.stateVersion = "26.05";
   programs.opencode.enable = true;
+  # shell configs
   programs.bash.enable = true;
   programs.fish = {
     enable = true;
@@ -24,6 +25,8 @@
     ripgrep 
     yazi
     bat
+    btop
+    upower
     nixd
     nil
     nixfmt
@@ -77,5 +80,6 @@
   xdg.configFile."waybar/config".source = ./waybar/config;
   xdg.configFile."waybar/style.css".source = ./waybar/style.css;
   xdg.configFile."wofi/style.css".source = ./wofi/style.css;
+  xdg.configFile."nvim".source = ./nvim;
   programs.wofi.enable = true;
 }
