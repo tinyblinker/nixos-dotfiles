@@ -43,7 +43,7 @@
     config = rec {
       modifier = "Mod1";
       terminal = "kitty";
-      menu = "wofi --show run";
+      menu = "wofi --show drun";
       keybindings = lib.mkOptionDefault {
           "${modifier}+Shift+Return" = "exec ${terminal}";
           "${modifier}+Shift+q" = "kill";
