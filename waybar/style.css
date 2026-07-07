@@ -5,96 +5,102 @@
 }
 
 window#waybar {
-    border-radius: 16px;
-    background: rgba(0, 0, 0, 0.7);
+    background: transparent;
     color: #93B1A6;
 }
 
 tooltip {
-    background: rgba(0, 0, 0, 0.38);
-    border-radius: 14px;
-    border: 1px solid #21262d;
-}
-
-tooltip label {
-    padding: 6px 12px;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 12px;
+    border: 1px solid #5C8374;
     color: #93B1A6;
+    padding: 8px 14px;
 }
 
-#workspaces {
-    border-radius: 16px 24px 24px 16px;
-    margin: 0px;
-    background-color: rgba(255, 255, 255, 0.08);
+/* —— Triple Island: three floating containers —— */
+.modules-left {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 18px;
+    margin: 6px 0 0 10px;
+    padding: 0 10px;
 }
 
+.modules-center {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 18px;
+    margin: 6px 0 0 0;
+    padding: 0 10px;
+}
+
+.modules-right {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 18px;
+    margin: 6px 10px 0 0;
+    padding: 0 10px;
+}
+
+/* —— Clear per-module backgrounds; islands handle it —— */
+#workspaces,
+#tray,
+#window {
+    background: transparent;
+    padding: 0;
+}
+
+#clock,
+#battery,
+#bluetooth,
+#network,
+#idle_inhibitor,
+#power-profiles-daemon,
+#temperature,
+#pulseaudio,
+#backlight {
+    background: transparent;
+    padding: 0 8px;
+}
+
+/* —— Workspaces —— */
 #workspaces button {
-    min-width: 28px;
-    border-radius: 20px;
-    margin: 8px 0;
+    min-width: 26px;
+    border-radius: 12px;
+    margin: 5px 1px;
+    padding: 2px 8px;
+    transition: all 0.2s ease;
 }
 
 #workspaces button.focused {
-  box-shadow: 2px 2px 2px #1d202f;
-  color: #c0caf5;
-  background-color: #f7768e;
-  border-radius: 15px;
+    box-shadow: none;
+    color: #c0caf5;
+    background-color: #f7768e;
 }
 
-#workspaces button:hover {
-    background: rgba(255, 255, 255, 0.08);
-}
-
-#workspaces button.active,
-#workspaces button.active:hover {
+#workspaces button.active {
     background: #5C8374;
     color: #0d1117;
 }
 
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
 #workspaces button.urgent {
-  color: #c0caf5;
-  background-color: #e0af68;
-  border-radius: 15px;
+    color: #c0caf5;
+    background-color: #e0af68;
 }
 
-#window {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-#clock,
-#battery,
-#pulseaudio,
-#network,
-#bluetooth,
-#power-profiles-daemon,
-#idle_inhibitor,
-#temperature,
-#workspaces,
-#backlight {
-    padding: 0px 14px;
-    background-color: rgba(255, 255, 255, 0.08);
-}
+/* —— System module tweaks —— */
+#battery.warning { color: #e0af68; }
+#battery.critical { color: #f7768e; }
+#temperature.critical { color: #f7768e; }
 
+/* —— Tray —— */
 #tray {
-    padding: 0px 16px;
+    padding: 0 8px;
 }
 
-#battery {
-    border-radius: 24px 0 0 24px;
-    padding-left: 24px;
-}
-
-#battery.warning {
-    color: orange;
-}
-
-#battery.critical {
-    color: red;
-}
-
-#temperature.critical {
-    color: red;
-}
-
-#clock {
-    border-radius: 24px;
+/* —— Window (center) —— */
+#window {
+    padding: 0 16px;
+    font-size: 14px;
 }

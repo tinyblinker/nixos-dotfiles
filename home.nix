@@ -4,6 +4,13 @@
   home.username = "shyweeds";
   home.homeDirectory = "/home/shyweeds";
   home.stateVersion = "26.05";
+  home.sessionVariables = {
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+    SDL_IM_MODULE = "fcitx";
+    GLFW_IM_MODULE = "ibus";
+  };
   programs.opencode.enable = true;
   programs.bash.enable = true;
   programs.fish = {
@@ -37,6 +44,8 @@
     enable = true;
     settings = {
       background_opacity = "0.8";
+      font_family = "JetBrainsMono Nerd Font";
+      font_size = "16";
     };
   };
   wayland.windowManager.sway = {
@@ -45,6 +54,12 @@
       modifier = "Mod1";
       terminal = "kitty";
       menu = "wofi --show drun";
+      output = {
+        "*" = {
+          scale = "1.6";
+        };
+      };
+      window.titlebar = false;
       keybindings = lib.mkOptionDefault {
           "${modifier}+Shift+Return" = "exec ${terminal}";
           "${modifier}+Shift+q" = "kill";
@@ -52,6 +67,9 @@
           "${modifier}+Shift+c" = "reload";
       };
       bars = [];
+      startup = [
+        { command = "${pkgs.fcitx5}/bin/fcitx5 -d"; }
+      ];
     };
   };
   programs.waybar = {
