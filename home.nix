@@ -85,9 +85,5 @@
   xdg.configFile."waybar/config".source = ./waybar/config;
   xdg.configFile."waybar/style.css".source = ./waybar/style.css;
   xdg.configFile."wofi/style.css".source = ./wofi/style.css;
-  xdg.configFile."nvim" = {
-    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/nvim";
-    recursive = true;
-  };
   programs.wofi.enable = true;
 }
