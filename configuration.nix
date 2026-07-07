@@ -18,7 +18,7 @@
      enable = true;
      tunMode = true;
      processesInfo = true;
-     configFile = ./config.yaml;
+     configFile = ./mihomo/config.yaml;
      webui = pkgs.metacubexd;  
   };
   services.pipewire = {
