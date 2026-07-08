@@ -54,11 +54,17 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${lib.getExe pkgs.tuigreet} --time --remember --asterisks --cmd niri-session --theme 'border=#5C8374;text=#93B1A6;prompt=#5C8374;title=#93B1A6;input=#93B1A6;container=#0d1117;greet=#5C8374' 2>/dev/null";
+        command = "${lib.getExe pkgs.tuigreet} --time --time-format '%H:%M  %a %d %b' --remember --remember-session --asterisks --greeting 'λ  N I X O S  λ    ·    welcome back, shyweeds' --greet-align center --window-padding 2 --cmd niri-session --theme 'border=#5C8374;text=#93B1A6;prompt=#93B1A6;time=#5C8374;greet=#93B1A6;title=#5C8374;input=#c9d1d9;container=#0d1117;action=#5C8374;button=#5C8374' 2>/dev/null";
         user = "greeter";
       };
     };
   };
+  # tuigreet 也用大字号控制台字体
+  console.earlySetup = true;
+  # 不改内核日志参数,只关闭"内核消息打印到 tuigreet 所在控制台",避免刷屏干扰。
+  # setterm 通过控制台 ioctl 生效,greetd 以 root 运行,stdout 已绑定 /dev/tty1。
+  systemd.services.greetd.serviceConfig.ExecStartPre =
+    "${pkgs.util-linux}/bin/setterm --msg off";
   programs.niri.enable = true;
   programs.dconf.enable = true;   # dconf 支持(home-manager 的 color-scheme=prefer-dark 依赖它)
   hardware.bluetooth.enable = true;

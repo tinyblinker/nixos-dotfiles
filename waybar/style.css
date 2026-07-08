@@ -28,9 +28,9 @@ tooltip label {
 .modules-right {
     background: rgba(13, 17, 23, 0.55);
     border: 1px solid rgba(92, 131, 116, 0.35);
-    border-radius: 16px;
+    border-radius: 9999px;
     margin: 0;
-    padding: 4px 8px;
+    padding: 4px 12px;
 }
 
 .modules-left {
