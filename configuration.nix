@@ -15,6 +15,12 @@
   networking.networkmanager.enable = true;
   time.timeZone = "Asia/Shanghai";
   i18n.defaultLocale = "en_US.UTF-8";
+  # TTY 控制台字体:屏幕 2560x1600(~191 DPI),用 Terminus 32px 高分屏字体
+  console = {
+    font = "ter-v32n";
+    packages = [ pkgs.terminus_font ];
+    keyMap = "us";
+  };
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
