@@ -9,6 +9,8 @@
     ./hardware-configuration.nix
   ];
   boot.loader.systemd-boot.enable = true;
+  # HiDPI 屏下放大 systemd-boot 菜单字体:80x25 标准文本模式
+  boot.loader.systemd-boot.consoleMode = "0";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   networking.hostName = "nixos";
