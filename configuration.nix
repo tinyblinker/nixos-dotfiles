@@ -39,7 +39,12 @@
     fcitx5 = {
       waylandFrontend = true;
       addons = with pkgs; [
-        (fcitx5-rime.override { rimeDataPkgs = [ rime-ice rime-data ]; })
+        (fcitx5-rime.override {
+          rimeDataPkgs = [
+            rime-ice
+            rime-data
+          ];
+        })
         kdePackages.fcitx5-qt
         qt6Packages.fcitx5-configtool
         fcitx5-gtk
@@ -69,10 +74,8 @@
       };
     };
   };
-  # tuigreet 也用大字号控制台字体
-  console.earlySetup = true;
   programs.niri.enable = true;
-  programs.dconf.enable = true;   # dconf 支持(home-manager 的 color-scheme=prefer-dark 依赖它)
+  programs.dconf.enable = true; # dconf 支持(home-manager 的 color-scheme=prefer-dark 依赖它)
   hardware.bluetooth.enable = true;
   services.power-profiles-daemon.enable = true;
   services.mihomo = {
