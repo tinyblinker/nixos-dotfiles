@@ -59,9 +59,14 @@ blur {
     passes 2
 }
 
-// Overview 背景:niri 无法真正模糊 overview,这里用半透明暗色做压暗观感
-overview {
-    backdrop-color "#0d1117cc"
+// overview 里显示壁纸(而非黑色),并对其做模糊
+layer-rule {
+    match namespace="wallpaper"
+    place-within-backdrop true
+    background-effect {
+        blur true
+        noise 0.05
+    }
 }
 
 // 窗口开关渐入渐出动画
