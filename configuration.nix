@@ -29,7 +29,7 @@
     fcitx5 = {
       waylandFrontend = true;
       addons = with pkgs; [
-        (fcitx5-rime.override { rimeDataPkgs = [ rime-ice ]; })
+        (fcitx5-rime.override { rimeDataPkgs = [ rime-ice rime-data ]; })
         kdePackages.fcitx5-qt
         qt6Packages.fcitx5-configtool
         fcitx5-gtk

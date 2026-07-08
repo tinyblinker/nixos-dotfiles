@@ -79,6 +79,12 @@
   };
   # niri 配置(可滚动平铺 Wayland 合成器),config.kdl 保存即热重载
   xdg.configFile."niri/config.kdl".source = ./niri/config.kdl;
+  # rime 启用雾凇拼音(rime-ice)方案
+  xdg.dataFile."fcitx5/rime/default.custom.yaml".text = ''
+    patch:
+      schema_list:
+        - schema: rime_ice
+  '';
   programs.waybar = {
     enable = true;
     systemd.enable = true;
