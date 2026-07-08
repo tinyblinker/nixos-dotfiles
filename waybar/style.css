@@ -1,7 +1,8 @@
 * {
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    font-size: 16px;
+    font-size: 15px;
+    min-height: 0;
 }
 
 window#waybar {
@@ -10,33 +11,34 @@ window#waybar {
 }
 
 tooltip {
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(13, 17, 23, 0.88);
     border-radius: 12px;
     border: 1px solid #5C8374;
     color: #93B1A6;
-    padding: 8px 14px;
+    padding: 6px 12px;
 }
 
-/* —— Triple Island: three floating containers —— */
-.modules-left {
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 18px;
-    margin: 6px 0 0 10px;
-    padding: 0 10px;
+tooltip label {
+    color: #93B1A6;
 }
 
-.modules-center {
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 18px;
+/* —— Triple Island: three floating frosted-glass containers —— */
+.modules-left,
+.modules-center,
+.modules-right {
+    background: rgba(13, 17, 23, 0.55);
+    border: 1px solid rgba(92, 131, 116, 0.35);
+    border-radius: 16px;
     margin: 6px 0 0 0;
-    padding: 0 10px;
+    padding: 1px 6px;
+}
+
+.modules-left {
+    margin-left: 10px;
 }
 
 .modules-right {
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 18px;
-    margin: 6px 10px 0 0;
-    padding: 0 10px;
+    margin-right: 10px;
 }
 
 /* —— Clear per-module backgrounds; islands handle it —— */
@@ -55,24 +57,25 @@ tooltip {
 #power-profiles-daemon,
 #temperature,
 #pulseaudio,
-#backlight {
+#backlight,
+#pulseaudio.microphone {
     background: transparent;
-    padding: 0 8px;
+    padding: 0 9px;
+    margin: 0;
 }
 
 /* —— Workspaces —— */
-#workspaces button {
-    min-width: 26px;
-    border-radius: 12px;
-    margin: 5px 1px;
-    padding: 2px 8px;
-    transition: all 0.2s ease;
+#workspaces {
+    padding: 0 2px;
 }
 
-#workspaces button.focused {
-    box-shadow: none;
-    color: #c0caf5;
-    background-color: #f7768e;
+#workspaces button {
+    color: #93B1A6;
+    min-width: 22px;
+    border-radius: 10px;
+    margin: 5px 2px;
+    padding: 0 7px;
+    transition: all 0.2s ease;
 }
 
 #workspaces button.active {
@@ -80,27 +83,66 @@ tooltip {
     color: #0d1117;
 }
 
+#workspaces button.focused {
+    background: #5C8374;
+    color: #0d1117;
+}
+
 #workspaces button:hover {
-    background: rgba(255, 255, 255, 0.12);
+    background: rgba(147, 177, 166, 0.15);
+    color: #93B1A6;
 }
 
 #workspaces button.urgent {
-    color: #c0caf5;
-    background-color: #e0af68;
+    background: #e0af68;
+    color: #0d1117;
 }
 
-/* —— System module tweaks —— */
-#battery.warning { color: #e0af68; }
-#battery.critical { color: #f7768e; }
-#temperature.critical { color: #f7768e; }
+/* —— Clock (center accent) —— */
+#clock {
+    color: #93B1A6;
+    padding: 0 12px;
+}
+
+/* —— Window (center) —— */
+#window {
+    padding: 0 14px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #93B1A6;
+}
+
+/* —— System module state colors —— */
+#battery.warning {
+    color: #e0af68;
+}
+
+#battery.critical {
+    color: #f7768e;
+}
+
+#battery.charging {
+    color: #5C8374;
+}
+
+#temperature.critical {
+    color: #f7768e;
+}
+
+#idle_inhibitor.activated {
+    color: #e0af68;
+}
+
+#network.disconnected,
+#bluetooth.off {
+    color: #6b7280;
+}
 
 /* —— Tray —— */
 #tray {
     padding: 0 8px;
 }
 
-/* —— Window (center) —— */
-#window {
-    padding: 0 16px;
-    font-size: 14px;
+#tray > .passive {
+    -gtk-icon-effect: dim;
 }

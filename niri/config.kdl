@@ -71,6 +71,24 @@ layer-rule {
     place-within-backdrop true
 }
 
+// waybar 毛玻璃:半透明背景后做模糊
+layer-rule {
+    match namespace="waybar"
+    background-effect {
+        blur true
+        noise 0.03
+    }
+}
+
+// fuzzel 启动器毛玻璃
+layer-rule {
+    match namespace="launcher"
+    background-effect {
+        blur true
+        noise 0.03
+    }
+}
+
 // 动画:让带模糊的窗口开关
 animations {
     window-open {
@@ -104,12 +122,12 @@ hotkey-overlay {
     skip-at-startup
 }
 
-// —— 以下为 niri 官方默认键位(终端/启动器换成你已安装的 kitty / wofi)——
+// —— 以下为 niri 官方默认键位(终端/启动器换成你已安装的 kitty / fuzzel)——
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
-    Mod+D hotkey-overlay-title="Run an Application: wofi" { spawn "wofi" "--show" "drun"; }
+    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1+"; }

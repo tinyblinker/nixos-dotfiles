@@ -84,6 +84,7 @@
     nodejs
     fd
     brightnessctl
+    fuzzel
     wl-clipboard
     pavucontrol
     playerctl
@@ -338,8 +339,8 @@
   };
   xdg.configFile."waybar/config".source = ./waybar/config;
   xdg.configFile."waybar/style.css".source = ./waybar/style.css;
-  xdg.configFile."wofi/style.css".source = ./wofi/style.css;
-  programs.wofi.enable = true;
+  # 启动器:fuzzel(带图标,配合 niri 毛玻璃)
+  xdg.configFile."fuzzel/fuzzel.ini".source = ./fuzzel/fuzzel.ini;
   # 通知守护进程
   services.mako.enable = true;
   # 空闲自动锁屏 / 休眠前锁屏
