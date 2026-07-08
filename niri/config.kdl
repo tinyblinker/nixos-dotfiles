@@ -79,11 +79,11 @@ animations {
     }
     // overview(含模糊 backdrop)用弹簧动画,出现有轻微回弹,更好看
     overview-open-close {
-        spring damping-ratio=0.82 stiffness=700 epsilon=0.0001
+        spring damping-ratio=0.70 stiffness=700 epsilon=0.0001
     }
     // 工作区切换更顺滑
     workspace-switch {
-        spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
+        spring damping-ratio=0.70 stiffness=700 epsilon=0.0001
     }
 }
 
