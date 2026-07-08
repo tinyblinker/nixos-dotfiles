@@ -9,7 +9,7 @@
     gap_size = 3
     transparency = 35
     frame_width = 1
-    frame_color="#607566"
+    frame_color="{{colors.primary.default.hex}}"
     font = JetBrainsMono Nerd Font 14
     corner_radius = 5
     min_icon_size = 64
@@ -17,17 +17,17 @@
     format = "<b>%s</b>\n%b"
 
 [urgency_low]
-    foreground = "#0A2E15"
-    background = "#68B351"
+    foreground = "{{colors.on_surface.default.hex}}"
+    background = "{{colors.surface_container.default.hex}}"
     timeout = 7
 
 [urgency_normal]
-    foreground = "#0A2E15"
-    background = "#8FCE61"
+    foreground = "{{colors.on_surface.default.hex}}"
+    background = "{{colors.surface_container_high.default.hex}}"
     timeout = 10
 
 [urgency_critical]
-    background = "#ff5555"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
+    background = "{{colors.error.default.hex}}"
+    foreground = "{{colors.on_error.default.hex}}"
+    frame_color = "{{colors.error.default.hex}}"
     timeout = 0

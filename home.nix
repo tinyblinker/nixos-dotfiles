@@ -33,8 +33,19 @@
   # Qt 应用跟随深色
   qt = {
     enable = true;
-    platformTheme.name = "adwaita";
-    style.name = "adwaita-dark";
+    platformTheme.name = "qtct";
+    qt6ctSettings = {
+      Appearance = {
+        icon_theme = "Papirus-Dark";
+        style = "kvantum";
+      };
+    };
+    qt5ctSettings = {
+      Appearance = {
+        icon_theme = "Papirus-Dark";
+        style = "kvantum";
+      };
+    };
   };
 
   home.pointerCursor = {
@@ -85,6 +96,7 @@
     fd
     brightnessctl
     fuzzel
+    matugen
     wl-clipboard
     pavucontrol
     playerctl
@@ -203,6 +215,8 @@
   };
   programs.kitty = {
     enable = true;
+    # 引用 matugen 生成的颜色(放在末尾以覆盖默认色)
+    extraConfig = "include /home/shyweeds/dotfiles/color/kitty.conf";
     settings = {
       font_family = "JetBrainsMono Nerd Font";
       font_size = "18";
@@ -341,10 +355,10 @@
   xdg.configFile."waybar/style.css".source = ./waybar/style.css;
   # 启动器:fuzzel(带图标,配合 niri 毛玻璃)
   xdg.configFile."fuzzel/fuzzel.ini".source = ./fuzzel/fuzzel.ini;
-  # 通知守护进程:dunst(使用 ./dunst/dunstrc 作为配置)
+  # 通知守护进程:dunst(配置由 matugen 生成到 ./color/dunstrc)
   services.dunst = {
     enable = true;
-    configFile = ./dunst/dunstrc;
+    configFile = "/home/shyweeds/dotfiles/color/dunstrc";
   };
   # 空闲自动锁屏 / 休眠前锁屏
   services.swayidle = {

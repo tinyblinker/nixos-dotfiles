@@ -1,0 +1,19 @@
+# matugen 配置:从壁纸生成各应用的颜色文件到 ./color/
+# 运行: ./color/generate.sh   (或 matugen image <图> --config ./color/config.toml -m dark)
+[config]
+
+[templates.kitty]
+input_path = '/home/shyweeds/dotfiles/color/templates/kitty.conf'
+output_path = '/home/shyweeds/dotfiles/color/kitty.conf'
+
+[templates.fuzzel]
+input_path = '/home/shyweeds/dotfiles/color/templates/fuzzel.ini'
+output_path = '/home/shyweeds/dotfiles/color/fuzzel.ini'
+
+[templates.waybar]
+input_path = '/home/shyweeds/dotfiles/color/templates/waybar.css'
+output_path = '/home/shyweeds/dotfiles/color/waybar.css'
+
+[templates.dunst]
+input_path = '/home/shyweeds/dotfiles/color/templates/dunstrc'
+output_path = '/home/shyweeds/dotfiles/color/dunstrc'
