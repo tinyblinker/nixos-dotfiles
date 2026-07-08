@@ -86,11 +86,15 @@
       tag.gpgsign = true;
     };
   };
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "vscode"
+    ];
   home.packages = with pkgs; [
     ripgrep
     yazi
     bat
-    vscode
     btop
     upower
     nodejs
