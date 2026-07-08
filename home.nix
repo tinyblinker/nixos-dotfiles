@@ -341,8 +341,11 @@
   xdg.configFile."waybar/style.css".source = ./waybar/style.css;
   # 启动器:fuzzel(带图标,配合 niri 毛玻璃)
   xdg.configFile."fuzzel/fuzzel.ini".source = ./fuzzel/fuzzel.ini;
-  # 通知守护进程
-  services.mako.enable = true;
+  # 通知守护进程:dunst(使用 ./dunst/dunstrc 作为配置)
+  services.dunst = {
+    enable = true;
+    configFile = ./dunst/dunstrc;
+  };
   # 空闲自动锁屏 / 休眠前锁屏
   services.swayidle = {
     enable = true;
