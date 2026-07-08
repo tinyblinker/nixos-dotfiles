@@ -54,6 +54,9 @@
     brightnessctl
     wl-clipboard
     pavucontrol
+    playerctl
+    swaylock
+    bluez-tools
   ];
   programs.lazygit = {
     enable = true;
@@ -82,4 +85,26 @@
   xdg.configFile."waybar/style.css".source = ./waybar/style.css;
   xdg.configFile."wofi/style.css".source = ./wofi/style.css;
   programs.wofi.enable = true;
+  # 通知守护进程
+  services.mako.enable = true;
+  # 空闲自动锁屏 / 休眠前锁屏
+  services.swayidle = {
+    enable = true;
+    events = [
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock}/bin/swaylock -f";
+      }
+      {
+        event = "lock";
+        command = "${pkgs.swaylock}/bin/swaylock -f";
+      }
+    ];
+    timeouts = [
+      {
+        timeout = 300;
+        command = "${pkgs.swaylock}/bin/swaylock -f";
+      }
+    ];
+  };
 }

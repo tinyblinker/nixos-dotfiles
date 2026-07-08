@@ -48,6 +48,8 @@
     };
   };
   programs.niri.enable = true;
+  hardware.bluetooth.enable = true;
+  services.power-profiles-daemon.enable = true;
   services.mihomo = {
     enable = true;
     tunMode = true;
