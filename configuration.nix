@@ -69,7 +69,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${lib.getExe pkgs.tuigreet} --time --time-format '%H:%M  %a %d %b' --remember --remember-session --asterisks --greeting 'λ  N I X O S  λ    ·    welcome back, shyweeds' --greet-align center --window-padding 2 --cmd niri-session --theme 'border=#5C8374;text=#93B1A6;prompt=#93B1A6;time=#5C8374;greet=#93B1A6;title=#5C8374;input=#c9d1d9;container=#0d1117;action=#5C8374;button=#5C8374' 2>/dev/null";
+        command = "${lib.getExe pkgs.tuigreet} --time --time-format '%H:%M  %a %d %b' --remember --remember-session --asterisks --greeting '**N I X O S**' --greet-align center --window-padding 2 --cmd niri-session --theme 'border=#5C8374;text=#93B1A6;prompt=#93B1A6;time=#5C8374;greet=#93B1A6;title=#5C8374;input=#c9d1d9;container=#0d1117;action=#5C8374;button=#5C8374' 2>/dev/null";
         user = "greeter";
       };
     };
