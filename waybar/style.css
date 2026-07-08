@@ -1,7 +1,7 @@
 * {
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    font-size: 15px;
+    font-size: 16px;
     min-height: 0;
 }
 
@@ -30,7 +30,7 @@ tooltip label {
     border: 1px solid rgba(92, 131, 116, 0.35);
     border-radius: 16px;
     margin: 6px 0 0 0;
-    padding: 1px 6px;
+    padding: 4px 8px;
 }
 
 .modules-left {
@@ -71,10 +71,10 @@ tooltip label {
 
 #workspaces button {
     color: #93B1A6;
-    min-width: 22px;
+    min-width: 24px;
     border-radius: 10px;
-    margin: 5px 2px;
-    padding: 0 7px;
+    margin: 2px 2px;
+    padding: 2px 8px;
     transition: all 0.2s ease;
 }
 
