@@ -11,6 +11,40 @@
   home.homeDirectory = "/home/shyweeds";
   home.stateVersion = "26.05";
   home.sessionVariables.EDITOR = "nvim";
+
+  # 图标主题 + 光标(组合一:Papirus-Dark + Bibata-Modern-Classic,大小 24)
+  gtk = {
+    enable = true;
+    theme = {
+      name = "adw-gtk3-dark";      # GTK3 深色主题
+      package = pkgs.adw-gtk3;
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    # 让 GTK3/GTK4 应用默认使用深色
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
+  };
+  # libadwaita(GTK4)/xdg-portal 通过此项判定深浅色,是"全局深色"的关键
+  dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+
+  # Qt 应用跟随深色
+  qt = {
+    enable = true;
+    platformTheme.name = "adwaita";
+    style.name = "adwaita-dark";
+  };
+
+  home.pointerCursor = {
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    gtk.enable = true;      # 应用到 GTK
+    x11.enable = true;      # 应用到 XWayland 应用
+  };
+
   programs.opencode.enable = true;
   # shell configs
   programs.bash.enable = true;

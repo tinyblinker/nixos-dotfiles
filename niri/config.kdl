@@ -18,6 +18,12 @@ output "eDP-1" {
     scale 1.6
 }
 
+// 鼠标光标主题
+cursor {
+    xcursor-theme "Bibata-Modern-Classic"
+    xcursor-size 24
+}
+
 layout {
     gaps 8
     center-focused-column "never"
