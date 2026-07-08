@@ -24,7 +24,20 @@
       fcitx5-gtk
     ];
   };
-  services.xserver.enable = true;
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      externalKeyboard = {
+        ids = [ "3554:fa09" ];
+        settings = {
+          main = {
+            leftalt = "leftmeta";
+            leftmeta = "leftalt";
+          };
+        };
+      };
+    };
+  };
   services.greetd = {
     enable = true;
     settings = {
