@@ -1,9 +1,13 @@
-{ config, lib, pkgs, ... }:
 {
-  imports =
-    [ 
-      ./hardware-configuration.nix
-    ];
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    ./hardware-configuration.nix
+  ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -14,10 +18,10 @@
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
-    fcitx5.addons = with pkgs; [ 
+    fcitx5.addons = with pkgs; [
       (fcitx5-rime.override { rimeDataPkgs = [ rime-ice ]; })
       qt6Packages.fcitx5-configtool
-      fcitx5-gtk 
+      fcitx5-gtk
     ];
   };
   services.xserver.enable = true;
@@ -32,21 +36,24 @@
   };
   programs.niri.enable = true;
   services.mihomo = {
-     enable = true;
-     tunMode = true;
-     processesInfo = true;
-     configFile = ./mihomo/config.yaml;
-     webui = pkgs.metacubexd;  
+    enable = true;
+    tunMode = true;
+    processesInfo = true;
+    configFile = ./mihomo/config.yaml;
+    webui = pkgs.metacubexd;
   };
   services.pipewire = {
     enable = true;
     pulse.enable = true;
   };
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   services.libinput.enable = true;
   users.users.shyweeds = {
     isNormalUser = true;
-    extraGroups = [ 
+    extraGroups = [
       "wheel"
       "networkmanager"
     ];
@@ -62,13 +69,16 @@
   hardware.graphics.enable = true;
   environment.systemPackages = with pkgs; [
     git
-    vim 
+    vim
     wget
     networkmanagerapplet
   ];
   networking.firewall = {
     enable = true;
-    trustedInterfaces = [ "Meta" "Mihomo" ];
+    trustedInterfaces = [
+      "Meta"
+      "Mihomo"
+    ];
     checkReversePath = "loose";
   };
   networking.networkmanager.wifi.powersave = false;

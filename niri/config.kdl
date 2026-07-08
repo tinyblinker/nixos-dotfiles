@@ -56,11 +56,11 @@ hotkey-overlay {
 }
 
 // 环境变量:让输入法在各类应用里生效
-environment {
-    QT_IM_MODULE "fcitx"
-    XMODIFIERS "@im=fcitx"
-    GTK_IM_MODULE "fcitx"
-}
+// environment {
+//     QT_IM_MODULE "fcitx"
+//     XMODIFIERS "@im=fcitx"
+//     GTK_IM_MODULE "fcitx"
+// }
 
 binds {
     // 帮助:显示所有快捷键

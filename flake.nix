@@ -1,6 +1,6 @@
 {
   description = "myNixOS";
-  inputs = { 
+  inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
@@ -9,27 +9,34 @@
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
   };
   # 1. 使用 @inputs 将所有 inputs 捕获到一个变量中
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./configuration.nix
-	home-manager.nixosModules.home-manager
-	{
-	  home-manager = {
-	    useGlobalPkgs = true;
-	    useUserPackages = true;
-	    users.shyweeds = import ./home.nix;
-	    backupFileExtension = "backup";
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }:
+    {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.shyweeds = import ./home.nix;
+              backupFileExtension = "backup";
 
-	    # 引入 nixCats 的 home-manager 模块(命名空间为 nvim)
-	    sharedModules = [ (import ./nvim.nix { inherit inputs; }).homeModule ];
+              # 引入 nixCats 的 home-manager 模块(命名空间为 nvim)
+              sharedModules = [ (import ./nvim.nix { inherit inputs; }).homeModule ];
 
-	    # 2. 将整个 inputs 对象传递给 home.nix
-            extraSpecialArgs = { inherit inputs; };
-	  };
-	}
-      ];
+              # 2. 将整个 inputs 对象传递给 home.nix
+              extraSpecialArgs = { inherit inputs; };
+            };
+          }
+        ];
+      };
     };
-  };
 }
