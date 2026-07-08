@@ -76,7 +76,8 @@ prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot-%Y%m%d-%H%M%S.png"
 
 // awww:显示壁纸
-spawn-sh-at-startup "awww-daemon & sleep 3 && awww img /home/shyweeds/dotfiles/wallpaper/1.png"
+spawn-sh-at-startup "awww-daemon --layer background --namespace bg && awww img --namespace bg /home/shyweeds/dotfiles/wallpaper/1.png"
+spawn-sh-at-startup "awww-daemon --layer bottom --namespace bot && awww img --namespace bot /home/shyweeds/dotfiles/wallpaper/1-blur.png"
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "nm-applet" "--indicator"
 
