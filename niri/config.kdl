@@ -83,6 +83,7 @@ layer-rule {
 // fuzzel 启动器毛玻璃
 layer-rule {
     match namespace="launcher"
+    geometry-corner-radius 18
     background-effect {
         blur true
         noise 0.03

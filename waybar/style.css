@@ -29,7 +29,7 @@ tooltip label {
     background: rgba(13, 17, 23, 0.55);
     border: 1px solid rgba(92, 131, 116, 0.35);
     border-radius: 16px;
-    margin: 6px 0 0 0;
+    margin: 0;
     padding: 4px 8px;
 }
 
