@@ -59,13 +59,6 @@ blur {
     passes 2
 }
 
-// overview 的 backdrop:用 swaybg 那份预先模糊好的壁纸(namespace "wallpaper")。
-// awww(namespace "awww-daemon")是普通视图的清晰壁纸,两者互不影响。
-layer-rule {
-    match namespace="wallpaper"
-    place-within-backdrop true
-}
-
 // 窗口开关渐入渐出动画
 animations {
     window-open {
@@ -82,9 +75,7 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot-%Y%m%d-%H%M%S.png"
 
-// swaybg:显示模糊壁纸,放进 backdrop(overview 背景)
-spawn-at-startup "swaybg" "-i" "/home/shyweeds/dotfiles/wallpaper/1-blur.png" "-m" "fill"
-// awww:显示清晰壁纸,作为普通工作区背景
+// awww:显示壁纸
 spawn-sh-at-startup "awww-daemon & sleep 3 && awww img /home/shyweeds/dotfiles/wallpaper/1.png"
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "nm-applet" "--indicator"

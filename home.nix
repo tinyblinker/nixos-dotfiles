@@ -50,7 +50,6 @@
     nodejs
     fastfetch
     fd
-    swaybg
     brightnessctl
     wl-clipboard
     pavucontrol
