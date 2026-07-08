@@ -360,17 +360,25 @@
     enable = true;
     configFile = "/home/shyweeds/dotfiles/color/dunstrc";
   };
-  # 空闲自动锁屏 / 休眠前锁屏
+  # 空闲策略:300s 熄屏(视频播放时因空闲抑制不熄屏),再 100s(共 400s)锁屏并休眠
   services.swayidle = {
     enable = true;
     events = {
+      # 休眠前先用 swaylock 锁屏(保证唤醒时是锁定状态)
       before-sleep = "${pkgs.swaylock}/bin/swaylock -f";
       lock = "${pkgs.swaylock}/bin/swaylock -f";
     };
     timeouts = [
       {
+        # 300s 无操作:DPMS 熄屏;有输入时自动亮屏
         timeout = 300;
-        command = "${pkgs.swaylock}/bin/swaylock -f";
+        command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+        resumeCommand = "${pkgs.niri}/bin/niri msg action power-on-monitors";
+      }
+      {
+        # 再过 100s(共 400s):进入休眠(休眠前 before-sleep 会自动 swaylock)
+        timeout = 400;
+        command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
   };
