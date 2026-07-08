@@ -17,7 +17,16 @@ let
   # categoryDefinitions:分类 -> 插件/依赖 的映射
   # ---------------------------------------------------------------
   categoryDefinitions =
-    { pkgs, settings, categories, extra, name, mkPlugin, ... }@packageDef: {
+    {
+      pkgs,
+      settings,
+      categories,
+      extra,
+      name,
+      mkPlugin,
+      ...
+    }@packageDef:
+    {
 
       # 运行时依赖(LSP、格式化器、linter 等),会加入 neovim 内置终端的 PATH
       lspsAndRuntimeDeps = with pkgs; {
@@ -109,7 +118,9 @@ let
       };
 
       # 共享库,加入 LD_LIBRARY_PATH
-      sharedLibraries = { general = with pkgs; [ ]; };
+      sharedLibraries = {
+        general = with pkgs; [ ];
+      };
 
       environmentVariables = { };
       extraWrapperArgs = { };
@@ -126,7 +137,10 @@ let
         suffix-path = true;
         suffix-LD = true;
         wrapRc = true;
-        aliases = [ "vim" "vi" ];
+        aliases = [
+          "vim"
+          "vi"
+        ];
         hosts.python3.enable = true;
         hosts.node.enable = true;
       };
@@ -149,7 +163,7 @@ let
         # nixd 需要 nixpkgs 表达式以及 nixos/home-manager options 路径
         # 使用 inputs.self 保证无论配置在哪都能解析(集成 flake 最佳实践)
         nixdExtras = {
-          nixpkgs = ''import ${pkgs.path} {}'';
+          nixpkgs = "import ${pkgs.path} {}";
           nixos_options = ''(builtins.getFlake "${builtins.toString inputs.self.outPath}").nixosConfigurations.nixos.options'';
           home_manager_options = ''(builtins.getFlake "${builtins.toString inputs.self.outPath}").nixosConfigurations.nixos.options.home-manager.users.type.getSubOptions []'';
         };
@@ -163,8 +177,14 @@ in
   # 导出 home-manager 模块,供 flake.nix 引入
   homeModule = utils.mkHomeModules {
     moduleNamespace = [ defaultPackageName ];
-    inherit defaultPackageName dependencyOverlays luaPath
-      categoryDefinitions packageDefinitions extra_pkg_config;
+    inherit
+      defaultPackageName
+      dependencyOverlays
+      luaPath
+      categoryDefinitions
+      packageDefinitions
+      extra_pkg_config
+      ;
     nixpkgs = inputs.nixpkgs;
   };
 }
