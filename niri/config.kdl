@@ -59,6 +59,12 @@ blur {
     passes 2
 }
 
+// 把模糊那份壁纸(awww-daemonblur)放进 overview 的 backdrop
+layer-rule {
+    match namespace="awww-daemonblur"
+    place-within-backdrop true
+}
+
 // 窗口开关渐入渐出动画
 animations {
     window-open {
@@ -75,9 +81,9 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot-%Y%m%d-%H%M%S.png"
 
-// awww:清晰图放 background 层(工作区壁纸),模糊图放 bottom 层
-spawn-sh-at-startup "awww-daemon --layer background --namespace bg & sleep 3 && awww img --namespace bg /home/shyweeds/dotfiles/wallpaper/1.png"
-spawn-sh-at-startup "awww-daemon --layer bottom --namespace bot & sleep 3 && awww img --namespace bot /home/shyweeds/dotfiles/wallpaper/1-blur.png"
+// awww:清晰图作普通工作区壁纸;模糊图交给下面的 layer-rule 放进 overview backdrop
+spawn-sh-at-startup "awww-daemon --namespace sharp & until awww query --namespace sharp >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace sharp /home/shyweeds/dotfiles/wallpaper/1.png"
+spawn-sh-at-startup "awww-daemon --namespace blur & until awww query --namespace blur >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace blur /home/shyweeds/dotfiles/wallpaper/1-blur.png"
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "nm-applet" "--indicator"
 
