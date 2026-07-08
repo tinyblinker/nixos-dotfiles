@@ -50,6 +50,10 @@
     nodejs
     fastfetch
     fd
+    swaybg
+    brightnessctl
+    wl-clipboard
+    pavucontrol
   ];
   programs.lazygit = {
     enable = true;
@@ -68,35 +72,8 @@
       font_size = "16";
     };
   };
-  wayland.windowManager.sway = {
-    enable = true;
-    config = rec {
-      modifier = "Mod1";
-      terminal = "kitty";
-      menu = "wofi --show drun";
-      output = {
-        "*" = {
-          scale = "1.6";
-          bg = "${./wallpaper/1.png} fill";
-        };
-      };
-      window = {
-        titlebar = false;
-        border = 4;
-      };
-      keybindings = lib.mkOptionDefault {
-        "${modifier}+Shift+Return" = "exec ${terminal}";
-        "${modifier}+Shift+q" = "kill";
-        # 使用修饰键+Shift+c 重新加载配置
-        "${modifier}+Shift+c" = "reload";
-      };
-      bars = [ ];
-      startup = [
-        { command = "${pkgs.fcitx5}/bin/fcitx5 -d"; }
-        { command = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"; }
-      ];
-    };
-  };
+  # niri 配置(可滚动平铺 Wayland 合成器),config.kdl 保存即热重载
+  xdg.configFile."niri/config.kdl".source = ./niri/config.kdl;
   programs.waybar = {
     enable = true;
     systemd.enable = true;

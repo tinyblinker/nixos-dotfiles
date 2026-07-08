@@ -25,15 +25,12 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${lib.getExe pkgs.tuigreet} --time --remember --asterisks --cmd sway --theme 'border=#5C8374;text=#93B1A6;prompt=#5C8374;title=#93B1A6;input=#93B1A6;container=#0d1117;greet=#5C8374' 2>/dev/null";
+        command = "${lib.getExe pkgs.tuigreet} --time --remember --asterisks --cmd niri-session --theme 'border=#5C8374;text=#93B1A6;prompt=#5C8374;title=#93B1A6;input=#93B1A6;container=#0d1117;greet=#5C8374' 2>/dev/null";
         user = "greeter";
       };
     };
   };
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
+  programs.niri.enable = true;
   services.mihomo = {
      enable = true;
      tunMode = true;

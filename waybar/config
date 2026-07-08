@@ -3,12 +3,12 @@
 	"margin": "0 0 4 0",
 	"mod": "dock",
 	"modules-left": [
-		"sway/workspaces",
+		"niri/workspaces",
 		"tray"
 	],
 	"modules-center": [
 		"clock",
-		"sway/window"
+		"niri/window"
 	],
 	"modules-right": [
 		"battery",
@@ -21,13 +21,12 @@
 		"backlight",
 		"pulseaudio#microphone"
 	],
-	"sway/window": {
+	"niri/window": {
 		"format": "{app_id}",
 		"max-length": 20,
 		"icon": true
 	},
-	"sway/workspaces": {
-		"sort-by": "name"
+	"niri/workspaces": {
 	},
 	"idle_inhibitor": {
 	    "format": "{icon}",
