@@ -90,6 +90,7 @@
     ripgrep
     yazi
     bat
+    vscode
     btop
     upower
     nodejs
