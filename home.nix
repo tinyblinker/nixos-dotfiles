@@ -57,6 +57,7 @@
     playerctl
     swaylock
     bluez-tools
+    awww
   ];
   programs.lazygit = {
     enable = true;
