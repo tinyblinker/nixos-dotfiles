@@ -13,6 +13,16 @@
   boot.loader.systemd-boot.consoleMode = "0";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  # 安静启动:降低内核/udev 日志等级,避免启动到 tuigreet 时被日志刷屏
+  boot.kernelParams = [
+    "quiet"
+    "loglevel=3"
+    "udev.log_level=3"
+    "rd.udev.log_level=3"
+  ];
+  boot.consoleLogLevel = 3;
+  boot.initrd.verbose = false;
+  boot.kernel.sysctl."kernel.printk" = "3 3 3 3";
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
   time.timeZone = "Asia/Shanghai";
@@ -61,10 +71,6 @@
   };
   # tuigreet 也用大字号控制台字体
   console.earlySetup = true;
-  # 不改内核日志参数,只关闭"内核消息打印到 tuigreet 所在控制台",避免刷屏干扰。
-  # setterm 通过控制台 ioctl 生效,greetd 以 root 运行,stdout 已绑定 /dev/tty1。
-  systemd.services.greetd.serviceConfig.ExecStartPre =
-    "${pkgs.util-linux}/bin/setterm --msg off";
   programs.niri.enable = true;
   programs.dconf.enable = true;   # dconf 支持(home-manager 的 color-scheme=prefer-dark 依赖它)
   hardware.bluetooth.enable = true;
