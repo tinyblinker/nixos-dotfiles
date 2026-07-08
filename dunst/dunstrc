@@ -10,7 +10,7 @@
     transparency = 35
     frame_width = 1
     frame_color="#607566"
-    font = Libertinus Mono 11
+    font = JetBrainsMono Nerd Font 14
     corner_radius = 5
     min_icon_size = 64
     max_icon_size = 128
