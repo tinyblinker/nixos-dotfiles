@@ -70,9 +70,11 @@
   programs.kitty = {
     enable = true;
     settings = {
-      background_opacity = "0.8";
       font_family = "JetBrainsMono Nerd Font";
-      font_size = "16";
+      font_size = "18";
+      cursor_trail = "3";
+      cursor_trail_decay = "0.1 0.4";
+      cursor_trail_start_threshold = "2";
     };
   };
   # niri 配置(可滚动平铺 Wayland 合成器),config.kdl 保存即热重载

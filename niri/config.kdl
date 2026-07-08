@@ -47,10 +47,28 @@ window-rule {
     clip-to-geometry true
 }
 
+// kitty 半透明(透出背后的模糊)
+window-rule {
+    match app-id="kitty"
+    opacity 0.85
+}
+
 // 背景模糊(作用于半透明窗口背后,例如 kitty)
 blur {
     on
     passes 2
+}
+
+// 窗口开关渐入渐出动画
+animations {
+    window-open {
+        duration-ms 250
+        curve "ease-out-cubic"
+    }
+    window-close {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
 }
 
 prefer-no-csd
@@ -69,10 +87,9 @@ hotkey-overlay {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+    Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: wofi" { spawn "wofi" "--show" "drun"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
-    Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
