@@ -1,7 +1,1 @@
-# 壁纸(运行时用绝对路径引用,nix 构建不需要;避免仓库膨胀)
 wallpaper/
-
-# nix / 常见产物
-result
-result-*
-.direnv/
