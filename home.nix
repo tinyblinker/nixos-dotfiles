@@ -90,6 +90,7 @@
     ripgrep
     yazi
     bat
+    wlsunset
     btop
     upower
     nodejs
@@ -381,12 +382,5 @@
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }
     ];
-  };
-  services.wlsunset = {
-    enable = true;
-    sunrise = "06:30";
-    sunset = "18:00";
-    temperature.day = 4500;
-    temperature.night = 4500;
   };
 }
