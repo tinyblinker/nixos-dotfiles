@@ -59,10 +59,10 @@ blur {
     passes 2
 }
 
-// overview 的 backdrop:用 awww 那份预先模糊好的壁纸(namespace "awww-daemon")。
-// swaybg(namespace "wallpaper")仍是普通视图的清晰壁纸,两者互不影响。
+// overview 的 backdrop:用 swaybg 那份预先模糊好的壁纸(namespace "wallpaper")。
+// awww(namespace "awww-daemon")是普通视图的清晰壁纸,两者互不影响。
 layer-rule {
-    match namespace="awww-daemon"
+    match namespace="wallpaper"
     place-within-backdrop true
 }
 
@@ -82,9 +82,10 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot-%Y%m%d-%H%M%S.png"
 
-spawn-at-startup "swaybg" "-i" "/home/shyweeds/dotfiles/wallpaper/1.png" "-m" "fill"
-// awww 壁纸:放在 backdrop 里,overview 时显示模糊壁纸(用预先模糊好的图)
-spawn-sh-at-startup "awww-daemon & sleep 3 && awww img /home/shyweeds/dotfiles/wallpaper/1-blur.png"
+// swaybg:显示模糊壁纸,放进 backdrop(overview 背景)
+spawn-at-startup "swaybg" "-i" "/home/shyweeds/dotfiles/wallpaper/1-blur.png" "-m" "fill"
+// awww:显示清晰壁纸,作为普通工作区背景
+spawn-sh-at-startup "awww-daemon & sleep 3 && awww img /home/shyweeds/dotfiles/wallpaper/1.png"
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "nm-applet" "--indicator"
 
