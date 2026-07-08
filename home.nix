@@ -374,4 +374,9 @@
       }
     ];
   };
+  services.wlsunset = {
+    enable = true;
+    temperature.day = 4500;
+    temperature.night = 4500;
+  };
 }
