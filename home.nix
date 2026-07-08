@@ -76,6 +76,11 @@
       cursor_trail_decay = "0.1 0.4";
       cursor_trail_start_threshold = "2";
     };
+    keybindings = {
+      "ctrl+shift+enter" = "no_op";
+      "ctrl+shift+w" = "no_op";
+      "ctrl+shift+q" = "no_op";
+    };
   };
   # niri 配置(可滚动平铺 Wayland 合成器),config.kdl 保存即热重载
   xdg.configFile."niri/config.kdl".source = ./niri/config.kdl;
@@ -85,6 +90,19 @@
       schema_list:
         - schema: rime_ice      # 雾凇拼音
       menu/page_size: 8         # 候选词每页显示 8 个
+  '';
+
+  # 强制默认简体(否则雾凇会记住上次状态,可能停在繁体)。
+  # 覆盖 switches 会整体替换,故需列全雾凇原有开关,只在简繁上加 reset:0。
+  xdg.dataFile."fcitx5/rime/rime_ice.custom.yaml".text = ''
+    patch:
+      switches:
+        - { name: ascii_mode, reset: 0, states: [ 中, Ａ ] }
+        - { name: ascii_punct, reset: 0, states: [ ¥, $ ] }
+        - { name: traditionalization, reset: 0, states: [ 简, 繁 ] }
+        - { name: emoji, reset: 1, states: [ 💀, 😄 ] }
+        - { name: full_shape, reset: 0, states: [ 半角, 全角 ] }
+        - { name: search_single_char, states: [ 正常, 单字 ], abbrev: [ 词, 单 ] }
   '';
 
   # fcitx5 候选框皮肤:自定义深色绿主题(呼应 niri 的 #5C8374/#0d1117)
