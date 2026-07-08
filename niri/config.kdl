@@ -50,7 +50,7 @@ window-rule {
 // kitty 半透明(透出背后的模糊)
 window-rule {
     match app-id="kitty"
-    opacity 0.85
+    opacity 0.75
 }
 
 // 背景模糊(作用于半透明窗口背后,例如 kitty)
@@ -65,15 +65,25 @@ layer-rule {
     place-within-backdrop true
 }
 
-// 窗口开关渐入渐出动画
+// 动画:让带模糊的窗口开关、以及 overview 的出现更明显、更顺滑
 animations {
+    // 开窗:慢一点 + expo 曲线,模糊透明窗口的淡入更明显
     window-open {
-        duration-ms 250
-        curve "ease-out-cubic"
+        duration-ms 400
+        curve "ease-out-expo"
     }
+    // 关窗:平滑淡出
     window-close {
-        duration-ms 200
+        duration-ms 300
         curve "ease-out-quad"
+    }
+    // overview(含模糊 backdrop)用弹簧动画,出现有轻微回弹,更好看
+    overview-open-close {
+        spring damping-ratio=0.82 stiffness=700 epsilon=0.0001
+    }
+    // 工作区切换更顺滑
+    workspace-switch {
+        spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
     }
 }
 
