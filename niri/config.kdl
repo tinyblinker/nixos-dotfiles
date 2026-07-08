@@ -59,6 +59,11 @@ blur {
     passes 2
 }
 
+// Overview 背景:niri 无法真正模糊 overview,这里用半透明暗色做压暗观感
+overview {
+    backdrop-color "#0d1117cc"
+}
+
 // 窗口开关渐入渐出动画
 animations {
     window-open {
