@@ -92,16 +92,14 @@
   # 空闲自动锁屏 / 休眠前锁屏
   services.swayidle = {
     enable = true;
-    events = [
-      {
-        event = "before-sleep";
+    events = {
+      before-sleep = {
         command = "${pkgs.swaylock}/bin/swaylock -f";
-      }
-      {
-        event = "lock";
+      };
+      lock = {
         command = "${pkgs.swaylock}/bin/swaylock -f";
-      }
-    ];
+      };
+    };
     timeouts = [
       {
         timeout = 300;
