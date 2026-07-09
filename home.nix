@@ -97,7 +97,6 @@
     fd
     brightnessctl
     fuzzel
-    matugen
     vscode
     wl-clipboard
     pavucontrol
@@ -217,8 +216,6 @@
   };
   programs.kitty = {
     enable = true;
-    # 引用 matugen 生成的颜色(放在末尾以覆盖默认色)
-    extraConfig = "include /home/shyweeds/dotfiles/color/kitty.conf";
     settings = {
       font_family = "JetBrainsMono Nerd Font";
       font_size = "18";
@@ -369,10 +366,10 @@
   xdg.configFile."waybar/style.css".source = ./waybar/style.css;
   # 启动器:fuzzel(带图标,配合 niri 毛玻璃)
   xdg.configFile."fuzzel/fuzzel.ini".source = ./fuzzel/fuzzel.ini;
-  # 通知守护进程:dunst(配置由 matugen 生成到 ./color/dunstrc)
+  # 通知守护进程:dunst
   services.dunst = {
     enable = true;
-    configFile = "/home/shyweeds/dotfiles/color/dunstrc";
+    configFile = ./dunst/dunstrc;
   };
   # 空闲策略:300s 熄屏(视频播放时因空闲抑制不熄屏),再 100s(共 400s)锁屏并休眠
   services.swayidle = {

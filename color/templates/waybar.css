@@ -1,8 +1,0 @@
-@define-color bg {{colors.background.default.hex}};
-@define-color fg {{colors.on_background.default.hex}};
-@define-color accent {{colors.primary.default.hex}};
-@define-color accent2 {{colors.secondary.default.hex}};
-@define-color onaccent {{colors.on_primary.default.hex}};
-@define-color outline {{colors.outline.default.hex}};
-@define-color warning {{colors.tertiary.default.hex}};
-@define-color critical {{colors.error.default.hex}};

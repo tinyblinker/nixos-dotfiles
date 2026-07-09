@@ -1,5 +1,3 @@
-@import "/home/shyweeds/dotfiles/color/waybar.css";
-
 * {
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
@@ -9,27 +7,27 @@
 
 window#waybar {
     background: transparent;
-    color: @accent2;
+    color: #93B1A6;
 }
 
 tooltip {
-    background: alpha(@bg, 0.88);
+    background: rgba(13, 17, 23, 0.88);
     border-radius: 12px;
-    border: 1px solid @accent;
-    color: @accent2;
+    border: 1px solid #5C8374;
+    color: #93B1A6;
     padding: 6px 12px;
 }
 
 tooltip label {
-    color: @accent2;
+    color: #93B1A6;
 }
 
 /* —— Triple Island: three floating frosted-glass containers —— */
 .modules-left,
 .modules-center,
 .modules-right {
-    background: alpha(@bg, 0.55);
-    border: 1px solid alpha(@accent, 0.35);
+    background: rgba(13, 17, 23, 0.55);
+    border: 1px solid rgba(92, 131, 116, 0.35);
     border-radius: 9999px;
     margin: 0;
     padding: 4px 12px;
@@ -72,7 +70,7 @@ tooltip label {
 }
 
 #workspaces button {
-    color: @accent2;
+    color: #93B1A6;
     min-width: 24px;
     border-radius: 10px;
     margin: 2px 2px;
@@ -81,28 +79,28 @@ tooltip label {
 }
 
 #workspaces button.active {
-    background: @accent;
-    color: @onaccent;
+    background: #5C8374;
+    color: #0d1117;
 }
 
 #workspaces button.focused {
-    background: @accent;
-    color: @onaccent;
+    background: #5C8374;
+    color: #0d1117;
 }
 
 #workspaces button:hover {
-    background: alpha(@accent2, 0.15);
-    color: @accent2;
+    background: rgba(147, 177, 166, 0.15);
+    color: #93B1A6;
 }
 
 #workspaces button.urgent {
-    background: @warning;
-    color: @onaccent;
+    background: #e0af68;
+    color: #0d1117;
 }
 
 /* —— Clock (center accent) —— */
 #clock {
-    color: @accent2;
+    color: #93B1A6;
     padding: 0 12px;
 }
 
@@ -111,33 +109,33 @@ tooltip label {
     padding: 0 14px;
     font-size: 13px;
     font-weight: normal;
-    color: @accent2;
+    color: #93B1A6;
 }
 
 /* —— System module state colors —— */
 #battery.warning {
-    color: @warning;
+    color: #e0af68;
 }
 
 #battery.critical {
-    color: @critical;
+    color: #f7768e;
 }
 
 #battery.charging {
-    color: @accent;
+    color: #5C8374;
 }
 
 #temperature.critical {
-    color: @critical;
+    color: #f7768e;
 }
 
 #idle_inhibitor.activated {
-    color: @warning;
+    color: #e0af68;
 }
 
 #network.disconnected,
 #bluetooth.off {
-    color: @outline;
+    color: #6b7280;
 }
 
 /* —— Tray —— */
