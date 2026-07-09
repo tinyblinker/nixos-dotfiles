@@ -80,7 +80,7 @@
     enable = true;
     tunMode = true;
     processesInfo = true;
-    configFile = ./mihomo/config.yaml;
+    configFile = "/home/shyweeds/dotfiles/mihomo/config.yaml";
     webui = pkgs.metacubexd;
   };
   services.pipewire = {
