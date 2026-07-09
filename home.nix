@@ -7,46 +7,27 @@
 }:
 
 {
+  # catppuccin 全局主题(参考 ryan4yin):自动给 kitty/gtk/fastfetch 等上色
+  imports = [ inputs.catppuccin.homeModules.catppuccin ];
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "pink";
+    # fcitx5 用自带输入法皮肤,交给它自己(避免与 rime 皮肤冲突)
+    fcitx5.enable = false;
+  };
+
   home.username = "shyweeds";
   home.homeDirectory = "/home/shyweeds";
   home.stateVersion = "26.05";
   home.sessionVariables.EDITOR = "nvim";
 
-  # 图标主题 + 光标(组合一:Papirus-Dark + Bibata-Modern-Classic,大小 24)
+  # GTK 主题与图标交给 catppuccin.gtk;这里只保留 enable
   gtk = {
     enable = true;
-    theme = {
-      name = "adw-gtk3-dark"; # GTK3 深色主题
-      package = pkgs.adw-gtk3;
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    # 让 GTK3/GTK4 应用默认使用深色
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
-    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
   };
   # libadwaita(GTK4)/xdg-portal 通过此项判定深浅色,是"全局深色"的关键
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
-
-  # Qt 应用跟随深色
-  qt = {
-    enable = true;
-    platformTheme.name = "qtct";
-    qt6ctSettings = {
-      Appearance = {
-        icon_theme = "Papirus-Dark";
-        style = "kvantum";
-      };
-    };
-    qt5ctSettings = {
-      Appearance = {
-        icon_theme = "Papirus-Dark";
-        style = "kvantum";
-      };
-    };
-  };
 
   home.pointerCursor = {
     name = "Bibata-Modern-Classic";
@@ -96,14 +77,16 @@
     nodejs
     fd
     brightnessctl
-    fuzzel
     vscode
     wl-clipboard
     pavucontrol
     playerctl
-    swaylock
     bluez-tools
-    awww
+    # noctalia-shell:桌面 shell(状态栏/启动器/通知/锁屏/OSD 等)
+    noctalia-shell
+    qt6Packages.qt6ct
+    app2unit
+    cliphist
   ];
   programs.lazygit = {
     enable = true;
@@ -252,96 +235,8 @@
         - { name: search_single_char, states: [ 正常, 单字 ], abbrev: [ 词, 单 ] }
   '';
 
-  # fcitx5 候选框皮肤:自定义深色绿主题(呼应 niri 的 #5C8374/#0d1117)
-  xdg.dataFile."fcitx5/themes/GreenDark/theme.conf".text = ''
-    [Metadata]
-    Name=GreenDark
-    Version=1.0
-    Author=custom
-    Description=Dark green theme
-    ScaleWithDPI=True
-
-    [InputPanel]
-    NormalColor=#c9d1d9              # 普通候选词文字(浅灰)
-    HighlightCandidateColor=#0d1117  # 选中候选词文字(深色,压在绿底上)
-    HighlightColor=#93B1A6           # 编码区高亮文字(浅绿)
-    PageButtonAlignment=Last Candidate
-
-    [InputPanel/TextMargin]
-    Left=8
-    Right=8
-    Top=6
-    Bottom=6
-
-    [InputPanel/ContentMargin]
-    Left=4
-    Right=4
-    Top=4
-    Bottom=4
-
-    [InputPanel/Background]
-    Color=#0d1117                    # 候选框底色(深)
-    BorderColor=#5C8374              # 边框(绿)
-    BorderWidth=1
-
-    [InputPanel/Background/Margin]
-    Left=3
-    Right=3
-    Top=3
-    Bottom=3
-
-    [InputPanel/Highlight]
-    Color=#5C8374                    # 选中候选词的底色(绿)
-
-    [InputPanel/Highlight/Margin]
-    Left=6
-    Right=6
-    Top=5
-    Bottom=5
-
-    [Menu]
-    NormalColor=#c9d1d9
-    HighlightColor=#0d1117
-
-    [Menu/Background]
-    Color=#0d1117
-    BorderColor=#5C8374
-    BorderWidth=1
-
-    [Menu/Background/Margin]
-    Left=2
-    Right=2
-    Top=2
-    Bottom=2
-
-    [Menu/ContentMargin]
-    Left=2
-    Right=2
-    Top=2
-    Bottom=2
-
-    [Menu/Highlight]
-    Color=#5C8374
-
-    [Menu/Highlight/Margin]
-    Left=5
-    Right=5
-    Top=5
-    Bottom=5
-
-    [Menu/Separator]
-    Color=#30363d
-
-    [Menu/TextMargin]
-    Left=5
-    Right=5
-    Top=5
-    Bottom=5
-  '';
-
-  # 选用上面的皮肤 + 字体
+  # fcitx5 候选框:仅设字体,主题用默认(不再用绿色 GreenDark,避免与 catppuccin 冲突)
   xdg.configFile."fcitx5/conf/classicui.conf".text = ''
-    Theme=GreenDark
     Font="Noto Sans CJK SC 13"
     PerScreenDPI=True
   '';
@@ -358,26 +253,25 @@
     executable = true;
   };
 
-  programs.waybar = {
-    enable = true;
-    systemd.enable = true;
+  # noctalia-shell 的 Qt 配置(参考 ryan4yin)
+  home.sessionVariables = {
+    "QT_QPA_PLATFORM" = "wayland;xcb";
+    "QT_QPA_PLATFORMTHEME" = "qt6ct";
+    "QT_AUTO_SCREEN_SCALE_FACTOR" = "1";
   };
-  xdg.configFile."waybar/config".source = ./waybar/config;
-  xdg.configFile."waybar/style.css".source = ./waybar/style.css;
-  # 启动器:fuzzel(带图标,配合 niri 毛玻璃)
-  xdg.configFile."fuzzel/fuzzel.ini".source = ./fuzzel/fuzzel.ini;
-  # 通知守护进程:dunst
-  services.dunst = {
-    enable = true;
-    configFile = ./dunst/dunstrc;
-  };
-  # 空闲策略:300s 熄屏(视频播放时因空闲抑制不熄屏),再 100s(共 400s)锁屏并休眠
+  # noctalia 配置目录用 out-of-store 软链,便于 noctalia 运行时读写自身设置
+  xdg.configFile."noctalia".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/shyweeds/dotfiles/noctalia/config";
+  xdg.configFile."qt6ct/qt6ct.conf".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/shyweeds/dotfiles/noctalia/qt6ct.conf";
+
+  # 空闲策略:300s 熄屏(视频播放时因空闲抑制不熄屏),再 100s(共 400s)锁屏并休眠。
+  # 锁屏改用 noctalia(swaylock 已移除)。
   services.swayidle = {
     enable = true;
     events = {
-      # 休眠前先用 swaylock 锁屏(保证唤醒时是锁定状态)
-      before-sleep = "${pkgs.swaylock}/bin/swaylock -f";
-      lock = "${pkgs.swaylock}/bin/swaylock -f";
+      before-sleep = "${pkgs.noctalia-shell}/bin/noctalia-shell ipc call lockScreen lock";
+      lock = "${pkgs.noctalia-shell}/bin/noctalia-shell ipc call lockScreen lock";
     };
     timeouts = [
       {
@@ -387,7 +281,7 @@
         resumeCommand = "${pkgs.niri}/bin/niri msg action power-on-monitors";
       }
       {
-        # 再过 100s(共 400s):进入休眠(休眠前 before-sleep 会自动 swaylock)
+        # 再过 100s(共 400s):进入休眠(休眠前 before-sleep 会先锁屏)
         timeout = 400;
         command = "${pkgs.systemd}/bin/systemctl suspend";
       }

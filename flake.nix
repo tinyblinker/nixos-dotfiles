@@ -7,6 +7,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    catppuccin.url = "github:catppuccin/nix/v26.05";
+    catppuccin.inputs.nixpkgs.follows = "nixpkgs";
   };
   # 1. 使用 @inputs 将所有 inputs 捕获到一个变量中
   outputs =

@@ -47,16 +47,16 @@ layout {
     }
 }
 
-// 圆角
+// 圆角(noctalia 推荐 20)
 window-rule {
-    geometry-corner-radius 14
+    geometry-corner-radius 20
     clip-to-geometry true
 }
 
-// kitty 半透明(透出背后的模糊)
+// kitty 半透明
 window-rule {
     match app-id="kitty"
-    opacity 0.75
+    opacity 0.9
 }
 
 // 背景模糊(作用于半透明窗口背后,例如 kitty)
@@ -65,29 +65,15 @@ blur {
     passes 2
 }
 
-// 把模糊那份壁纸(awww-daemonblur)放进 overview 的 backdrop
+// noctalia:允许通知动作/窗口激活(https://docs.noctalia.dev)
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+// noctalia overview 的壁纸放到 backdrop
 layer-rule {
-    match namespace="awww-daemonblur"
+    match namespace="^noctalia-overview*"
     place-within-backdrop true
-}
-
-// waybar 毛玻璃:半透明背景后做模糊
-layer-rule {
-    match namespace="waybar"
-    background-effect {
-        blur true
-        noise 0.03
-    }
-}
-
-// fuzzel 启动器毛玻璃
-layer-rule {
-    match namespace="launcher"
-    geometry-corner-radius 18
-    background-effect {
-        blur true
-        noise 0.03
-    }
 }
 
 // 动画:让带模糊的窗口开关
@@ -107,11 +93,9 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot-%Y%m%d-%H%M%S.png"
 
-// awww:清晰图作普通工作区壁纸;模糊图交给下面的 layer-rule 放进 overview backdrop
-spawn-sh-at-startup "awww-daemon --namespace sharp & until awww query --namespace sharp >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace sharp /home/shyweeds/dotfiles/wallpaper/1.png"
-spawn-sh-at-startup "awww-daemon --namespace blur & until awww query --namespace blur >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace blur /home/shyweeds/dotfiles/wallpaper/1-blur.png"
+// noctalia-shell:桌面 shell(壁纸/状态栏/通知/启动器/锁屏/OSD 等)
+spawn-at-startup "noctalia-shell"
 spawn-at-startup "fcitx5" "-d"
-spawn-at-startup "nm-applet" "--indicator"
 
 gestures {
   hot-corners {
@@ -128,22 +112,27 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
-    Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    // noctalia:启动器 / 锁屏 / 控制中心 / 会话菜单 / 剪贴板
+    Mod+D { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Super+Alt+L { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+    Mod+S { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
+    Mod+E { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
+    Mod+Ctrl+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-"; }
-    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+    XF86AudioMute        allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteInput"; }
 
-    XF86AudioPlay  allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-    XF86AudioPause allow-when-locked=true { spawn-sh "playerctl play-pause"; }
-    XF86AudioStop  allow-when-locked=true { spawn-sh "playerctl stop"; }
-    XF86AudioPrev  allow-when-locked=true { spawn-sh "playerctl previous"; }
-    XF86AudioNext  allow-when-locked=true { spawn-sh "playerctl next"; }
+    XF86AudioPlay  allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
+    XF86AudioPause allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "pause"; }
+    XF86AudioStop  allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "pause"; }
+    XF86AudioPrev  allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "previous"; }
+    XF86AudioNext  allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "next"; }
 
-    XF86MonBrightnessUp   allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+1%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "1%-"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
 
     Mod+O repeat=false { toggle-overview; }
     Mod+Q repeat=false { close-window; }

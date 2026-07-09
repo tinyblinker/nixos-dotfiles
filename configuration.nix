@@ -70,8 +70,6 @@
       };
     };
   };
-  # swaylock 的 PAM 服务(否则 swaylock 可能无法解锁)
-  security.pam.services.swaylock = { };
   programs.niri.enable = true;
   programs.dconf.enable = true; # dconf 支持(home-manager 的 color-scheme=prefer-dark 依赖它)
   hardware.bluetooth.enable = true;
