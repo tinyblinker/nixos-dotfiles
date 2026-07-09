@@ -349,6 +349,18 @@
     PerScreenDPI=True
   '';
 
+  # greetd 通过 $HOME/.wayland-session 启动会话的间接层(参考 ryan4yin/nix-config):
+  # 好处是切换合成器时无需改 greetd 配置,只改这个脚本即可。
+  home.file.".wayland-session" = {
+    source = pkgs.writeScript "init-session" ''
+      # 先停掉可能残留的上一个 niri 会话
+      systemctl --user is-active niri.service && systemctl --user stop niri.service
+      # 再启动新的
+      /run/current-system/sw/bin/niri-session
+    '';
+    executable = true;
+  };
+
   programs.waybar = {
     enable = true;
     systemd.enable = true;

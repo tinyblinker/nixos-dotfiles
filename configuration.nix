@@ -13,21 +13,11 @@
   boot.loader.systemd-boot.consoleMode = "0";
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  # 安静启动:降低内核/udev 日志等级,避免启动到 tuigreet 时被日志刷屏
-  boot.kernelParams = [
-    "quiet"
-    "loglevel=3"
-    "udev.log_level=3"
-    "rd.udev.log_level=3"
-  ];
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (lib.getName pkg) [
       "vscode"
     ];
-  boot.consoleLogLevel = 3;
-  boot.initrd.verbose = false;
-  boot.kernel.sysctl."kernel.printk" = "3 3 3 3";
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
   time.timeZone = "Asia/Shanghai";
@@ -74,11 +64,14 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${lib.getExe pkgs.tuigreet} --time --time-format '%H:%M  %a %d %b' --remember --remember-session --asterisks --greeting '**N I X O S**' --greet-align center --window-padding 2 --cmd niri-session --theme 'border=#5C8374;text=#93B1A6;prompt=#93B1A6;time=#5C8374;greet=#93B1A6;title=#5C8374;input=#c9d1d9;container=#0d1117;action=#5C8374;button=#5C8374' 2>/dev/null";
-        user = "greeter";
+        # 参考 ryan4yin/nix-config:最简 tuigreet,用 $HOME/.wayland-session 间接层启动会话
+        user = "shyweeds";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd $HOME/.wayland-session";
       };
     };
   };
+  # swaylock 的 PAM 服务(否则 swaylock 可能无法解锁)
+  security.pam.services.swaylock = { };
   programs.niri.enable = true;
   programs.dconf.enable = true; # dconf 支持(home-manager 的 color-scheme=prefer-dark 依赖它)
   hardware.bluetooth.enable = true;
