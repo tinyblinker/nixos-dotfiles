@@ -20,7 +20,6 @@
   home.username = "shyweeds";
   home.homeDirectory = "/home/shyweeds";
   home.stateVersion = "26.05";
-  home.sessionVariables.EDITOR = "nvim";
 
   # GTK 主题与图标交给 catppuccin.gtk;这里只保留 enable
   gtk = {
@@ -92,11 +91,27 @@
     enable = true;
     settings.git.autoFetch = false;
   };
-  # neovim 由 nixCats 管理(插件用 nix 装,配置用 lua 写)
-  nvim = {
+  # helix 编辑器(配置文件在 ./helix/)
+  programs.helix = {
     enable = true;
-    packageNames = [ "nvim" ];
+    defaultEditor = true;
+    # LSP / 格式化器(helix 按 PATH 里的二进制名自动识别)
+    extraPackages = with pkgs; [
+      nil nixfmt-rfc-style
+      lua-language-server
+      pyright ruff
+      rust-analyzer
+      bash-language-server
+      marksman taplo
+      yaml-language-server
+      vscode-langservers-extracted
+      clang-tools
+    ];
   };
+  xdg.configFile."helix/config.toml".source = ./helix/config.toml;
+  xdg.configFile."helix/languages.toml".source = ./helix/languages.toml;
+  # 主题由 config.toml 里直接设置 theme = "catppuccin_mocha"
+  catppuccin.helix.enable = false;
   # fastfetch:精致简约,配绿色主题
   programs.fastfetch = {
     enable = true;

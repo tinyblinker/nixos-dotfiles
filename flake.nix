@@ -6,7 +6,6 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixCats.url = "github:BirdeeHub/nixCats-nvim";
     catppuccin.url = "github:catppuccin/nix/v26.05";
     catppuccin.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -31,10 +30,7 @@
               users.shyweeds = import ./home.nix;
               backupFileExtension = "backup";
 
-              # 引入 nixCats 的 home-manager 模块(命名空间为 nvim)
-              sharedModules = [ (import ./nvim.nix { inherit inputs; }).homeModule ];
-
-              # 2. 将整个 inputs 对象传递给 home.nix
+              # 将整个 inputs 对象传递给 home.nix
               extraSpecialArgs = { inherit inputs; };
             };
           }
