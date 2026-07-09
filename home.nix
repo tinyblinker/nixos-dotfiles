@@ -98,6 +98,7 @@
     brightnessctl
     fuzzel
     matugen
+    vscode
     wl-clipboard
     pavucontrol
     playerctl

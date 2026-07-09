@@ -76,11 +76,6 @@
   };
   programs.niri.enable = true;
   programs.dconf.enable = true; # dconf 支持(home-manager 的 color-scheme=prefer-dark 依赖它)
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "vscode"
-    ];
   hardware.bluetooth.enable = true;
   services.power-profiles-daemon.enable = true;
   services.mihomo = {
