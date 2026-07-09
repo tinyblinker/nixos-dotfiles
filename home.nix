@@ -280,26 +280,4 @@
   xdg.configFile."qt6ct/qt6ct.conf".source =
     config.lib.file.mkOutOfStoreSymlink "/home/shyweeds/dotfiles/noctalia/qt6ct.conf";
 
-  # 空闲策略:300s 熄屏(视频播放时因空闲抑制不熄屏),再 100s(共 400s)锁屏并休眠。
-  # 锁屏改用 noctalia(swaylock 已移除)。
-  services.swayidle = {
-    enable = true;
-    events = {
-      before-sleep = "${pkgs.noctalia-shell}/bin/noctalia-shell ipc call lockScreen lock";
-      lock = "${pkgs.noctalia-shell}/bin/noctalia-shell ipc call lockScreen lock";
-    };
-    timeouts = [
-      {
-        # 300s 无操作:DPMS 熄屏;有输入时自动亮屏
-        timeout = 300;
-        command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
-        resumeCommand = "${pkgs.niri}/bin/niri msg action power-on-monitors";
-      }
-      {
-        # 再过 100s(共 400s):进入休眠(休眠前 before-sleep 会先锁屏)
-        timeout = 400;
-        command = "${pkgs.systemd}/bin/systemctl suspend";
-      }
-    ];
-  };
 }

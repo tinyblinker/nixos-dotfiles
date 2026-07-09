@@ -130,13 +130,13 @@
                     "showCpuTemp": false,
                     "showCpuUsage": true,
                     "showDiskAvailable": false,
-                    "showDiskUsage": true,
+                    "showDiskUsage": false,
                     "showDiskUsageAsPercent": false,
                     "showGpuTemp": false,
-                    "showLoadAverage": true,
+                    "showLoadAverage": false,
                     "showMemoryAsPercent": true,
-                    "showMemoryUsage": true,
-                    "showNetworkStats": true,
+                    "showMemoryUsage": false,
+                    "showNetworkStats": false,
                     "showSwapUsage": false,
                     "textColor": "none",
                     "useMonospaceFont": true,
@@ -248,7 +248,7 @@
                 "id": "calendar-month-card"
             },
             {
-                "enabled": true,
+                "enabled": false,
                 "id": "weather-card"
             }
         ]
@@ -283,7 +283,7 @@
                 "id": "brightness-card"
             },
             {
-                "enabled": true,
+                "enabled": false,
                 "id": "weather-card"
             },
             {
@@ -413,7 +413,7 @@
         "compactLockScreen": false,
         "dimmerOpacity": 0.2,
         "enableBlurBehind": true,
-        "enableLockScreenCountdown": true,
+        "enableLockScreenCountdown": false,
         "enableLockScreenMediaControls": false,
         "enableShadows": true,
         "forceBlackScreenCorners": false,
@@ -461,7 +461,7 @@
         "showChangelogOnStartup": true,
         "showHibernateOnLockScreen": false,
         "showScreenCorners": false,
-        "showSessionButtonsOnLockScreen": true,
+        "showSessionButtonsOnLockScreen": false,
         "smoothScrollEnabled": true,
         "telemetryEnabled": false
     },
@@ -479,17 +479,17 @@
     },
     "idle": {
         "customCommands": "[]",
-        "enabled": false,
+        "enabled": true,
         "fadeDuration": 5,
         "lockCommand": "",
-        "lockTimeout": 660,
+        "lockTimeout": 250,
         "resumeLockCommand": "",
         "resumeScreenOffCommand": "",
         "resumeSuspendCommand": "",
         "screenOffCommand": "",
-        "screenOffTimeout": 600,
+        "screenOffTimeout": 300,
         "suspendCommand": "",
-        "suspendTimeout": 1800
+        "suspendTimeout": 400
     },
     "location": {
         "analogClockInCalendar": false,
@@ -498,13 +498,13 @@
         "hideWeatherCityName": false,
         "hideWeatherTimezone": false,
         "name": "Changsha",
-        "showCalendarEvents": true,
-        "showCalendarWeather": true,
+        "showCalendarEvents": false,
+        "showCalendarWeather": false,
         "showWeekNumberInCalendar": false,
         "use12hourFormat": false,
         "useFahrenheit": false,
-        "weatherEnabled": true,
-        "weatherShowEffects": true,
+        "weatherEnabled": false,
+        "weatherShowEffects": false,
         "weatherTaliaMascotAlways": false
     },
     "network": {
@@ -635,6 +635,13 @@
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
+                "keybind": "7"
+            },
+            {
+                "action": "userspaceReboot",
+                "command": "",
+                "countdownEnabled": true,
+                "enabled": false,
                 "keybind": ""
             }
         ],
