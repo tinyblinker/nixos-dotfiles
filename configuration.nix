@@ -20,6 +20,11 @@
     "udev.log_level=3"
     "rd.udev.log_level=3"
   ];
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "vscode"
+    ];
   boot.consoleLogLevel = 3;
   boot.initrd.verbose = false;
   boot.kernel.sysctl."kernel.printk" = "3 3 3 3";
