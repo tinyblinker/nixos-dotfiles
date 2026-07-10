@@ -111,7 +111,7 @@ hotkey-overlay {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+    Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     // noctalia:启动器 / 锁屏 / 控制中心 / 会话菜单 / 剪贴板
     Mod+D { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
