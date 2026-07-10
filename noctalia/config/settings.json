@@ -228,10 +228,6 @@
     },
     "brightness": {
         "backlightDeviceMappings": [
-            {
-                "device": "/sys/class/backlight/apple-panel-bl",
-                "output": "eDP-1"
-            }
         ],
         "brightnessStep": 3,
         "enableDdcSupport": false,
@@ -322,7 +318,7 @@
         }
     },
     "desktopWidgets": {
-        "enabled": true,
+        "enabled": false,
         "gridSnap": true,
         "gridSnapScale": false,
         "monitorWidgets": [
@@ -570,9 +566,10 @@
             0,
             1,
             4,
-            3
+            3,
+            2
         ],
-        "location": "top_right",
+        "location": "bottom",
         "monitors": [
         ],
         "overlayLayer": true
@@ -682,7 +679,7 @@
         "fontDefault": "Maple Mono NF CN",
         "fontDefaultScale": 1,
         "fontFixed": "Maple Mono NF CN",
-        "fontFixedScale": 1,
+        "fontFixedScale": 1.04,
         "panelBackgroundOpacity": 0.85,
         "panelsAttachedToBar": true,
         "scrollbarAlwaysVisible": true,
