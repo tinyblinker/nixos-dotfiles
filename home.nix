@@ -36,8 +36,10 @@
     clang-tools
     nil
     nixfmt
+    nixd
     lua-language-server
     pyright
+    lua51Packages.luarocks
     ruff
     rust-analyzer
     bash-language-server
