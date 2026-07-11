@@ -40,6 +40,8 @@
     lua-language-server
     pyright
     lua51Packages.luarocks
+    lua5_1
+    deadnix
     ruff
     rust-analyzer
     bash-language-server
