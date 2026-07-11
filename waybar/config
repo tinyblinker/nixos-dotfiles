@@ -46,7 +46,7 @@
         }
     },
     "network": {
-        "format-icons": ["\uf1eb", "\uf1ec", "\uf1ed", "\uf1ee"],
+        "format-icons": ["\uf092", "\uf091", "\uf090", "\uf08f"],
         "format-wifi": "{icon} {signalStrength}%",
         "format-ethernet": "\uf796",
         "format-linked": "\uf127",
