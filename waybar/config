@@ -76,12 +76,12 @@
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": "\uf6a9  0%",
+        "format-muted": "\uf8a6  0%",
         "format-icons": {
-            "default": ["\uf027", "\uf028"],
-            "headphone": "\uf87b",
-            "hands-free": "\uf87b",
-            "headset": "\uf87b"
+            "default": ["\uf1b3", "\uf4bd"],
+            "headphone": "\uf590",
+            "hands-free": "\uf590",
+            "headset": "\uf590"
         }
     },
     "clock": {
