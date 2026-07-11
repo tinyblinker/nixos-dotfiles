@@ -65,11 +65,7 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = "fish_vi_key_bindings"; # vim 模式
-    shellAliases = {
-      btw = "echo i use nixos, btw";
-      neovim = "hx";
-      nvim = "hx";
-    };
+    shellAliases = { btw = "echo i use nixos, btw"; };
     functions = {
       y = ''
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
@@ -97,8 +93,8 @@
     settings.git.autoFetch = false;
   };
 
-  # ---- helix 编辑器 ----
-  programs.helix = {
+  # ---- neovim(配置复用 ./nvim/) + LSP 工具 ----
+  programs.neovim = {
     enable = true;
     defaultEditor = true;
     extraPackages = with pkgs; [
@@ -116,8 +112,10 @@
       clang-tools
     ];
   };
-  xdg.configFile."helix/config.toml".source = ./helix/config.toml;
-  xdg.configFile."helix/languages.toml".source = ./helix/languages.toml;
+  # neovim 配置:直接软链(绕过 home-manager 文件安装,让 lazy.nvim 可写 lazy-lock.json)
+  home.activation.linkNvimConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD ln -sfn /home/shyweeds/dotfiles/nvim $VERBOSE_ARG ~/.config/nvim
+  '';
 
   # ---- fastfetch ----
   programs.fastfetch = {
