@@ -74,6 +74,7 @@ layer-rule {
 // fuzzel 半透明背景 + niri 毛玻璃
 layer-rule {
     match namespace="launcher"
+    geometry-corner-radius 24
     background-effect {
         blur true
         noise 0.03
