@@ -33,8 +33,7 @@
     gcc
     gdb
     lldb
-    clang
-    (lib.lowPrio clang)  # 降低优先避免 clang/gcc 的 c++ 冲突
+    clang-tools
     nil
     nixfmt
     lua-language-server
