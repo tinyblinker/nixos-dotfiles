@@ -65,6 +65,12 @@ blur {
     passes 2
 }
 
+// 模糊壁纸(awww-daemonblur)仅显示在 overview backdrop 中
+layer-rule {
+    match namespace="awww-daemonblur"
+    place-within-backdrop true
+}
+
 // 允许通知动作/窗口激活
 debug {
     honor-xdg-activation-with-invalid-serial
@@ -87,8 +93,10 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot-%Y%m%d-%H%M%S.png"
 
-// awww 壁纸,swayosd OSD,swaync 通知中心(后者由 hm services 管理)
-spawn-at-startup "awww-daemon"
+// awww 壁纸:sharp 原始图(普通视图),blur 模糊图(overview backdrop)
+// blur 先启动,sharp 后启动,确保 z-order:sharp 在上层覆盖 blur
+spawn-sh-at-startup "awww-daemon --namespace blur & until awww query --namespace blur >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace blur /home/shyweeds/dotfiles/wallpaper/1-blur.png"
+spawn-sh-at-startup "awww-daemon --namespace sharp & until awww query --namespace sharp >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace sharp /home/shyweeds/dotfiles/wallpaper/1.png"
 spawn-at-startup "fcitx5" "-d"
 
 gestures {
