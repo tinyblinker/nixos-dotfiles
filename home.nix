@@ -28,6 +28,14 @@
     playerctl
     bluez-tools
     cava
+    neovim
+    nil nixfmt
+    lua-language-server pyright ruff
+    rust-analyzer
+    bash-language-server
+    marksman taplo
+    yaml-language-server
+    vscode-langservers-extracted clang-tools
     # 桌面组件
     waybar
     fuzzel
@@ -93,30 +101,9 @@
     settings.git.autoFetch = false;
   };
 
-  # ---- neovim(配置复用 ./nvim/) + LSP 工具 ----
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    extraPackages = with pkgs; [
-      nil
-      nixfmt
-      lua-language-server
-      pyright
-      ruff
-      rust-analyzer
-      bash-language-server
-      marksman
-      taplo
-      yaml-language-server
-      vscode-langservers-extracted
-      clang-tools
-    ];
-  };
-  # neovim 配置:直接软链(绕过 home-manager 文件安装,让 lazy.nvim 可写 lazy-lock.json)
-  home.activation.linkNvimConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD ln -sfn /home/shyweeds/dotfiles/nvim $VERBOSE_ARG ~/.config/nvim
-  '';
-
+  # ---- neovim ----
+  home.sessionVariables.EDITOR = "nvim";
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/shyweeds/dotfiles/nvim";
   # ---- fastfetch ----
   programs.fastfetch = {
     enable = true;
