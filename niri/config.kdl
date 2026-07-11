@@ -56,13 +56,16 @@ window-rule {
 // kitty 半透明
 window-rule {
     match app-id="kitty"
-    opacity 0.75
+    opacity 0.8
 }
 
 // 背景模糊(作用于半透明窗口背后,例如 kitty)
 blur {
     on
-    passes 4
+    passes 2
+    offset 7.0
+    noise 0.05
+    saturation 1.5
 }
 
 // 模糊壁纸(awww-daemonblur)仅显示在 overview backdrop 中
