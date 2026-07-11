@@ -95,7 +95,7 @@
     enable = true;
     defaultEditor = true;
     extraPackages = with pkgs; [
-      nil nixfmt-rfc-style
+      nil nixfmt
       lua-language-server
       pyright ruff
       rust-analyzer
@@ -214,18 +214,20 @@
   # mako:通知守护进程(配置直接内联,无 configFile 选项)
   services.mako = {
     enable = true;
-    backgroundColor = "#0d1117";
-    textColor = "#c9d1d9";
-    borderColor = "#5C8374";
-    progressColor = "source over #5C8374";
-    defaultTimeout = 10000;
-    anchor = "top-right";
-    width = 400;
-    height = 150;
-    margin = "10";
-    padding = "10";
-    borderRadius = 12;
-    borderSize = 2;
+    settings = {
+      background-color = "#0d1117";
+      text-color = "#c9d1d9";
+      border-color = "#5C8374";
+      progress-color = "source over #5C8374";
+      default-timeout = 10000;
+      anchor = "top-right";
+      width = 400;
+      height = 150;
+      margin = "10";
+      padding = "10";
+      border-radius = 12;
+      border-size = 2;
+    };
   };
 
   # swaync:通知中心(保留历史),样式由 matugen 生成
