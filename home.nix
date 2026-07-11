@@ -125,6 +125,7 @@
 
   # ---- neovim ----
   home.sessionVariables.EDITOR = "nvim";
+  home.sessionVariables.QT_QPA_PLATFORM = "wayland"; # OBS 等 Qt 应用在 Wayland 原生运行
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/shyweeds/dotfiles/nvim";
   # ---- fastfetch ----
   programs.fastfetch = {
