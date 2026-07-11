@@ -71,6 +71,14 @@
     };
   };
   programs.niri.enable = true;
+  # xdg-desktop-portal:屏幕捕获/文件对话框/配色方案等桌面集成
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk # GTK 文件选择器
+      pkgs.xdg-desktop-portal-wlr # wlroots 屏幕捕获(niri 兼容)
+    ];
+  };
   # hyprlock 锁屏 PAM 服务
   security.pam.services.hyprlock = { };
   programs.dconf.enable = true; # dconf 支持(home-manager 的 color-scheme=prefer-dark 依赖它)
