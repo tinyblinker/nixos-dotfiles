@@ -77,13 +77,13 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.power-profiles-daemon.enable = true;
-  services.mihomo = {
-    enable = true;
-    tunMode = true;
-    processesInfo = true;
-    configFile = "/home/shyweeds/dotfiles/mihomo/config.yaml";
-    webui = pkgs.metacubexd;
-  };
+  #  services.mihomo = {
+  #    enable = true;
+  #    tunMode = true;
+  #    processesInfo = true;
+  #    configFile = "/home/shyweeds/dotfiles/mihomo/config.yaml";
+  #    webui = pkgs.metacubexd;
+  #  };
   services.pipewire = {
     enable = true;
     pulse.enable = true;
