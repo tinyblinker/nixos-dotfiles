@@ -41,8 +41,8 @@
         "format-icons": {
             "default": "\uf0e7",
             "performance": "\uf0e7",
-            "balanced": "\uf53c",
-            "power-saver": "\uf06c"
+            "balanced": "\uf24e",
+            "power-saver": "\uf1f4"
         }
     },
     "network": {
