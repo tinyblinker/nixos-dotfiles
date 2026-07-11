@@ -77,13 +77,13 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.power-profiles-daemon.enable = true;
-  #  services.mihomo = {
-  #    enable = true;
-  #    tunMode = true;
-  #    processesInfo = true;
-  #    configFile = "/home/shyweeds/dotfiles/mihomo/config.yaml";
-  #    webui = pkgs.metacubexd;
-  #  };
+  services.mihomo = {
+    enable = true;
+    tunMode = true;
+    processesInfo = true;
+    configFile = "/home/shyweeds/dotfiles/mihomo/config.yaml";
+    webui = pkgs.metacubexd;
+  };
   services.pipewire = {
     enable = true;
     pulse.enable = true;
@@ -108,13 +108,6 @@
     enable = true;
   };
   programs.fish.enable = true;
-  programs.clash-verge = {
-    enable = true;
-    serviceMode = true;
-    tunMode = true;
-    autoStart = true;
-    group = "wheel";
-  };
   hardware.graphics.enable = true;
   environment.systemPackages = with pkgs; [
     git
