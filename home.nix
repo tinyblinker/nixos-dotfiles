@@ -14,6 +14,7 @@
   home.packages = with pkgs; [
     ripgrep
     qutebrowser
+    make
     yazi
     bat
     tree-sitter
