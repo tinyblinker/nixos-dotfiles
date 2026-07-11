@@ -31,7 +31,7 @@
     cava
     neovim
     gcc
-    clang
+    clangd
     gdb
     lldb
     nil
