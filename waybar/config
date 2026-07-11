@@ -79,9 +79,9 @@
         "format-muted": "\uf8a6  0%",
         "format-icons": {
             "default": ["\uf1b3", "\uf4bd"],
-            "headphone": "\uf590",
-            "hands-free": "\uf590",
-            "headset": "\uf590"
+            "headphone": "\uf025",
+            "hands-free": "\uf025",
+            "headset": "\uf025"
         }
     },
     "clock": {
