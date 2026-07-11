@@ -132,7 +132,6 @@
   nix.settings.substituters = [
     "https://mirrors.ustc.edu.cn/nix-channels/store"
     "https://mirrors.cernet.edu.cn/nix-channels/store"
-    "https://mirrors.sjtu.edu.cn/nix-channels/store"
     "https://mirrors.bfsu.edu.cn/nix-channels/store"
     "https://mirrors.nju.edu.cn/nix-channels/store"
     "https://mirrors.iscas.ac.cn/nix-channels/store"
