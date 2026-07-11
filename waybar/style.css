@@ -9,25 +9,25 @@
 
 window#waybar {
     background: transparent;
-    color: @fg;
+    color: @on_surface;
 }
 
 tooltip {
-    background: alpha(@bg, 0.88);
+    background: alpha(@surface, 0.88);
     border-radius: 12px;
-    border: 1px solid alpha(@accent, 0.5);
-    color: @fg;
+    border: 1px solid alpha(@primary, 0.5);
+    color: @on_surface;
     padding: 6px 12px;
 }
 
-tooltip label { color: @fg; }
+tooltip label { color: @on_surface; }
 
 /* —— floating capsule islands —— */
 .modules-left,
 .modules-center,
 .modules-right {
-    background: alpha(@bg, 0.55);
-    border: 1px solid alpha(@accent, 0.3);
+    background: alpha(@surface, 0.55);
+    border: 1px solid alpha(@primary, 0.3);
     border-radius: 9999px;
     margin: 0;
     padding: 4px 12px;
@@ -46,7 +46,7 @@ tooltip label { color: @fg; }
 
 #workspaces { padding: 0 2px; }
 #workspaces button {
-    color: @fg;
+    color: @on_surface;
     min-width: 24px;
     border-radius: 10px;
     margin: 2px 2px;
@@ -55,20 +55,20 @@ tooltip label { color: @fg; }
 }
 #workspaces button.active,
 #workspaces button.focused {
-    background: @accent;
-    color: @on-accent;
+    background: @primary;
+    color: @on_primary;
 }
-#workspaces button:hover { background: alpha(@accent2, 0.15); color: @accent2; }
-#workspaces button.urgent { background: @warning; color: @on-accent; }
+#workspaces button:hover { background: alpha(@secondary, 0.15); color: @secondary; }
+#workspaces button.urgent { background: @tertiary; color: @on_primary; }
 
-#clock  { color: @accent2; padding: 0 12px; }
-#window { padding: 0 14px; font-size: 13px; font-weight: normal; color: @accent2; }
+#clock  { color: @secondary; padding: 0 12px; }
+#window { padding: 0 14px; font-size: 13px; font-weight: normal; color: @secondary; }
 
-#battery.warning          { color: @warning; }
-#battery.critical         { color: @critical; }
-#battery.charging         { color: @accent; }
-#temperature.critical     { color: @critical; }
-#idle_inhibitor.activated { color: @warning; }
+#battery.warning          { color: @tertiary; }
+#battery.critical         { color: @error; }
+#battery.charging         { color: @primary; }
+#temperature.critical     { color: @error; }
+#idle_inhibitor.activated { color: @tertiary; }
 #network.disconnected,
 #bluetooth.off            { color: @outline; }
 

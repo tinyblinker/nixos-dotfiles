@@ -62,6 +62,7 @@
   programs.bash.enable = true;
   programs.fish = {
     enable = true;
+    interactiveShellInit = "fish_vi_key_bindings";  # vim 模式
     shellAliases = { btw = "echo i use nixos, btw"; };
     functions = {
       y = ''
@@ -212,14 +213,10 @@
   xdg.configFile."fuzzel/fuzzel.ini".source = ./fuzzel/fuzzel.ini;
 
   # mako:通知守护进程(配置直接内联,无 configFile 选项)
+  # mako:通知守护进程。颜色由 matugen 生成,通过 mako include 引入
   services.mako = {
     enable = true;
     settings = {
-      background-color = "#0d1117";
-      text-color = "#c9d1d9";
-      border-color = "#5C8374";
-      progress-color = "source over #5C8374";
-      default-timeout = 10000;
       anchor = "top-right";
       width = 400;
       height = 150;
@@ -227,7 +224,11 @@
       padding = "10";
       border-radius = 12;
       border-size = 2;
+      default-timeout = 10000;
     };
+    extraConfig = ''
+      include=/home/shyweeds/dotfiles/matugen/output/mako.conf
+    '';
   };
 
   # swaync:通知中心(保留历史),样式由 matugen 生成
@@ -259,7 +260,7 @@
     stylePath = "/home/shyweeds/dotfiles/matugen/output/swayosd.css";
   };
 
-  # hyprlock:锁屏,配置由 matugen 生成
+  # hyprlock:锁屏。配色变量由 matugen 生成到 hyprlock.conf(source 引用)
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -277,7 +278,7 @@
       label = [
         {
           text = "$TIME";
-          color = "$textColor";
+          color = "$on_surface";
           font_size = 72;
           position = "0, 80";
           halign = "center";
@@ -293,6 +294,7 @@
         }
       ];
     };
+    extraConfig = "source = /home/shyweeds/dotfiles/matugen/output/hyprlock.conf";
   };
 
   # swayidle:空闲管理
