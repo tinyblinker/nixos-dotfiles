@@ -40,6 +40,10 @@
     lua-language-server
     pyright
     lua51Packages.luarocks
+    black
+    shellharden
+    stylua
+    rustup
     lua5_1
     deadnix
     ruff
