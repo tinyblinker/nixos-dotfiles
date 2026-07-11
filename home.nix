@@ -13,7 +13,7 @@
 
   home.packages = with pkgs; [
     ripgrep
-    qutebroser
+    qutebrowser
     yazi
     bat
     wlsunset
