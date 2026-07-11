@@ -108,6 +108,13 @@
     enable = true;
   };
   programs.fish.enable = true;
+  programs.clash-verge = {
+    enable = true;
+    serviceMode = true;
+    tunMode = true;
+    autoStart = true;
+    group = "wheel";
+  };
   hardware.graphics.enable = true;
   environment.systemPackages = with pkgs; [
     git
