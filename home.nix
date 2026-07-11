@@ -16,6 +16,7 @@
     qutebrowser
     yazi
     bat
+    tree-sitter
     wlsunset
     btop
     upower
@@ -29,13 +30,18 @@
     bluez-tools
     cava
     neovim
-    nil nixfmt
-    lua-language-server pyright ruff
+    nil
+    nixfmt
+    lua-language-server
+    pyright
+    ruff
     rust-analyzer
     bash-language-server
-    marksman taplo
+    marksman
+    taplo
     yaml-language-server
-    vscode-langservers-extracted clang-tools
+    vscode-langservers-extracted
+    clang-tools
     # 桌面组件
     waybar
     fuzzel
@@ -73,7 +79,9 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = "fish_vi_key_bindings"; # vim 模式
-    shellAliases = { btw = "echo i use nixos, btw"; };
+    shellAliases = {
+      btw = "echo i use nixos, btw";
+    };
     functions = {
       y = ''
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
