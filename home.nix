@@ -28,7 +28,8 @@
     wl-clipboard
     pavucontrol
     playerctl
-    bluez-tools
+    bluez
+    blueman
     cava
     neovim
     gcc

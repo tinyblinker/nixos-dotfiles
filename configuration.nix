@@ -74,7 +74,8 @@
   # hyprlock 锁屏 PAM 服务
   security.pam.services.hyprlock = { };
   programs.dconf.enable = true; # dconf 支持(home-manager 的 color-scheme=prefer-dark 依赖它)
-  hardware.bluetooth.enable = false;
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
   services.power-profiles-daemon.enable = true;
   services.mihomo = {
     enable = true;
