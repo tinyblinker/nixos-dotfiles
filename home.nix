@@ -15,6 +15,7 @@
     ripgrep
     qutebrowser
     gnumake
+    shellcheck
     yazi
     bat
     tree-sitter
