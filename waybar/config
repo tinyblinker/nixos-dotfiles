@@ -77,7 +77,7 @@
         "critical-threshold": 80
     },
     "pulseaudio": {
-        "format": "{icon}  {volume}%",
+        "format": "{icon} {volume}%",
         "format-muted": "\uf6a9  0%",
         "format-icons": {
             "default": ["\uf027", "\uf028"],
@@ -100,12 +100,12 @@
     },
     "backlight": {
         "device": "intel_backlight",
-        "format": "\uf0eb  {percent}%",
+        "format": "\uf0eb {percent}%",
         "min-length": 6
     },
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": "\uf130  {volume}%",
+        "format-source": "\uf130 {volume}%",
         "format-source-muted": "\uf131"
     },
     "tray": { "icon-size": 20, "spacing": 20 }
