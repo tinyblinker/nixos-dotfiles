@@ -1,7 +1,7 @@
 {
     "position": "top",
-    "height": 36,
-    "margin": "4 8 0 8",
+    "height": 42,
+    "margin": "2 8 0 8",
     "mod": "dock",
     "modules-left": [
         "niri/workspaces",
@@ -46,7 +46,7 @@
         }
     },
     "network": {
-        "format-icons": ["\ufaa8", "\uf1ee", "\uf1f1", "\uf1f4"],
+        "format-icons": ["\ufaa8", "\uf1f1", "\uf1f1", "\uf1f4"],
         "format-wifi": "{icon}",
         "format-ethernet": "\uf796",
         "format-linked": "\uf127",
@@ -55,43 +55,8 @@
         "tooltip-format-ethernet": "{ifname} - {gwaddr}",
         "tooltip-format-disconnected": "Disconnected"
     },
-    "battery": {
-        "full-at": 95,
-        "states": { "warning": 35, "critical": 10 },
-        "format": "{icon} {capacity}%",
-        "format-plugged": "\uf1e6 AC",
-        "format-charging": "\uf0e7",
-        "format-icons": ["\uf244","\uf243","\uf242","\uf241","\uf240","\uf23f","\uf23e","\uf23d","\uf23c","\uf23b","\uf1d9"],
-        "tooltip-format": "{capacity}% {timeTo} {time}"
-    },
-    "temperature": {
-        "format": "\uf2c9 {temperatureC}°C",
-        "critical-threshold": 80
-    },
-    "tray": { "icon-size": 18, "spacing": 20 },
-    "power-profiles-daemon": {
-        "format": "{icon}",
-        "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
-        "tooltip": true,
-        "format-icons": {
-            "default": "\uf0e7",
-            "performance": "\uf0e7",
-            "balanced": "\uf24e",
-            "power-saver": "\uf1f4"
-        }
-    },
-    "network": {
-        "format-icons": ["\uf1eb", "\uf1ee", "\uf1f1", "\uf1f4"],
-        "format-wifi": "{icon}",
-        "format-ethernet": "\uf796",
-        "format-linked": "\uf127",
-        "format-disconnected": "",
-        "tooltip-format": "{essid} ({signalStrength}%) - {gwaddr}",
-        "tooltip-format-ethernet": "{ifname} - {gwaddr}",
-        "tooltip-format-disconnected": "Disconnected"
-    },
     "bluetooth": {
-        "format": "\uf294",
+        "format": "\uf293",
         "format-disabled": "\uf295",
         "format-connected": "\uf293 {num_connections}",
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
@@ -102,25 +67,30 @@
     "battery": {
         "full-at": 95,
         "states": { "warning": 35, "critical": 10 },
-        "format": "{icon}",
-        "format-plugged": "\uf1e6",
-        "format-charging": "\uf0e7",
+        "format": "{icon} {capacity}%",
+        "format-plugged": "\uf1e6 AC",
+        "format-charging": "\uf1e6",
         "format-icons": ["\uf244","\uf243","\uf242","\uf241","\uf240","\uf23f","\uf23e","\uf23d","\uf23c","\uf23b","\uf1d9"],
-        "tooltip-format": "{capacity}%"
+        "tooltip-format": "{capacity}% {timeTo} {time}"
     },
     "temperature": {
-        "format": "\uf2c8 {temperatureC}°C",
+        "format": "\uf2c9 {temperatureC}°C",
         "critical-threshold": 80
     },
     "pulseaudio": {
-        "format": "{icon}{volume}%",
+        "format": "{icon}  {volume}%",
         "format-muted": "\uf6a9  0%",
         "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "pavucontrol",
         "on-scroll-up": "wpctl set-volume -l 1.3 @DEFAULT_SINK@ 5%+",
         "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 5%-",
         "scroll-step": 5,
-        "format-icons": { "headphone": "\uf87b", "hands-free": "\uf87b", "headset": "\uf87b", "default": ["\uf027","\uf028"] }
+        "format-icons": {
+            "default": ["\uf027", "\uf028"],
+            "headphone": "\uf87b",
+            "hands-free": "\uf87b",
+            "headset": "\uf87b"
+        }
     },
     "clock": {
         "format": "{:%R  %a %m/%d}",
@@ -136,37 +106,7 @@
     },
     "backlight": {
         "device": "intel_backlight",
-        "format": "\uf0eb {percent}%",
-        "on-scroll-up": "brightnessctl set 10%+",
-        "on-scroll-down": "brightnessctl set 10%-",
-        "min-length": 6
-    },
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
-        "format-source": "\uf130 {volume}%",
-        "format-source-muted": "\uf131",
-        "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
-        "on-click-right": "pavucontrol",
-        "on-scroll-up": "wpctl set-volume -l 1.3 @DEFAULT_SOURCE@ 5%+",
-        "on-scroll-down": "wpctl set-volume -l 1.3 @DEFAULT_SOURCE@ 5%-",
-        "scroll-step": 5
-    },
-    "temperature": {
-        "format": "\uf2c8 {temperatureC}°C",
-        "critical-threshold": 80
-    },
-    "battery": {
-        "full-at": 95,
-        "states": { "warning": 35, "critical": 10 },
-        "format": "{icon} {capacity}%",
-        "format-plugged": "\uf1e6  AC",
-        "format-icons": ["\uf244","\uf243","\uf242","\uf241","\uf240","\uf23f","\uf23e","\uf23d","\uf23c","\uf23b","\uf1d9"],
-        "tooltip-format": "{capacity}% {timeTo} {time}"
-    },
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["\uf0eb","\uf0ec","\uf0ed"],
+        "format": "\uf0eb  {percent}%",
         "on-scroll-up": "brightnessctl set 10%+",
         "on-scroll-down": "brightnessctl set 10%-",
         "min-length": 6
@@ -174,11 +114,12 @@
     "pulseaudio#microphone": {
         "format": "{format_source}",
         "format-source": "\uf130  {volume}%",
-        "format-source-muted": "\uf131  Muted",
+        "format-source-muted": "\uf131",
         "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
         "on-click-right": "pavucontrol",
         "on-scroll-up": "wpctl set-volume -l 1.3 @DEFAULT_SOURCE@ 5%+",
         "on-scroll-down": "wpctl set-volume -l 1.3 @DEFAULT_SOURCE@ 5%-",
         "scroll-step": 5
-    }
+    },
+    "tray": { "icon-size": 20, "spacing": 20 }
 }

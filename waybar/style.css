@@ -3,7 +3,7 @@
 * {
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    font-size: 14px;
+    font-size: 16px;
     min-height: 0;
 }
 
@@ -27,14 +27,14 @@ tooltip {
     background: alpha(@surface, 0.58);
     border: 1px solid alpha(@primary, 0.25);
     border-radius: 9999px;
-    margin: 3px 0;
-    padding: 3px 14px;
+    margin: 2px 0;
+    padding: 4px 16px;
     box-shadow: 0 1px 6px 0 alpha(@surface, 0.3);
 }
-.modules-left  { margin-left: 10px; }
-.modules-right { margin-right: 10px; }
+.modules-left  { margin-left: 8px; }
+.modules-right { margin-right: 8px; }
 
-/* —— module labels for visual hierarchy —— */
+/* —— module labels —— */
 #workspaces,
 #tray,
 #window { background: transparent; padding: 0; }
@@ -50,18 +50,18 @@ tooltip {
 #backlight,
 #pulseaudio#microphone {
     background: transparent;
-    padding: 0 8px;
+    padding: 0 7px;
     margin: 0;
 }
 
 /* —— Workspaces —— */
-#workspaces { padding: 0 1px; }
+#workspaces { padding: 0 2px; }
 #workspaces button {
     color: alpha(@on_surface, 0.55);
-    min-width: 22px;
+    min-width: 24px;
     border-radius: 8px;
     margin: 1px 2px;
-    padding: 1px 7px;
+    padding: 2px 8px;
     transition: all 0.25s ease;
 }
 #workspaces button:hover {
@@ -78,22 +78,22 @@ tooltip {
     color: @on_primary;
 }
 
-/* —— Clock: clean, not crowded —— */
+/* —— Clock —— */
 #clock {
     color: @on_surface;
-    font-size: 15px;
-    padding: 0 14px;
+    font-size: 17px;
+    padding: 0 16px;
 }
 
 /* —— Window title (center, muted) —— */
 #window {
     padding: 0 14px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: normal;
     color: alpha(@on_surface, 0.65);
 }
 
-/* —— System module state colors —— */
+/* —— module state colors —— */
 #battery.warning          { color: @tertiary; }
 #battery.critical         { color: @error; }
 #battery.charging         { color: @primary; }
@@ -103,9 +103,5 @@ tooltip {
 #bluetooth.off            { color: alpha(@on_surface, 0.35); }
 
 /* —— Tray —— */
-#tray {
-    padding: 0 6px;
-}
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
+#tray { padding: 0 6px; }
+#tray > .passive { -gtk-icon-effect: dim; }
