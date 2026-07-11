@@ -47,7 +47,6 @@
     lua5_1
     deadnix
     ruff
-    rust-analyzer
     bash-language-server
     marksman
     taplo
