@@ -46,11 +46,10 @@
         }
     },
     "network": {
-        "format-icons": ["\uf092", "\uf091", "\uf090", "\uf08f"],
-        "format-wifi": "{icon} {signalStrength}%",
-        "format-ethernet": "\uf796",
-        "format-linked": "\uf127",
-        "format-disconnected": "\uf6fa",
+        "format-wifi": "W {signalStrength}%",
+        "format-ethernet": "E",
+        "format-linked": "L",
+        "format-disconnected": "X",
         "tooltip-format": "{essid} ({signalStrength}%) - {gwaddr}",
         "tooltip-format-ethernet": "{ifname} - {gwaddr}",
         "tooltip-format-disconnected": "Disconnected"
