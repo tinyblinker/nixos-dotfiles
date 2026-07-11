@@ -53,6 +53,12 @@ window-rule {
     clip-to-geometry true
 }
 
+// kitty 半透明
+window-rule {
+    match app-id="kitty"
+    background-effect { blur true; }
+}
+
 // 背景模糊(作用于半透明窗口背后,例如 kitty)
 blur {
     passes 3
