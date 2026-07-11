@@ -13,6 +13,7 @@
 
   home.packages = with pkgs; [
     ripgrep
+    qutebroser
     yazi
     bat
     wlsunset
@@ -63,7 +64,7 @@
   programs.bash.enable = true;
   programs.fish = {
     enable = true;
-    interactiveShellInit = "fish_vi_key_bindings";  # vim 模式
+    interactiveShellInit = "fish_vi_key_bindings"; # vim 模式
     shellAliases = {
       btw = "echo i use nixos, btw";
       neovim = "hx";
@@ -101,12 +102,15 @@
     enable = true;
     defaultEditor = true;
     extraPackages = with pkgs; [
-      nil nixfmt
+      nil
+      nixfmt
       lua-language-server
-      pyright ruff
+      pyright
+      ruff
       rust-analyzer
       bash-language-server
-      marksman taplo
+      marksman
+      taplo
       yaml-language-server
       vscode-langservers-extracted
       clang-tools
@@ -121,8 +125,15 @@
     settings = {
       logo = {
         source = "nixos_small";
-        padding = { top = 1; left = 2; right = 4; };
-        color = { "1" = "38;2;92;131;116"; "2" = "38;2;147;177;166"; };
+        padding = {
+          top = 1;
+          left = 2;
+          right = 4;
+        };
+        color = {
+          "1" = "38;2;92;131;116";
+          "2" = "38;2;147;177;166";
+        };
       };
       display = {
         separator = "  ";
@@ -130,22 +141,80 @@
       };
       modules = [
         "break"
-        { type = "title"; color = { user = "38;2;92;131;116"; host = "38;2;147;177;166"; }; }
-        { type = "separator"; string = "─"; length = 26; }
-        { type = "os"; key = "  OS"; keyColor = "green"; }
-        { type = "kernel"; key = "  Kernel"; keyColor = "green"; }
-        { type = "uptime"; key = "  Uptime"; keyColor = "green"; }
-        { type = "packages"; key = "  Pkgs"; keyColor = "green"; }
-        { type = "shell"; key = "  Shell"; keyColor = "green"; }
-        { type = "wm"; key = "  WM"; keyColor = "green"; }
-        { type = "terminal"; key = "  Term"; keyColor = "green"; }
+        {
+          type = "title";
+          color = {
+            user = "38;2;92;131;116";
+            host = "38;2;147;177;166";
+          };
+        }
+        {
+          type = "separator";
+          string = "─";
+          length = 26;
+        }
+        {
+          type = "os";
+          key = "  OS";
+          keyColor = "green";
+        }
+        {
+          type = "kernel";
+          key = "  Kernel";
+          keyColor = "green";
+        }
+        {
+          type = "uptime";
+          key = "  Uptime";
+          keyColor = "green";
+        }
+        {
+          type = "packages";
+          key = "  Pkgs";
+          keyColor = "green";
+        }
+        {
+          type = "shell";
+          key = "  Shell";
+          keyColor = "green";
+        }
+        {
+          type = "wm";
+          key = "  WM";
+          keyColor = "green";
+        }
+        {
+          type = "terminal";
+          key = "  Term";
+          keyColor = "green";
+        }
         "break"
-        { type = "cpu"; key = "  CPU"; keyColor = "cyan"; }
-        { type = "gpu"; key = "  GPU"; keyColor = "cyan"; }
-        { type = "memory"; key = "  RAM"; keyColor = "cyan"; }
-        { type = "disk"; key = "  Disk"; keyColor = "cyan"; }
+        {
+          type = "cpu";
+          key = "  CPU";
+          keyColor = "cyan";
+        }
+        {
+          type = "gpu";
+          key = "  GPU";
+          keyColor = "cyan";
+        }
+        {
+          type = "memory";
+          key = "  RAM";
+          keyColor = "cyan";
+        }
+        {
+          type = "disk";
+          key = "  Disk";
+          keyColor = "cyan";
+        }
         "break"
-        { type = "colors"; symbol = "circle"; paddingLeft = 2; }
+        {
+          type = "colors";
+          symbol = "circle";
+          paddingLeft = 2;
+        }
         "break"
       ];
     };
