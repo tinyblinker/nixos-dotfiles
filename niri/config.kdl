@@ -56,7 +56,7 @@ window-rule {
 // kitty 半透明
 window-rule {
     match app-id="kitty"
-    opacity 0.9
+    opacity 0.75
 }
 
 // 背景模糊(作用于半透明窗口背后,例如 kitty)
