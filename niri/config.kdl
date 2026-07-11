@@ -61,8 +61,10 @@ window-rule {
 
 // 背景模糊(作用于半透明窗口背后,例如 kitty)
 blur {
-    on
-    passes 8
+    passes 3
+    offset 8.0
+    noise 0.05
+    saturation 1.5
 }
 
 // 模糊壁纸(awww-daemonblur)仅显示在 overview backdrop 中
