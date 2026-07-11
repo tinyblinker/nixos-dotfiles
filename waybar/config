@@ -30,8 +30,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "\uf06e",
-            "deactivated": "\uf186"
+            "activated": " ",
+            "deactivated": " "
         }
     },
     "power-profiles-daemon": {
@@ -39,25 +39,25 @@
         "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
         "tooltip": true,
         "format-icons": {
-            "default": "\uf0e7",
-            "performance": "\uf0e7",
-            "balanced": "\uf24e",
-            "power-saver": "\uf06c"
+            "default": " ",
+            "performance": " ",
+            "balanced": " ",
+            "power-saver": " "
         }
     },
     "network": {
-        "format-wifi": "W {signalStrength}%",
-        "format-ethernet": "E",
-        "format-linked": "L",
-        "format-disconnected": "X",
+        "format-wifi": "󰤨 ",
+        "format-ethernet": "󰈀 ",
+        "format-linked": "󰤩 ",
+        "format-disconnected": "󰤭 ",
         "tooltip-format": "{essid} ({signalStrength}%) - {gwaddr}",
         "tooltip-format-ethernet": "{ifname} - {gwaddr}",
         "tooltip-format-disconnected": "Disconnected"
     },
     "bluetooth": {
-        "format": "\uf293",
-        "format-disabled": "\uf295",
-        "format-connected": "\uf293 {num_connections}",
+        "format": " ",
+        "format-disabled": "󰂲!",
+        "format-connected": "󰂱 {num_connections}",
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
@@ -65,23 +65,23 @@
     "battery": {
         "full-at": 95,
         "states": { "warning": 35, "critical": 10 },
-        "format": "B {capacity}%",
-        "format-charging": "C {capacity}%",
-        "format-plugged": "AC",
+        "format": "󰁹{capacity}%",
+        "format-charging": "󰂅 {capacity}%",
+        "format-plugged": " ",
         "tooltip-format": "{capacity}% {timeTo} {time}"
     },
     "temperature": {
-        "format": "\uf2c9 {temperatureC}°C",
+        "format": "{temperatureC}°C",
         "critical-threshold": 80
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": "\uf6a9  0%",
+        "format-muted": "󰝟  0%",
         "format-icons": {
-            "default": ["\uf027", "\uf028"],
-            "headphone": "\uf87b",
-            "hands-free": "\uf87b",
-            "headset": "\uf025"
+            "default": [" ", " "],
+            "headphone": " ",
+            "hands-free": " ",
+            "headset": " "
         }
     },
     "clock": {
@@ -98,13 +98,13 @@
     },
     "backlight": {
         "device": "intel_backlight",
-        "format": "\uf0eb {percent}%",
+        "format": "󰃟 {percent}%",
         "min-length": 6
     },
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "format-source": "\uf130 {volume}%",
-        "format-source-muted": "\uf131"
+        "format-source": " {volume}%",
+        "format-source-muted": " "
     },
     "tray": { "icon-size": 20, "spacing": 20 }
 }
