@@ -70,7 +70,6 @@
     # matugen 全局配色依赖
     qt6Packages.qt6ct
     adw-gtk3
-    breeze-icons
   ];
 
   # ---- GTK / 光标 / 图标(主题不变) ----
