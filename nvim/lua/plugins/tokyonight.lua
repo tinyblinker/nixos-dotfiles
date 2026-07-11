@@ -7,6 +7,7 @@ return {
 			styles = {
 				comments = { italic = false }, -- Disable italics in comments
 			},
+			transparent = true,
 		})
 
 		-- 开启主题,tokyonight-night
