@@ -45,6 +45,7 @@
     lua51Packages.luarocks
     black
     shellharden
+    obs-studio
     stylua
     rustup
     lua5_1
