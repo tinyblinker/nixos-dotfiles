@@ -65,10 +65,9 @@
     "battery": {
         "full-at": 95,
         "states": { "warning": 35, "critical": 10 },
-        "format": "{icon} {capacity}%",
-        "format-plugged": "\uf1e6 AC",
-        "format-charging": "\uf1e6",
-        "format-icons": ["\uf244","\uf243","\uf242","\uf241","\uf240","\uf23f","\uf23e","\uf23d","\uf23c","\uf23b","\uf1d9"],
+        "format": "B {capacity}%",
+        "format-charging": "C {capacity}%",
+        "format-plugged": "AC",
         "tooltip-format": "{capacity}% {timeTo} {time}"
     },
     "temperature": {
