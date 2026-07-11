@@ -67,11 +67,18 @@
     hyprlock
     swayidle
     matugen
+    # matugen 全局配色依赖
+    qt6Packages.qt6ct
+    adw-gtk3
   ];
 
   # ---- GTK / 光标 / 图标(主题不变) ----
   gtk = {
     enable = true;
+    theme = {
+      name = "adw-gtk3-dark";  # GTK 骨架,皮肤由 matugen colors.css 提供
+      package = pkgs.adw-gtk3;
+    };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
@@ -125,7 +132,8 @@
 
   # ---- neovim ----
   home.sessionVariables.EDITOR = "nvim";
-  home.sessionVariables.QT_QPA_PLATFORM = "wayland"; # OBS 等 Qt 应用在 Wayland 原生运行
+  home.sessionVariables.QT_QPA_PLATFORM = "wayland";
+  home.sessionVariables.QT_QPA_PLATFORMTHEME = "qt6ct";    # Qt 配色由 qt6ct 接管
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/shyweeds/dotfiles/nvim";
   # ---- fastfetch ----
   programs.fastfetch = {
@@ -294,6 +302,22 @@
 
   # fuzzel:启动器,颜色由 matugen 生成后 include
   xdg.configFile."fuzzel/fuzzel.ini".source = ./fuzzel/fuzzel.ini;
+
+  # GTK 桥接 CSS:将 matugen 生成的 colors.css 注入 GTK3/GTK4
+  xdg.configFile."gtk-3.0/gtk.css".text = ''
+    @import url("file:///home/shyweeds/.config/gtk-3.0/colors.css");
+  '';
+  xdg.configFile."gtk-4.0/gtk.css".text = ''
+    @import url("file:///home/shyweeds/.config/gtk-4.0/colors.css");
+  '';
+  # Qt 配色:qt6ct 指向 matugen 生成的调色板
+  xdg.configFile."qt6ct/qt6ct.conf".text = ''
+    [Appearance]
+    color_scheme_path=/home/shyweeds/dotfiles/matugen/output/qt-colors.conf
+    custom_palette=true
+    icon_theme=Papirus-Dark
+    style=Fusion
+  '';
 
   # mako:通知守护进程(配置直接内联,无 configFile 选项)
   # mako:通知守护进程。颜色由 matugen 生成,通过 mako include 引入
