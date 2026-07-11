@@ -30,8 +30,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": " ",
-            "deactivated": " "
+            "activated": "󰈈 ",
+            "deactivated": "󰈉 "
         }
     },
     "power-profiles-daemon": {
@@ -75,8 +75,8 @@
         "critical-threshold": 80
     },
     "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "󰝟  0%",
+        "format": "{icon}{volume}%",
+        "format-muted": "󰝟 0%",
         "format-icons": {
             "default": [" ", " "],
             "headphone": " ",
