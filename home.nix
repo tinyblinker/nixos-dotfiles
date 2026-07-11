@@ -30,6 +30,10 @@
     bluez-tools
     cava
     neovim
+    gcc
+    clang
+    gdb
+    lldb
     nil
     nixfmt
     lua-language-server
