@@ -11,6 +11,7 @@ echo "▸ generating colors from $WALLPAPER …"
 matugen image "$WALLPAPER" --config "$CFG" --mode dark
 
 # 热重载各应用(存在才 reload,失败忽略)
+pkill -SIGUSR1 -x kitty 2>/dev/null || true  # kitty 重载配置
 pkill -SIGUSR2 -x waybar 2>/dev/null || true
 makoctl reload 2>/dev/null || true
 swaync-client --reload-css 2>/dev/null || true

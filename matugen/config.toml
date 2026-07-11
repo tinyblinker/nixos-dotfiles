@@ -25,3 +25,7 @@ output_path = '/home/shyweeds/dotfiles/matugen/output/swaync.css'
 [templates.swayosd]
 input_path = '/home/shyweeds/dotfiles/matugen/templates/swayosd.css'
 output_path = '/home/shyweeds/dotfiles/matugen/output/swayosd.css'
+
+[templates.kitty]
+input_path = '/home/shyweeds/dotfiles/matugen/templates/kitty.conf'
+output_path = '/home/shyweeds/dotfiles/matugen/output/kitty.conf'

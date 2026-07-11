@@ -148,6 +148,8 @@
   # ---- kitty ----
   programs.kitty = {
     enable = true;
+    # 引用 matugen 生成的颜色
+    extraConfig = "include /home/shyweeds/dotfiles/matugen/output/kitty.conf";
     settings = {
       font_family = "JetBrainsMono Nerd Font";
       font_size = "18";
