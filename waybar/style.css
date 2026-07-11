@@ -1,0 +1,76 @@
+@import "/home/shyweeds/dotfiles/matugen/output/waybar.css";
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 16px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: @fg;
+}
+
+tooltip {
+    background: alpha(@bg, 0.88);
+    border-radius: 12px;
+    border: 1px solid alpha(@accent, 0.5);
+    color: @fg;
+    padding: 6px 12px;
+}
+
+tooltip label { color: @fg; }
+
+/* —— floating capsule islands —— */
+.modules-left,
+.modules-center,
+.modules-right {
+    background: alpha(@bg, 0.55);
+    border: 1px solid alpha(@accent, 0.3);
+    border-radius: 9999px;
+    margin: 0;
+    padding: 4px 12px;
+}
+.modules-left  { margin-left: 10px; }
+.modules-right { margin-right: 10px; }
+
+#workspaces, #tray, #window { background: transparent; padding: 0; }
+#clock, #battery, #bluetooth, #network, #idle_inhibitor,
+#power-profiles-daemon, #temperature, #pulseaudio, #backlight,
+#pulseaudio.microphone {
+    background: transparent;
+    padding: 0 9px;
+    margin: 0;
+}
+
+#workspaces { padding: 0 2px; }
+#workspaces button {
+    color: @fg;
+    min-width: 24px;
+    border-radius: 10px;
+    margin: 2px 2px;
+    padding: 2px 8px;
+    transition: all 0.2s ease;
+}
+#workspaces button.active,
+#workspaces button.focused {
+    background: @accent;
+    color: @on-accent;
+}
+#workspaces button:hover { background: alpha(@accent2, 0.15); color: @accent2; }
+#workspaces button.urgent { background: @warning; color: @on-accent; }
+
+#clock  { color: @accent2; padding: 0 12px; }
+#window { padding: 0 14px; font-size: 13px; font-weight: normal; color: @accent2; }
+
+#battery.warning          { color: @warning; }
+#battery.critical         { color: @critical; }
+#battery.charging         { color: @accent; }
+#temperature.critical     { color: @critical; }
+#idle_inhibitor.activated { color: @warning; }
+#network.disconnected,
+#bluetooth.off            { color: @outline; }
+
+#tray { padding: 0 8px; }
+#tray > .passive { -gtk-icon-effect: dim; }

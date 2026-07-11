@@ -1,0 +1,27 @@
+# matugen 配置:从壁纸提取配色,渲染各应用的颜色文件到 ./matugen/output/
+# 运行: ./matugen/generate.sh
+[config]
+
+[templates.waybar]
+input_path = '/home/shyweeds/dotfiles/matugen/templates/waybar.css'
+output_path = '/home/shyweeds/dotfiles/matugen/output/waybar.css'
+
+[templates.fuzzel]
+input_path = '/home/shyweeds/dotfiles/matugen/templates/fuzzel.ini'
+output_path = '/home/shyweeds/dotfiles/matugen/output/fuzzel.ini'
+
+[templates.mako]
+input_path = '/home/shyweeds/dotfiles/matugen/templates/mako.conf'
+output_path = '/home/shyweeds/dotfiles/matugen/output/mako.conf'
+
+[templates.hyprlock]
+input_path = '/home/shyweeds/dotfiles/matugen/templates/hyprlock.conf'
+output_path = '/home/shyweeds/dotfiles/matugen/output/hyprlock.conf'
+
+[templates.swaync]
+input_path = '/home/shyweeds/dotfiles/matugen/templates/swaync.css'
+output_path = '/home/shyweeds/dotfiles/matugen/output/swaync.css'
+
+[templates.swayosd]
+input_path = '/home/shyweeds/dotfiles/matugen/templates/swayosd.css'
+output_path = '/home/shyweeds/dotfiles/matugen/output/swayosd.css'

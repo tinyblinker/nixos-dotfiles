@@ -7,43 +7,62 @@
 }:
 
 {
-  # catppuccin 全局主题(参考 ryan4yin):自动给 kitty/gtk/fastfetch 等上色
-  imports = [ inputs.catppuccin.homeModules.catppuccin ];
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
-    accent = "pink";
-    # fcitx5 用自带输入法皮肤,交给它自己(避免与 rime 皮肤冲突)
-    fcitx5.enable = false;
-  };
-
   home.username = "shyweeds";
   home.homeDirectory = "/home/shyweeds";
   home.stateVersion = "26.05";
 
-  # GTK 主题与图标交给 catppuccin.gtk;这里只保留 enable
+  home.packages = with pkgs; [
+    ripgrep
+    yazi
+    bat
+    wlsunset
+    btop
+    upower
+    nodejs
+    fd
+    brightnessctl
+    vscode
+    wl-clipboard
+    pavucontrol
+    playerctl
+    bluez-tools
+    # 桌面组件
+    waybar
+    fuzzel
+    awww
+    # OSD(音量/亮度/CapsLock 指示) + 通知中心(保留历史)
+    swayosd
+    swaynotificationcenter
+    # 锁屏 + 空闲 + 配色
+    hyprlock
+    swayidle
+    matugen
+  ];
+
+  # ---- GTK / 光标 / 图标(主题不变) ----
   gtk = {
     enable = true;
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
   };
-  # libadwaita(GTK4)/xdg-portal 通过此项判定深浅色,是"全局深色"的关键
   dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
 
   home.pointerCursor = {
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
     size = 24;
-    gtk.enable = true; # 应用到 GTK
-    x11.enable = true; # 应用到 XWayland 应用
+    gtk.enable = true;
+    x11.enable = true;
   };
 
+  # ---- shell / 编辑器 / git ----
   programs.opencode.enable = true;
-  # shell configs
   programs.bash.enable = true;
   programs.fish = {
     enable = true;
-    shellAliases = {
-      btw = "echo i use nixos, btw";
-    };
+    shellAliases = { btw = "echo i use nixos, btw"; };
     functions = {
       y = ''
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
@@ -66,36 +85,15 @@
       tag.gpgsign = true;
     };
   };
-  home.packages = with pkgs; [
-    ripgrep
-    yazi
-    bat
-    wlsunset
-    btop
-    upower
-    nodejs
-    fd
-    brightnessctl
-    vscode
-    wl-clipboard
-    pavucontrol
-    playerctl
-    bluez-tools
-    # noctalia-shell:桌面 shell(状态栏/启动器/通知/锁屏/OSD 等)
-    noctalia-shell
-    qt6Packages.qt6ct
-    app2unit
-    cliphist
-  ];
   programs.lazygit = {
     enable = true;
     settings.git.autoFetch = false;
   };
-  # helix 编辑器(配置文件在 ./helix/)
+
+  # ---- helix 编辑器 ----
   programs.helix = {
     enable = true;
     defaultEditor = true;
-    # LSP / 格式化器(helix 按 PATH 里的二进制名自动识别)
     extraPackages = with pkgs; [
       nil nixfmt-rfc-style
       lua-language-server
@@ -110,23 +108,15 @@
   };
   xdg.configFile."helix/config.toml".source = ./helix/config.toml;
   xdg.configFile."helix/languages.toml".source = ./helix/languages.toml;
-  # 主题由 config.toml 里直接设置 theme = "catppuccin_mocha"
-  catppuccin.helix.enable = false;
-  # fastfetch:精致简约,配绿色主题
+
+  # ---- fastfetch ----
   programs.fastfetch = {
     enable = true;
     settings = {
       logo = {
         source = "nixos_small";
-        padding = {
-          top = 1;
-          left = 2;
-          right = 4;
-        };
-        color = {
-          "1" = "38;2;92;131;116";
-          "2" = "38;2;147;177;166";
-        };
+        padding = { top = 1; left = 2; right = 4; };
+        color = { "1" = "38;2;92;131;116"; "2" = "38;2;147;177;166"; };
       };
       display = {
         separator = "  ";
@@ -134,84 +124,28 @@
       };
       modules = [
         "break"
-        {
-          type = "title";
-          color = {
-            user = "38;2;92;131;116";
-            host = "38;2;147;177;166";
-          };
-        }
-        {
-          type = "separator";
-          string = "─";
-          length = 26;
-        }
-        {
-          type = "os";
-          key = "  OS";
-          keyColor = "green";
-        }
-        {
-          type = "kernel";
-          key = "  Kernel";
-          keyColor = "green";
-        }
-        {
-          type = "uptime";
-          key = "  Uptime";
-          keyColor = "green";
-        }
-        {
-          type = "packages";
-          key = "  Pkgs";
-          keyColor = "green";
-        }
-        {
-          type = "shell";
-          key = "  Shell";
-          keyColor = "green";
-        }
-        {
-          type = "wm";
-          key = "  WM";
-          keyColor = "green";
-        }
-        {
-          type = "terminal";
-          key = "  Term";
-          keyColor = "green";
-        }
+        { type = "title"; color = { user = "38;2;92;131;116"; host = "38;2;147;177;166"; }; }
+        { type = "separator"; string = "─"; length = 26; }
+        { type = "os"; key = "  OS"; keyColor = "green"; }
+        { type = "kernel"; key = "  Kernel"; keyColor = "green"; }
+        { type = "uptime"; key = "  Uptime"; keyColor = "green"; }
+        { type = "packages"; key = "  Pkgs"; keyColor = "green"; }
+        { type = "shell"; key = "  Shell"; keyColor = "green"; }
+        { type = "wm"; key = "  WM"; keyColor = "green"; }
+        { type = "terminal"; key = "  Term"; keyColor = "green"; }
         "break"
-        {
-          type = "cpu";
-          key = "  CPU";
-          keyColor = "cyan";
-        }
-        {
-          type = "gpu";
-          key = "  GPU";
-          keyColor = "cyan";
-        }
-        {
-          type = "memory";
-          key = "  RAM";
-          keyColor = "cyan";
-        }
-        {
-          type = "disk";
-          key = "  Disk";
-          keyColor = "cyan";
-        }
+        { type = "cpu"; key = "  CPU"; keyColor = "cyan"; }
+        { type = "gpu"; key = "  GPU"; keyColor = "cyan"; }
+        { type = "memory"; key = "  RAM"; keyColor = "cyan"; }
+        { type = "disk"; key = "  Disk"; keyColor = "cyan"; }
         "break"
-        {
-          type = "colors";
-          symbol = "circle";
-          paddingLeft = 2;
-        }
+        { type = "colors"; symbol = "circle"; paddingLeft = 2; }
         "break"
       ];
     };
   };
+
+  # ---- kitty ----
   programs.kitty = {
     enable = true;
     settings = {
@@ -227,18 +161,17 @@
       "ctrl+shift+q" = "no_op";
     };
   };
-  # niri 配置(可滚动平铺 Wayland 合成器),config.kdl 保存即热重载
+
+  # ---- niri 配置 ----
   xdg.configFile."niri/config.kdl".source = ./niri/config.kdl;
-  # rime 配置:启用雾凇拼音(其余设置沿用雾凇合理默认,无需多写)
+
+  # ---- rime 输入法 ----
   xdg.dataFile."fcitx5/rime/default.custom.yaml".text = ''
     patch:
       schema_list:
-        - schema: rime_ice      # 雾凇拼音
-      menu/page_size: 8         # 候选词每页显示 8 个
+        - schema: rime_ice
+      menu/page_size: 8
   '';
-
-  # 强制默认简体(否则雾凇会记住上次状态,可能停在繁体)。
-  # 覆盖 switches 会整体替换,故需列全雾凇原有开关,只在简繁上加 reset:0。
   xdg.dataFile."fcitx5/rime/rime_ice.custom.yaml".text = ''
     patch:
       switches:
@@ -249,35 +182,132 @@
         - { name: full_shape, reset: 0, states: [ 半角, 全角 ] }
         - { name: search_single_char, states: [ 正常, 单字 ], abbrev: [ 词, 单 ] }
   '';
-
-  # fcitx5 候选框:仅设字体,主题用默认(不再用绿色 GreenDark,避免与 catppuccin 冲突)
   xdg.configFile."fcitx5/conf/classicui.conf".text = ''
     Font="Noto Sans CJK SC 13"
     PerScreenDPI=True
   '';
 
-  # greetd 通过 $HOME/.wayland-session 启动会话的间接层(参考 ryan4yin/nix-config):
-  # 好处是切换合成器时无需改 greetd 配置,只改这个脚本即可。
+  # ---- greetd 间接启动脚本 ----
   home.file.".wayland-session" = {
     source = pkgs.writeScript "init-session" ''
-      # 先停掉可能残留的上一个 niri 会话
       systemctl --user is-active niri.service && systemctl --user stop niri.service
-      # 再启动新的
       /run/current-system/sw/bin/niri-session
     '';
     executable = true;
   };
 
-  # noctalia-shell 的 Qt 配置(参考 ryan4yin)
-  home.sessionVariables = {
-    "QT_QPA_PLATFORM" = "wayland;xcb";
-    "QT_QPA_PLATFORMTHEME" = "qt6ct";
-    "QT_AUTO_SCREEN_SCALE_FACTOR" = "1";
-  };
-  # noctalia 配置目录用 out-of-store 软链,便于 noctalia 运行时读写自身设置
-  xdg.configFile."noctalia".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/shyweeds/dotfiles/noctalia/config";
-  xdg.configFile."qt6ct/qt6ct.conf".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/shyweeds/dotfiles/noctalia/qt6ct.conf";
+  # ---- 桌面组件配置(颜色统一引用 matugen/output/) ----
 
+  # waybar:状态栏,样式导入 matugen 颜色
+  programs.waybar = {
+    enable = true;
+    systemd.enable = true;
+  };
+  xdg.configFile."waybar/config".source = ./waybar/config;
+  xdg.configFile."waybar/style.css".source = ./waybar/style.css;
+
+  # fuzzel:启动器,颜色由 matugen 生成后 include
+  xdg.configFile."fuzzel/fuzzel.ini".source = ./fuzzel/fuzzel.ini;
+
+  # mako:通知守护进程(配置直接内联,无 configFile 选项)
+  services.mako = {
+    enable = true;
+    backgroundColor = "#0d1117";
+    textColor = "#c9d1d9";
+    borderColor = "#5C8374";
+    progressColor = "source over #5C8374";
+    defaultTimeout = 10000;
+    anchor = "top-right";
+    width = 400;
+    height = 150;
+    margin = "10";
+    padding = "10";
+    borderRadius = 12;
+    borderSize = 2;
+  };
+
+  # swaync:通知中心(保留历史),样式由 matugen 生成
+  services.swaync = {
+    enable = true;
+    style = "/home/shyweeds/dotfiles/matugen/output/swaync.css";
+    settings = {
+      positionX = "right";
+      positionY = "top";
+      control-center-margin-top = 8;
+      control-center-margin-bottom = 8;
+      control-center-margin-right = 8;
+      control-center-margin-left = 8;
+      control-center-height = 600;
+      control-center-width = 400;
+      timeout = 10;
+      timeout-low = 7;
+      timeout-critical = 0;
+      fit-to-screen = true;
+      image-visibility = "when-available";
+      notification-window-width = 400;
+      keyboard-shortcuts = true;
+    };
+  };
+
+  # swayosd:亮度/音量/CapsLock OSD,样式由 matugen 生成
+  services.swayosd = {
+    enable = true;
+    stylePath = "/home/shyweeds/dotfiles/matugen/output/swayosd.css";
+  };
+
+  # hyprlock:锁屏,配置由 matugen 生成
+  programs.hyprlock = {
+    enable = true;
+    settings = {
+      general = {
+        grace = 0;
+        ignore_empty_input = true;
+      };
+      background = [
+        {
+          path = "screenshot";
+          blur_passes = 3;
+          blur_size = 10;
+        }
+      ];
+      label = [
+        {
+          text = "$TIME";
+          color = "$textColor";
+          font_size = 72;
+          position = "0, 80";
+          halign = "center";
+          valign = "center";
+        }
+      ];
+      input-field = [
+        {
+          placeholder_text = "password …";
+          position = "0, -80";
+          halign = "center";
+          valign = "center";
+        }
+      ];
+    };
+  };
+
+  # swayidle:空闲管理
+  services.swayidle = {
+    enable = true;
+    events = {
+      before-sleep = "${pkgs.hyprlock}/bin/hyprlock";
+      lock = "${pkgs.hyprlock}/bin/hyprlock";
+    };
+    timeouts = [
+      {
+        timeout = 300;
+        command = "${lib.getExe pkgs.niri} msg action power-off-monitors";
+        resumeCommand = "${lib.getExe pkgs.niri} msg action power-on-monitors";
+      }
+      {
+        timeout = 400;
+        command = "${pkgs.systemd}/bin/systemctl suspend";
+      }
+    ];
+  };
 }

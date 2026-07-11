@@ -47,9 +47,9 @@ layout {
     }
 }
 
-// 圆角(noctalia 推荐 20)
+// 圆角
 window-rule {
-    geometry-corner-radius 20
+    geometry-corner-radius 14
     clip-to-geometry true
 }
 
@@ -65,15 +65,9 @@ blur {
     passes 2
 }
 
-// noctalia:允许通知动作/窗口激活(https://docs.noctalia.dev)
+// 允许通知动作/窗口激活
 debug {
     honor-xdg-activation-with-invalid-serial
-}
-
-// noctalia overview 的壁纸放到 backdrop
-layer-rule {
-    match namespace="^noctalia-overview*"
-    place-within-backdrop true
 }
 
 // 动画:让带模糊的窗口开关
@@ -93,8 +87,8 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot-%Y%m%d-%H%M%S.png"
 
-// noctalia-shell:桌面 shell(壁纸/状态栏/通知/启动器/锁屏/OSD 等)
-spawn-at-startup "noctalia-shell"
+// awww 壁纸,swayosd OSD,swaync 通知中心(后者由 hm services 管理)
+spawn-at-startup "awww-daemon"
 spawn-at-startup "fcitx5" "-d"
 
 gestures {
@@ -112,27 +106,27 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
-    // noctalia:启动器 / 锁屏 / 控制中心 / 会话菜单 / 剪贴板
-    Mod+D { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Super+Alt+L { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
-    Mod+S { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
-    Mod+E { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
-    Mod+Ctrl+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
+    // fuzzel 启动器
+    Mod+D { spawn "fuzzel"; }
+    Mod+Space { spawn "fuzzel"; }
+    // hyprlock 锁屏
+    Super+Alt+L { spawn "hyprlock"; }
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
-    XF86AudioMute        allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteInput"; }
+    // swayosd:音量/亮度/麦克风 + OSD 显示
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "lower"; }
+    XF86AudioMute        allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
 
-    XF86AudioPlay  allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
-    XF86AudioPause allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "pause"; }
-    XF86AudioStop  allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "pause"; }
-    XF86AudioPrev  allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "previous"; }
-    XF86AudioNext  allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "next"; }
+    XF86MonBrightnessUp   allow-when-locked=true { spawn "swayosd-client" "--brightness" "raise"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness" "lower"; }
 
-    XF86MonBrightnessUp   allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+    // 媒体键
+    XF86AudioPlay  allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioPause allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop  allow-when-locked=true { spawn-sh "playerctl stop"; }
+    XF86AudioPrev  allow-when-locked=true { spawn-sh "playerctl previous"; }
+    XF86AudioNext  allow-when-locked=true { spawn-sh "playerctl next"; }
 
     Mod+O repeat=false { toggle-overview; }
     Mod+Q repeat=false { close-window; }
