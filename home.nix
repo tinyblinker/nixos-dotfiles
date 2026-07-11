@@ -31,9 +31,10 @@
     cava
     neovim
     gcc
-    clangd
     gdb
     lldb
+    clang
+    (lib.lowPrio clang)  # 降低优先避免 clang/gcc 的 c++ 冲突
     nil
     nixfmt
     lua-language-server
@@ -45,7 +46,6 @@
     taplo
     yaml-language-server
     vscode-langservers-extracted
-    clangd
     # 桌面组件
     waybar
     fuzzel
