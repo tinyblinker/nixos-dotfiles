@@ -70,6 +70,8 @@
     # matugen 全局配色依赖
     qt6Packages.qt6ct
     adw-gtk3
+    # polkit 认证代理(GUI 密码弹窗)
+    lxqt.lxqt-policykit
   ];
 
   # ---- GTK / 光标 / 图标(主题不变) ----
