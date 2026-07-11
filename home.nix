@@ -45,7 +45,7 @@
     taplo
     yaml-language-server
     vscode-langservers-extracted
-    clang-tools
+    clangd
     # 桌面组件
     waybar
     fuzzel
