@@ -26,6 +26,7 @@
     pavucontrol
     playerctl
     bluez-tools
+    cava
     # 桌面组件
     waybar
     fuzzel
@@ -63,7 +64,11 @@
   programs.fish = {
     enable = true;
     interactiveShellInit = "fish_vi_key_bindings";  # vim 模式
-    shellAliases = { btw = "echo i use nixos, btw"; };
+    shellAliases = {
+      btw = "echo i use nixos, btw";
+      neovim = "hx";
+      nvim = "hx";
+    };
     functions = {
       y = ''
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
