@@ -92,6 +92,7 @@
     configFile = "/home/shyweeds/dotfiles/mihomo/config.yaml";
     webui = pkgs.metacubexd;
   };
+  services.flatpak.enable = true;
   services.pipewire = {
     enable = true;
     pulse.enable = true;

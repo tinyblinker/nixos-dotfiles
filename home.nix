@@ -76,7 +76,7 @@
   gtk = {
     enable = true;
     theme = {
-      name = "adw-gtk3-dark";  # GTK 骨架,皮肤由 matugen colors.css 提供
+      name = "adw-gtk3-dark"; # GTK 骨架,皮肤由 matugen colors.css 提供
       package = pkgs.adw-gtk3;
     };
     iconTheme = {
@@ -133,7 +133,7 @@
   # ---- neovim ----
   home.sessionVariables.EDITOR = "nvim";
   home.sessionVariables.QT_QPA_PLATFORM = "wayland";
-  home.sessionVariables.QT_QPA_PLATFORMTHEME = "qt6ct";    # Qt 配色由 qt6ct 接管
+  home.sessionVariables.QT_QPA_PLATFORMTHEME = "qt6ct"; # Qt 配色由 qt6ct 接管
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/shyweeds/dotfiles/nvim";
   # ---- fastfetch ----
   programs.fastfetch = {
