@@ -13,7 +13,6 @@
 
   home.packages = with pkgs; [
     ripgrep
-    qutebrowser
     gnumake
     shellcheck
     yazi
