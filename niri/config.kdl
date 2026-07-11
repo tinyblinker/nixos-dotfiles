@@ -111,6 +111,8 @@ binds {
     Mod+Space { spawn "fuzzel"; }
     // hyprlock 锁屏
     Super+Alt+L { spawn "hyprlock"; }
+    // swaync 通知中心
+    Mod+Shift+N { spawn "swaync-client" "--toggle-panel"; }
 
     // swayosd:音量/亮度/麦克风 + OSD 显示
     XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise"; }
