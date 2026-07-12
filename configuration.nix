@@ -92,7 +92,7 @@
     tunMode = true;
     processesInfo = true;
     configFile = "/home/shyweeds/dotfiles/mihomo/config.yaml";
-    webui = nixpkgs-unstable.legacyPackages.x86_64-linux.metacubexd;
+    webui = pkgs.metacubexd;
   };
   services.flatpak.enable = true;
   services.pipewire = {
