@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  nixpkgs-unstable,
   ...
 }:
 {
@@ -87,6 +88,7 @@
   services.power-profiles-daemon.enable = true;
   services.mihomo = {
     enable = true;
+    package = nixpkgs-unstable.legacyPackages.x86_64-linux.mihomo;
     tunMode = true;
     processesInfo = true;
     configFile = "/home/shyweeds/dotfiles/mihomo/config.yaml";
