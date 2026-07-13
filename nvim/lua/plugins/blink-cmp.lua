@@ -49,6 +49,7 @@ return {
 		completion = {
 			documentation = { auto_show = false, auto_show_delay_ms = 500 },
 			menu = {
+				border = "rounded",
 				draw = {
 					components = {
 						kind_icon = {
