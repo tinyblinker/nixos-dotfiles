@@ -72,6 +72,7 @@
     };
   };
   programs.niri.enable = true;
+  services.dbus.enable = true;
   # xdg-desktop-portal:屏幕捕获/文件对话框/配色方案等桌面集成
   xdg.portal = {
     enable = true;
