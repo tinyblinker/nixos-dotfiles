@@ -19,6 +19,7 @@ return {
 			},
 			opts = {},
 		},
+		"onsails/lspkind.nvim",
 	},
 
 	-- 防止opts中的sources.default被覆盖默认配置
@@ -47,6 +48,17 @@ return {
 		-- 显示文档
 		completion = {
 			documentation = { auto_show = false, auto_show_delay_ms = 500 },
+			menu = {
+				draw = {
+					components = {
+						kind_icon = {
+							text = function(ctx)
+								return require("lspkind").symbol_map[ctx.kind] or ""
+							end,
+						},
+					},
+				},
+			},
 		},
 		-- 补全来源
 		sources = {
