@@ -6,6 +6,7 @@
 
     # Neovim depends
     gcc
+    fd
     wl-clipboard
     tree-sitter
     ripgrep
