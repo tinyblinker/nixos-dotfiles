@@ -1,12 +1,12 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    ripgrep
-    gnumake
-    shellcheck
+    # base-utils
+    gdb
+    lldb
+    clang-tools # llvm-full without llvm
     yazi
     bat
-    tree-sitter
     wlsunset
     btop
     upower
@@ -20,30 +20,8 @@
     bluez
     blueman
     cava
-    neovim
-    gcc
-    gdb
-    lldb
-    clang-tools
-    nil
-    nixfmt
-    nixd
-    lua-language-server
-    pyright
-    lua51Packages.luarocks
-    black
-    shellharden
     obs-studio
-    stylua
     rustup
-    lua5_1
-    deadnix
-    ruff
-    bash-language-server
-    marksman
-    taplo
-    yaml-language-server
-    vscode-langservers-extracted
     waybar
     fuzzel
     awww
