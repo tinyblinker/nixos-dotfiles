@@ -22,13 +22,13 @@
         system = "x86_64-linux";
         specialArgs = { inherit nixpkgs-unstable; };
         modules = [
-          ./configuration.nix
+          ./hosts/nixos
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.shyweeds = import ./home.nix;
+              users.shyweeds = import ./modules/home/shyweeds;
               backupFileExtension = "backup";
 
               # 将整个 inputs 对象传递给 home.nix

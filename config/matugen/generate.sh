@@ -2,7 +2,7 @@
 set -euo pipefail
 
 DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-WALLPAPER=${1:-"/home/shyweeds/dotfiles/wallpaper/1.png"}
+WALLPAPER=${1:-"/home/shyweeds/dotfiles/assets/wallpaper/1.png"}
 CFG="$DIR/config.toml"
 OUT="$DIR/output"
 

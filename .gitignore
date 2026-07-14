@@ -1,4 +1,5 @@
-wallpaper/
-mihomo/config.yaml
-matugen/output/
-/mihomo
+assets/wallpaper/
+config/matugen/output/
+config/mihomo/config.yaml
+/config/mihomo/cache.db
+/config/mihomo
