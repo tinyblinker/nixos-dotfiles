@@ -1,5 +1,8 @@
 { pkgs, nixpkgs-unstable, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    networkmanagerapplet
+  ];
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
   networking.firewall = {

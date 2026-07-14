@@ -2,8 +2,11 @@
 {
   home.packages = with pkgs; [
     neovim
+    vscode
+
     # Neovim depends
     gcc
+    wl-clipboard
     tree-sitter
     ripgrep
     gnumake

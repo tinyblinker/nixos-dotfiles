@@ -13,8 +13,6 @@
     nodejs
     fd
     brightnessctl
-    vscode
-    wl-clipboard
     pavucontrol
     playerctl
     bluez
@@ -23,11 +21,7 @@
     obs-studio
     rustup
     waybar
-    fuzzel
     awww
-    swayosd
-    hyprlock
-    swayidle
     matugen
     qt6Packages.qt6ct
     adw-gtk3
