@@ -10,10 +10,6 @@ output_path = '/home/shyweeds/dotfiles/config/matugen/output/waybar.css'
 input_path = '/home/shyweeds/dotfiles/config/matugen/templates/fuzzel.ini'
 output_path = '/home/shyweeds/dotfiles/config/matugen/output/fuzzel.ini'
 
-[templates.mako]
-input_path = '/home/shyweeds/dotfiles/config/matugen/templates/mako.conf'
-output_path = '/home/shyweeds/dotfiles/config/matugen/output/mako.conf'
-
 [templates.hyprlock]
 input_path = '/home/shyweeds/dotfiles/config/matugen/templates/hyprlock.conf'
 output_path = '/home/shyweeds/dotfiles/config/matugen/output/hyprlock.conf'

@@ -196,9 +196,9 @@ config/matugen/templates/   →   config/matugen/output/
 ├── kitty.conf                    # Terminal colors
 ├── waybar.css                    # Bar colors
 ├── fuzzel.ini                    # Launcher colors
-├── mako.conf                     # Notification colors
 ├── hyprlock.conf                 # Lock screen colors
-├── swaync.css / swayosd.css      # Notification center & OSD
+├── swaync.css                     # Notification center
+├── swayosd.css                    # OSD
 └── gtk-colors.css / qt-colors.conf
 ```
 
@@ -244,7 +244,7 @@ Blur, rounded corners, transparent unfocused windows ✨
 │   │   ├── services.nix               # greetd, pipewire, flatpak, keyd
 │   │   └── users.nix                  # User, fish, Firefox
 │   └── home/shyweeds/                 # Home Manager user modules
-│       ├── desktop/                   # fuzzel, hyprlock, mako, waybar ...
+│       ├── desktop/                   # fuzzel, hyprlock, swaync, waybar ...
 │       ├── shell.nix                  # fish + opencode
 │       ├── terminal.nix               # kitty + fastfetch
 │       ├── editors.nix                # neovim
