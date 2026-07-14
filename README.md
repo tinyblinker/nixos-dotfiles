@@ -9,6 +9,10 @@
 
 </div>
 
+<p align="center">
+  <img src="assets/ricing/x.png" alt="screenshot" width="800" />
+</p>
+
 <h1 align="center">❄️ nixos-dotfiles</h1>
 
 <p align="center">
