@@ -10,7 +10,7 @@
   home.username = "shyweeds";
   home.homeDirectory = "/home/shyweeds";
   home.stateVersion = "26.05";
-
+  home.sessionPath = [ "$HOME/.cargo/bin/" ];
   home.packages = with pkgs; [
     ripgrep
     gnumake
