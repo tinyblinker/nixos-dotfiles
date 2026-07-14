@@ -1,4 +1,4 @@
--- 清除因为search造成的高亮
+-- Clear search highlights
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic Config & Keymaps

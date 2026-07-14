@@ -8,7 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  # 1. 使用 @inputs 将所有 inputs 捕获到一个变量中
+  # 1. Capture all inputs into a single variable using @inputs
   outputs =
     inputs@{
       self,
@@ -31,7 +31,7 @@
               users.shyweeds = import ./modules/home/shyweeds;
               backupFileExtension = "backup";
 
-              # 将整个 inputs 对象传递给 home.nix
+              # Pass the entire inputs object to home.nix
               extraSpecialArgs = { inherit inputs; };
             };
           }

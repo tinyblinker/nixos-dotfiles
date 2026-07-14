@@ -22,12 +22,12 @@ return {
 		"onsails/lspkind.nvim",
 	},
 
-	-- 防止opts中的sources.default被覆盖默认配置
+	-- Prevent sources.default in opts from being overwritten by the default config
 	opts_extend = { "sources.default" },
 	---@module 'blink.cmp'
 	---@type blink.cmp.Config
 	opts = {
-		-- NOTE:关键点:设定keymap为default映射
+		-- NOTE: key point: set keymap to default preset
 		keymap = {
 			-- 'default' (recommended) for mappings similar to built-in completions
 			--   <c-y> to accept ([y]es) the completion.
@@ -45,7 +45,7 @@ return {
 		appearance = {
 			nerd_font_variant = "mono",
 		},
-		-- 显示文档
+		-- Show documentation
 		completion = {
 			documentation = { auto_show = false, auto_show_delay_ms = 500 },
 			menu = {
@@ -61,14 +61,14 @@ return {
 				},
 			},
 		},
-		-- 补全来源
+		-- Completion sources
 		sources = {
 			default = { "lsp", "path", "snippets", "buffer" },
 		},
 		snippets = { preset = "luasnip" },
-		-- 排序方法
+		-- Fuzzy matching method
 		fuzzy = { implementation = "prefer_rust_with_warning" },
-		-- 显示签名
+		-- Show signature help
 		signature = { enabled = true },
 	},
 	config = function(_, opts)

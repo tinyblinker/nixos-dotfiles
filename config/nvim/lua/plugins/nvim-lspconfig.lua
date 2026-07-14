@@ -13,18 +13,18 @@ return {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 
 			callback = function(event)
-				-- LSP键位映射封装函数
+				-- LSP keymap wrapper function
 				local map = function(keys, func, desc, mode)
 					mode = mode or "n"
 					vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
 
-				-- LSP键位映射
+				-- LSP keymaps
 				map("grn", vim.lsp.buf.rename, "[R]e[n]ame")
 				map("gra", vim.lsp.buf.code_action, "[G]oto Code [A]ction", { "n", "x" })
 				map("grD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-				-- 实现光标悬停高亮
+				-- Enable cursor hover highlight
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
 				if client and client:supports_method("textDocument/documentHighlight", event.buf) then
 					local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
@@ -47,7 +47,7 @@ return {
 					})
 				end
 
-				-- 内联hint提示开关
+				-- Toggle inline hints
 				if client and client:supports_method("textDocument/inlayHint", event.buf) then
 					map("<leader>th", function()
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
@@ -56,7 +56,7 @@ return {
 			end,
 		})
 
-		-- 获取LSP能力集并合并
+		-- Get LSP capabilities and merge
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 		local servers = {
 			clangd = {

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# 用 ImageMagick 把 1.png 生成模糊版 1-blur.png(供 niri overview backdrop 使用)
+# Use ImageMagick to generate a blurred 1-blur.png from 1.png (for niri overview backdrop)
 set -euo pipefail
 
 dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

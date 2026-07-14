@@ -1,4 +1,4 @@
-// niri 配置 —— 保存即热重载。文档:https://github.com/YaLTeR/niri/wiki
+// niri config — save to hot-reload. Docs: https://github.com/YaLTeR/niri/wiki
 
 input {
     keyboard {
@@ -13,12 +13,12 @@ input {
     }
 }
 
-// 输出缩放。若不是 eDP-1,先跑 `niri msg outputs` 查名字。
+// Output scaling. If not eDP-1, run `niri msg outputs` to check names first.
 output "eDP-1" {
     scale 1.6
 }
 
-// 鼠标光标主题
+// Cursor theme
 cursor {
     xcursor-theme "Bibata-Modern-Classic"
     xcursor-size 24
@@ -35,7 +35,7 @@ layout {
     }
     default-column-width { proportion 0.5; }
 
-    // 关闭 focus-ring,只用边框(带绿色渐变,呼应主题)
+    // Disable focus-ring, use border only (green gradient to match theme)
     focus-ring {
         off
     }
@@ -47,30 +47,30 @@ layout {
     }
 }
 
-// 圆角
+// Rounded corners
 window-rule {
     geometry-corner-radius 14
     clip-to-geometry true
 }
 
-// kitty 半透明
+// Kitty transparency
 window-rule {
     match app-id="kitty"
     background-effect { blur true; }
 }
 
-// 背景模糊(作用于半透明窗口背后,例如 kitty)
+// Background blur (behind translucent windows, e.g. kitty)
 blur {
     passes 2
 }
 
-// 模糊壁纸(awww-daemonblur)仅显示在 overview backdrop 中
+// Blurred wallpaper (awww-daemonblur) only shown in overview backdrop
 layer-rule {
     match namespace="awww-daemonblur"
     place-within-backdrop true
 }
 
-// fuzzel 半透明背景 + niri 毛玻璃
+// Fuzzel translucent background + niri blur
 layer-rule {
     match namespace="launcher"
     geometry-corner-radius 24
@@ -80,18 +80,18 @@ layer-rule {
     }
 }
 
-// 允许通知动作/窗口激活
+// Allow notification actions / window activation
 debug {
     honor-xdg-activation-with-invalid-serial
 }
 
-// 动画:让带模糊的窗口开关
+// Animations: window open/close with blur
 animations {
     window-open {
         duration-ms 250
         curve "ease-out-expo"
     }
-    // 关窗:平滑淡出
+    // Close window: smooth fade out
     window-close {
         duration-ms 200
         curve "ease-out-quad"
@@ -102,8 +102,8 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot-%Y%m%d-%H%M%S.png"
 
-// awww 壁纸:sharp 原始图(普通视图),blur 模糊图(overview backdrop)
-// blur 先启动,sharp 后启动,确保 z-order:sharp 在上层覆盖 blur
+// awww wallpaper: sharp = original image (normal view), blur = blurred image (overview backdrop)
+// Start blur first, sharp second, to ensure sharp is on top of blur in z-order
 spawn-sh-at-startup "awww-daemon --namespace blur & until awww query --namespace blur >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace blur /home/shyweeds/dotfiles/assets/wallpaper/1-blur.png"
 spawn-sh-at-startup "awww-daemon --namespace sharp & until awww query --namespace sharp >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace sharp /home/shyweeds/dotfiles/assets/wallpaper/1.png"
 spawn-at-startup "fcitx5" "-d"
@@ -119,20 +119,20 @@ hotkey-overlay {
     skip-at-startup
 }
 
-// —— 以下为 niri 官方默认键位(终端/启动器换成你已安装的 kitty / fuzzel)——
+// —— Default niri keybinds below (terminal/launcher replaced with kitty / fuzzel) ——
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
-    // fuzzel 启动器
+    // fuzzel launcher
     Mod+D { spawn "fuzzel"; }
     Mod+Space { spawn "fuzzel"; }
-    // hyprlock 锁屏
+    // hyprlock screen lock
     Super+Alt+L { spawn "hyprlock"; }
-    // swaync 通知中心
+    // swaync notification center
     Mod+Shift+N { spawn "swaync-client" "--toggle-panel"; }
 
-    // swayosd:音量/亮度/麦克风 + OSD 显示
+    // swayosd: volume / brightness / mic + OSD display
     XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "lower"; }
     XF86AudioMute        allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
@@ -141,7 +141,7 @@ binds {
     XF86MonBrightnessUp   allow-when-locked=true { spawn "swayosd-client" "--brightness" "raise"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness" "lower"; }
 
-    // 媒体键
+    // Media keys
     XF86AudioPlay  allow-when-locked=true { spawn-sh "playerctl play-pause"; }
     XF86AudioPause allow-when-locked=true { spawn-sh "playerctl play-pause"; }
     XF86AudioStop  allow-when-locked=true { spawn-sh "playerctl stop"; }

@@ -17,10 +17,10 @@ return {
 		},
 		filesystem = {
 			follow_current_file = {
-				enabled = true, -- 自动定位当前文件（强烈建议）
+				enabled = true, -- Auto-locate current file (strongly recommended)
 			},
 			filtered_items = {
-				hide_dotfiles = false, -- 不隐藏 dotfiles（开发更实用）
+				hide_dotfiles = false, -- Don't hide dotfiles (more practical for development)
 				hide_gitignored = false,
 			},
 		},

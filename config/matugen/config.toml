@@ -1,5 +1,5 @@
-# matugen 配置:从壁纸提取配色,渲染各应用的颜色文件到 ./matugen/output/
-# 运行: ./matugen/generate.sh
+# matugen config: extract colors from wallpaper, render app color files to ./matugen/output/
+# Run: ./matugen/generate.sh
 [config]
 
 [templates.waybar]
