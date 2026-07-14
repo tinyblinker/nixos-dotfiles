@@ -126,6 +126,7 @@
     vim
     wget
     networkmanagerapplet
+    qemu
   ];
   networking.firewall = {
     enable = true;
