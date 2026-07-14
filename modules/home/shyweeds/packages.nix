@@ -48,7 +48,6 @@
     fuzzel
     awww
     swayosd
-    swaynotificationcenter
     hyprlock
     swayidle
     matugen
