@@ -1,5 +1,6 @@
-assets/wallpaper/
 config/matugen/output/
 config/mihomo/config.yaml
 /config/mihomo/cache.db
-/config/mihomo
+/config/mihomo/geoip.metadb
+/assets/wallpaper/1-blur.png
+/assets/wallpaper/1.png
