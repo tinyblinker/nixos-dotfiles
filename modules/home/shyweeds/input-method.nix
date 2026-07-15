@@ -1,12 +1,10 @@
 {
   xdg.dataFile."fcitx5/rime/default.custom.yaml".text = ''
     patch:
-      ascii_composer:
-        switch_key:
-          Caps_Lock: noop
-      schema_list:
-        - schema: rime_ice
-      menu/page_size: 8
+      ascii_composer/switch_key/Caps_Lock: noop
+    schema_list:
+      - schema: rime_ice
+    menu/page_size: 8
   '';
   xdg.dataFile."fcitx5/rime/rime_ice.custom.yaml".text = ''
     patch:
