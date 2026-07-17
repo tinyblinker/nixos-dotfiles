@@ -68,7 +68,7 @@
         "format": "󰁹{capacity}%",
         "format-charging": "󰂅 {capacity}%",
         "format-plugged": " ",
-        "tooltip-format": "{capacity}% {timeTo} {time}"
+        "tooltip-format": "{capacity}% {timeTo}"
     },
     "temperature": {
         "format": "{temperatureC}°C",
