@@ -5,6 +5,13 @@ vim.g.maplocalleader = " "
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- override filetype settings
+vim.filetype.add({
+	extension = {
+		S = "asm", -- let the ".S" file to be recognized as "asm"
+	},
+})
+
 -- configs
 require("config.options")
 require("config.keymaps")
