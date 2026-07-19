@@ -5,6 +5,7 @@
     gdb
 
     yazi
+    xwayland-satellite
     bat
     wlsunset
     btop
