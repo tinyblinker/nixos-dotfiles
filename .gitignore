@@ -5,3 +5,5 @@ config/mihomo/config.yaml
 /assets/wallpaper/1-blur.png
 /assets/wallpaper/1.png
 /config/emacs/org
+/config/emacs/eln-cache/30.2-25d713cb
+/config/emacs/straight
