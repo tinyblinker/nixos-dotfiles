@@ -22,8 +22,8 @@
         ids = [ "3554:fa09" ];
         settings = {
           main = {
-            leftalt = "layer(meta)";
-            leftmeta = "layer(alt)";
+            leftalt = "meta";
+            leftmeta = "alt";
           };
         };
       };
