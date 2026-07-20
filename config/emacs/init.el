@@ -1,7 +1,6 @@
 ;; minimal emacs config for Org note-taking and task managing
 ;; Using: straight.el + use-package
-;; includes: org-mode,which-key,evil,evil-collection
-;; targets: beginner-friendly,single file,easy to extend
+;; targets: beginner-friendly, single file, easy to extend
 ;; emacs 29+
 
 ;; startup optimization
@@ -12,9 +11,9 @@
 (add-hook 'emacs-startup-hook
           (lambda () (setq gc-cons-threshold (* 2 1024 1024))))
 
-;; debug config
-(setq debug-on-error t) ;; when find elisp errors then enter the backtrace
-(setq init-file-debug t) ;; print more detailed *Messages* when startup
+;; debug config — toggle to t when troubleshooting
+(setq debug-on-error nil)
+(setq init-file-debug nil)
 
 ;; disable ui clutter
 ;; run different codes base on the platforms
@@ -42,12 +41,11 @@
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 
-;; others
+;; editor basics
 (global-display-line-numbers-mode 1)
 (column-number-mode 1)
 (electric-pair-mode 1)
 (show-paren-mode 1)
-(setq org-hide-emphasis-markers t)
 
 ;; bootstrap the straight.el
 (defvar bootstrap-version)
@@ -77,56 +75,86 @@
   (which-key-mode 1)
   (setq which-key-idle-delay 0.5))
 
-;; evil(vim emulation) and evil-collection
-(use-package evil
-  :init
-  (setq evil-want-keybinding nil) ;; required for evil-collection
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-i-jump nil)
-  :config
-  (evil-mode 1))
+;; ── Keybinding Philosophy ────────────────────────────────────────────
+;; Using Emacs native keybindings instead of evil (Vim emulation).
+;; Long-term benefits:
+;;   1. org-mode tutorials, docs, and community help all assume native keys —
+;;      no mental translation layer when reading the manual or asking
+;;      questions online.
+;;   2. Third-party Emacs packages ship with native bindings only; with
+;;      evil you are always dependent on evil-collection keeping up.
+;;   3. The Emacs keybinding system is internally consistent (C-c for
+;;      mode-specific commands, C-h prefix for help, C-u for prefix
+;;      argument) — learning it once pays dividends across all modes.
+;;   4. Org-mode's agenda, clocking, tables, and sparse-tree commands are
+;;      designed around one-handed chord sequences that flow naturally
+;;      once muscle memory sets in.
+;;   5. Fewer packages = less that can break on upgrades, faster startup,
+;;      simpler config. Native bindings are first-class citizens.
+;; ──────────────────────────────────────────────────────────────────────
 
-(use-package evil-collection
-  :after evil
-  :config
-  (evil-collection-init))
-
-;; org-mode(note-taking and task manage)
+;; org-mode (note-taking and task management)
 (use-package org
   :straight (:type built-in)
+  :hook
+  (org-mode . visual-line-mode)        ;; soft-wrap for readability
+  :bind
+  (("C-c a" . org-agenda)              ;; agenda dispatcher
+   ("C-c c" . org-capture)             ;; quick capture from anywhere
+   ("C-c l" . org-store-link))         ;; store link for later insertion
   :config
-  ;; basic org directory
+  ;; --- directories & files ---
   (setq org-directory (expand-file-name "~/documents/org"))
   (setq org-default-notes-file (expand-file-name "inbox.org" org-directory))
-
-  ;; create directory is missing
   (unless (file-directory-p org-directory)
     (make-directory org-directory t))
 
-  ;; agenda
+  ;; --- agenda ---
   (setq org-agenda-files (list org-directory))
-  (global-set-key (kbd "C-c a") #'org-agenda)
+  (setq org-agenda-start-on-weekday nil) ;; start from today, not Monday
 
-  ;; capture template
-  (setq org-capture-templates
-	'(("t" "Todo" entry
-	   (file "inbox.org")
-	   "* TODO %?\n  %U\n  %a")
-	  ("n" "Note" entry
-	   (file "notes.org")
-	   "* %?\n  %U\n  %a")))
-  (global-set-key (kbd "C-c c") #'org-capture)
-
-  ;; TODO workflow
+  ;; --- TODO workflow ---
   (setq org-todo-keywords
-	'((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")))
+        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")))
+  (setq org-log-done 'time)             ;; timestamp when task is completed
 
-  ;; visual tweaks
+  ;; --- capture templates ---
+  (setq org-capture-templates
+        '(("t" "Todo" entry
+           (file+headline "inbox.org" "Tasks")
+           "* TODO %?\n  %U\n  %a")
+          ("n" "Quick Note" entry
+           (file+headline "inbox.org" "Notes")
+           "* %?  :note:\n  %U\n  %a")
+          ("j" "Journal" entry
+           (file+datetree "journal.org")
+           "* %?\n  %U")))
+
+  ;; --- refile (move headings between files) ---
+  (setq org-refile-use-outline-path 'file)
+  (setq org-outline-path-complete-in-steps nil)
+  (setq org-refile-targets '((org-agenda-files :maxlevel . 3)))
+
+  ;; --- visual ---
   (setq org-startup-indented t)
-  (setq org-hide-emphasis-markers t))
+  (setq org-hide-emphasis-markers t)
+  (setq org-ellipsis " ⤵")             ;; nicer folded-heading indicator
+  (setq org-pretty-entities t))        ;; Unicode entities (e.g. \alpha → α)
+
+;; ── org-mode extras ──────────────────────────────────────────────────
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode))  ;; prettier heading bullets
+
+(use-package org-appear
+  :after org
+  :hook (org-mode . org-appear-mode)
+  :config
+  (setq org-appear-autoemphasis t       ;; reveal bold/italic on cursor
+        org-appear-autolinks t          ;; show link description on cursor
+        org-appear-autosubmarkers t))   ;; reveal sub/superscript markers
 
 ;; quality of life defaults
-
 (use-package recentf
   :init (recentf-mode 1)
   :config (setq recentf-max-menu-items 20))
@@ -140,15 +168,13 @@
 ;; sensible editing defaults
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(global-set-key (kbd "C-x k") #'kill-current-buffer)
 (global-visual-line-mode 1)
 (setq-default word-wrap t)
 
 ;; i just need an eyes-friendly colorscheme to protect my fucking eyes
 (use-package doom-themes
-  :init
   :config
-  (load-theme 'doom-one t))  ;; doom-one / doom-gruvbox / doom-tomorrow-night 等
+  (load-theme 'doom-one t))  ;; doom-one / doom-gruvbox / doom-tomorrow-night
 
 ;; elisp completions settings
 (use-package corfu
@@ -160,6 +186,5 @@
   (corfu-auto-prefix 2))
 
 (global-eldoc-mode 1)
-(electric-pair-mode 1)
 
 (setq tab-always-indent 'complete)
