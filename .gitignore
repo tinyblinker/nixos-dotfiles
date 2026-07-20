@@ -7,3 +7,6 @@ config/mihomo/config.yaml
 /config/emacs/org
 /config/emacs/eln-cache/30.2-25d713cb
 /config/emacs/straight
+/config/emacs/history
+/config/emacs/places
+/config/emacs/recentf
