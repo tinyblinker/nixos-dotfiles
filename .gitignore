@@ -4,3 +4,4 @@ config/mihomo/config.yaml
 /config/mihomo/geoip.metadb
 /assets/wallpaper/1-blur.png
 /assets/wallpaper/1.png
+/config/emacs/org

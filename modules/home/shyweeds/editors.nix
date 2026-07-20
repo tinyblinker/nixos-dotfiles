@@ -32,4 +32,6 @@
   home.sessionVariables.QT_QPA_PLATFORMTHEME = "qt6ct";
   xdg.configFile."nvim".source =
     config.lib.file.mkOutOfStoreSymlink "/home/shyweeds/dotfiles/config/nvim";
+  xdg.configFile."emacs".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/shyweeds/dotfiles/config/emacs";
 }
