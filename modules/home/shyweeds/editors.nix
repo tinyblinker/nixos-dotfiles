@@ -3,6 +3,7 @@
   home.packages = with pkgs; [
     neovim
     vscode
+    emacs-pgtk
 
     # Neovim depends
     gcc

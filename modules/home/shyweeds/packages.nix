@@ -4,6 +4,7 @@
     # base-utils
     gdb
 
+    kdePackages.kdenlive
     yazi
     xwayland-satellite
     bat
