@@ -10,3 +10,4 @@ config/mihomo/config.yaml
 /config/emacs/history
 /config/emacs/places
 /config/emacs/recentf
+/config/emacs/bookmarks
