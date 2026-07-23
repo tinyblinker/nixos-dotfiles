@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
-    # base-utils
-    gdb
-
     kdePackages.kdenlive
     yazi
     xwayland-satellite
@@ -19,7 +16,6 @@
     blueman
     cava
     obs-studio
-    rustup
     awww
     matugen
     qt6Packages.qt6ct
