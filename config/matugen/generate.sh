@@ -12,7 +12,6 @@ matugen image "$WALLPAPER" --config "$CFG" --mode dark
 
 # Hot-reload running apps (ignore failures)
 pkill -SIGUSR1 -x kitty 2>/dev/null || true
-pkill -SIGUSR2 -x waybar 2>/dev/null || true
 pgrep -x swaync >/dev/null && swaync-client --reload-css
 pgrep -x swayosd >/dev/null && swayosd-client --reload-css
 # GTK re-read theme (recommended post_hook)
