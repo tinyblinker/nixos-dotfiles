@@ -35,6 +35,32 @@
   # home.sessionVariables = {
   #   EDITOR = "nvim";
   # };
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    extraPackages = with pkgs; [
+      gcc
+      fd
+      wl-clipboard
+      tree-sitter
+      ripgrep
+      gnumake
+      shellcheck
+      nil
+      nixfmt
+      nixd
+      lua-language-server
+      pyright
+      lua51Packages.luarocks
+      black
+      shellharden
+      stylua
+      lua5_1
+      deadnix
+      ruff
+      bash-language-server
+    ];
+  };
 
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink "${inputs.self}/config/nvim";
   xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${inputs.self}/config/emacs";

@@ -10,3 +10,4 @@ config/mihomo/config.yaml
 /config/emacs/places
 /config/emacs/recentf
 /config/emacs/bookmarks
+/modules/home/shyweeds/.editors.nix.swp
