@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, inputs, lib, ... }:
 {
   services.swaync = {
     enable = true;
@@ -14,5 +14,5 @@
       "${config.home.homeDirectory}/dotfiles/config/matugen/output/swaync.css";
 
   xdg.configFile."swaync/config.json".source =
-    lib.mkForce ../../../../config/swaync/config.json;
+    lib.mkForce "${inputs.self}/config/swaync/config.json";
 }

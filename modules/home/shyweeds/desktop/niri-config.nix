@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
-  xdg.configFile."niri/config.kdl".source = ../../../../config/niri/config.kdl;
+  xdg.configFile."niri/config.kdl".source = "${inputs.self}/config/niri/config.kdl";
 }
