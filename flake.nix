@@ -29,7 +29,7 @@
         system = "x86_64-linux";
         specialArgs = { inherit nixpkgs-unstable inputs; };
         modules = [
-          ./hosts/nixos
+            ./hosts/nixos/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {

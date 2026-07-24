@@ -1,8 +1,5 @@
 { config, pkgs, nixpkgs-unstable, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    networkmanagerapplet
-  ];
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
   networking.firewall = {
@@ -15,7 +12,7 @@
   };
   services.mihomo = {
     enable = true;
-    package = nixpkgs-unstable.legacyPackages.x86_64-linux.mihomo;
+    package = nixpkgs-unstable.legacyPackages.${pkgs.system}.mihomo;
     tunMode = true;
     processesInfo = true;
     configFile = "${config.users.users.shyweeds.home}/dotfiles/config/mihomo/config.yaml";
