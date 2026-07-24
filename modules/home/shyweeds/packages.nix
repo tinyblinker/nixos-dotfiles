@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   home.packages = with pkgs; [
+    firefox
     kdePackages.kdenlive
     yazi
     xwayland-satellite
