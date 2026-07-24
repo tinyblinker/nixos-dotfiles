@@ -2,7 +2,7 @@
 set -euo pipefail
 
 DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-WALLPAPER=${1:-"/home/shyweeds/dotfiles/assets/wallpaper/1.png"}
+WALLPAPER=${1:-"$HOME/dotfiles/assets/wallpaper/1.png"}
 CFG="$DIR/config.toml"
 OUT="$DIR/output"
 
@@ -21,3 +21,7 @@ gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark 2>/dev/null ||
 # fuzzel & hyprlock have no daemon, takes effect on next launch
 
 echo "✔ colors updated; apps reloaded where possible."
+
+# Copy GTK color files to their destination
+cp "$OUT/gtk3-colors.css" "$HOME/.config/gtk-3.0/colors.css"
+cp "$OUT/gtk4-colors.css" "$HOME/.config/gtk-4.0/colors.css"

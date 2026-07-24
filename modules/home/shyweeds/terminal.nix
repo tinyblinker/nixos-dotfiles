@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   programs.fastfetch = {
     enable = true;
@@ -100,7 +101,7 @@
   };
   programs.kitty = {
     enable = true;
-    extraConfig = "include /home/shyweeds/dotfiles/config/matugen/output/kitty.conf";
+    extraConfig = "include ${config.home.homeDirectory}/dotfiles/config/matugen/output/kitty.conf";
     settings = {
       font_family = "JetBrainsMono Nerd Font";
       font_size = "18";

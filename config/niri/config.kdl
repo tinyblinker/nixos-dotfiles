@@ -104,8 +104,8 @@ screenshot-path "~/Pictures/Screenshots/Screenshot-%Y%m%d-%H%M%S.png"
 
 // awww wallpaper: sharp = original image (normal view), blur = blurred image (overview backdrop)
 // Start blur first, sharp second, to ensure sharp is on top of blur in z-order
-spawn-sh-at-startup "awww-daemon --namespace blur & until awww query --namespace blur >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace blur /home/shyweeds/dotfiles/assets/wallpaper/1-blur.png"
-spawn-sh-at-startup "awww-daemon --namespace sharp & until awww query --namespace sharp >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace sharp /home/shyweeds/dotfiles/assets/wallpaper/1.png"
+spawn-sh-at-startup "awww-daemon --namespace blur & until awww query --namespace blur >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace blur $HOME/dotfiles/assets/wallpaper/1-blur.png"
+spawn-sh-at-startup "awww-daemon --namespace sharp & until awww query --namespace sharp >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace sharp $HOME/dotfiles/assets/wallpaper/1.png"
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "lxqt-policykit-agent"
 

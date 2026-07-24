@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs-unstable, ... }:
+{ config, pkgs, nixpkgs-unstable, ... }:
 {
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
@@ -18,7 +18,7 @@
     package = nixpkgs-unstable.legacyPackages.x86_64-linux.mihomo;
     tunMode = true;
     processesInfo = true;
-    configFile = "/home/shyweeds/dotfiles/config/mihomo/config.yaml";
+    configFile = "${config.users.users.shyweeds.home}/dotfiles/config/mihomo/config.yaml";
     webui = pkgs.metacubexd;
   };
 }

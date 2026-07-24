@@ -11,7 +11,7 @@
 
   home.file.".config/swaync/style.css".source =
     config.lib.file.mkOutOfStoreSymlink
-      "/home/shyweeds/dotfiles/config/matugen/output/swaync.css";
+      "${config.home.homeDirectory}/dotfiles/config/matugen/output/swaync.css";
 
   xdg.configFile."swaync/config.json".source =
     lib.mkForce ../../../../config/swaync/config.json;

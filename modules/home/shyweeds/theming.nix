@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   gtk = {
     enable = true;
@@ -27,14 +27,14 @@
   };
 
   xdg.configFile."gtk-3.0/gtk.css".text = ''
-    @import url("file:///home/shyweeds/.config/gtk-3.0/colors.css");
+    @import url("file://${config.home.homeDirectory}/.config/gtk-3.0/colors.css");
   '';
   xdg.configFile."gtk-4.0/gtk.css".text = ''
-    @import url("file:///home/shyweeds/.config/gtk-4.0/colors.css");
+    @import url("file://${config.home.homeDirectory}/.config/gtk-4.0/colors.css");
   '';
   xdg.configFile."qt6ct/qt6ct.conf".text = ''
     [Appearance]
-    color_scheme_path=/home/shyweeds/dotfiles/config/matugen/output/qt-colors.conf
+    color_scheme_path=${config.home.homeDirectory}/dotfiles/config/matugen/output/qt-colors.conf
     custom_palette=true
     icon_theme=Papirus-Dark
     style=Fusion

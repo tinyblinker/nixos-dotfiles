@@ -50,7 +50,7 @@ in
   };
 
   xdg.configFile."nvim".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/shyweeds/dotfiles/config/nvim";
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/config/nvim";
   xdg.configFile."emacs".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/shyweeds/dotfiles/config/emacs";
+    config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/config/emacs";
 }

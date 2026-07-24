@@ -1,6 +1,7 @@
+{ config, ... }:
 {
   home.username = "shyweeds";
-  home.homeDirectory = "/home/shyweeds";
+  home.homeDirectory = "/home/${config.home.username}";
   home.stateVersion = "26.05";
   home.sessionPath = [ "$HOME/.cargo/bin/" ];
 

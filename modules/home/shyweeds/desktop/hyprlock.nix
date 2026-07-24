@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   programs.hyprlock = {
     enable = true;
@@ -32,6 +33,6 @@
         }
       ];
     };
-    extraConfig = "source = /home/shyweeds/dotfiles/config/matugen/output/hyprlock.conf";
+    extraConfig = "source = ${config.home.homeDirectory}/dotfiles/config/matugen/output/hyprlock.conf";
   };
 }
