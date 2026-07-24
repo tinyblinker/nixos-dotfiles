@@ -1,101 +1,30 @@
-{ config, ... }:
+{ ... }:
 {
   programs.fastfetch = {
     enable = true;
     settings = {
       logo = {
         source = "nixos";
-        padding = {
-          top = 1;
-          left = 2;
-          right = 4;
-        };
         color = {
           "1" = "38;2;92;131;116";
           "2" = "38;2;147;177;166";
         };
       };
-      display = {
-        separator = "  ";
-        color.keys = "38;2;147;177;166";
-      };
       modules = [
-        "break"
-        {
-          type = "title";
-          color = {
-            user = "38;2;92;131;116";
-            host = "38;2;147;177;166";
-          };
-        }
-        {
-          type = "separator";
-          string = "─";
-          length = 26;
-        }
-        {
-          type = "os";
-          key = "  OS";
-          keyColor = "green";
-        }
-        {
-          type = "kernel";
-          key = "  Kernel";
-          keyColor = "green";
-        }
-        {
-          type = "uptime";
-          key = "  Uptime";
-          keyColor = "green";
-        }
-        {
-          type = "packages";
-          key = "  Pkgs";
-          keyColor = "green";
-        }
-        {
-          type = "shell";
-          key = "  Shell";
-          keyColor = "green";
-        }
-        {
-          type = "wm";
-          key = "  WM";
-          keyColor = "green";
-        }
-        {
-          type = "terminal";
-          key = "  Term";
-          keyColor = "green";
-        }
-        "break"
-        {
-          type = "cpu";
-          key = "  CPU";
-          keyColor = "cyan";
-        }
-        {
-          type = "gpu";
-          key = "  GPU";
-          keyColor = "cyan";
-        }
-        {
-          type = "memory";
-          key = "  RAM";
-          keyColor = "cyan";
-        }
-        {
-          type = "disk";
-          key = "  Disk";
-          keyColor = "cyan";
-        }
-        "break"
-        {
-          type = "colors";
-          symbol = "circle";
-          paddingLeft = 2;
-        }
-        "break"
+        "title"
+        "separator"
+        "os"
+        "kernel"
+        "uptime"
+        "packages"
+        "shell"
+        "wm"
+        "terminal"
+        "cpu"
+        "gpu"
+        "memory"
+        "disk"
+        "colors"
       ];
     };
   };
