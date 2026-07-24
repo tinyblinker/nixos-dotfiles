@@ -32,7 +32,7 @@
               backupFileExtension = "backup";
 
               # Pass the entire inputs object to home.nix
-              extraSpecialArgs = { inherit inputs; };
+              extraSpecialArgs = { inherit inputs self; };
             };
           }
         ];
