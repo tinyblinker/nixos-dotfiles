@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   neovim-deps = [
     pkgs.gcc
@@ -42,8 +47,6 @@ in
 
   home.sessionVariables = {
     EDITOR = "nvim";
-    QT_QPA_PLATFORM = "wayland";
-    QT_QPA_PLATFORMTHEME = "qt6ct";
   };
 
   xdg.configFile."nvim".source =

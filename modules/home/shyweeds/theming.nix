@@ -21,6 +21,11 @@
     x11.enable = true;
   };
 
+  home.sessionVariables = {
+    QT_QPA_PLATFORM = "wayland";
+    QT_QPA_PLATFORMTHEME = "qt6ct";
+  };
+
   xdg.configFile."gtk-3.0/gtk.css".text = ''
     @import url("file:///home/shyweeds/.config/gtk-3.0/colors.css");
   '';
