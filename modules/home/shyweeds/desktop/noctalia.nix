@@ -6,8 +6,6 @@
     enable = true;
     systemd.enable = true;
 
-    package = lib.mkDefault inputs.noctalia.packages.x86_64-linux.default;
-
     settings = {
       shell.font = "JetBrainsMono Nerd Font";
 
