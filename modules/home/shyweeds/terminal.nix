@@ -101,7 +101,6 @@
   };
   programs.kitty = {
     enable = true;
-    extraConfig = "include ${config.home.homeDirectory}/dotfiles/config/matugen/output/kitty.conf";
     settings = {
       font_family = "JetBrainsMono Nerd Font";
       font_size = "18";

@@ -14,7 +14,6 @@
     ./theming.nix
     ./input-method.nix
     ./greetd-session.nix
-    ./battery-monitor.nix
     ./desktop/default.nix
   ];
 }

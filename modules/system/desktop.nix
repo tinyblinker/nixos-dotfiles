@@ -9,7 +9,6 @@
       pkgs.xdg-desktop-portal-gnome
     ];
   };
-  security.pam.services.hyprlock = { };
   programs.dconf.enable = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;

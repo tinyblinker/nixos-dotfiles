@@ -1,5 +1,3 @@
-// niri config — save to hot-reload. Docs: https://github.com/YaLTeR/niri/wiki
-
 input {
     keyboard {
         xkb {
@@ -13,12 +11,10 @@ input {
     }
 }
 
-// Output scaling. If not eDP-1, run `niri msg outputs` to check names first.
 output "eDP-1" {
     scale 1.6
 }
 
-// Cursor theme
 cursor {
     xcursor-theme "Bibata-Modern-Classic"
     xcursor-size 24
@@ -35,7 +31,6 @@ layout {
     }
     default-column-width { proportion 0.5; }
 
-    // Disable focus-ring, use border only (green gradient to match theme)
     focus-ring {
         off
     }
@@ -47,51 +42,46 @@ layout {
     }
 }
 
-// Rounded corners
 window-rule {
     geometry-corner-radius 14
     clip-to-geometry true
 }
 
-// Kitty transparency
 window-rule {
     match app-id="kitty"
     background-effect { blur true; }
 }
 
-// Background blur (behind translucent windows, e.g. kitty)
+window-rule {
+    match app-id="dev.noctalia.Noctalia"
+    open-floating true
+    default-column-width { fixed 1080; }
+    default-window-height { fixed 920; }
+}
+
 blur {
     passes 2
 }
 
-// Blurred wallpaper (awww-daemonblur) only shown in overview backdrop
 layer-rule {
-    match namespace="awww-daemonblur"
+    match namespace="^noctalia-backdrop"
     place-within-backdrop true
 }
 
-// Fuzzel translucent background + niri blur
 layer-rule {
-    match namespace="launcher"
-    geometry-corner-radius 24
-    background-effect {
-        blur true
-        noise 0.03
-    }
+    match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+    background-effect { xray false; }
 }
 
-// Allow notification actions / window activation
 debug {
     honor-xdg-activation-with-invalid-serial
 }
 
-// Animations: window open/close with blur
 animations {
     window-open {
         duration-ms 250
         curve "ease-out-expo"
     }
-    // Close window: smooth fade out
     window-close {
         duration-ms 200
         curve "ease-out-quad"
@@ -102,12 +92,8 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/Screenshots/Screenshot-%Y%m%d-%H%M%S.png"
 
-// awww wallpaper: sharp = original image (normal view), blur = blurred image (overview backdrop)
-// Start blur first, sharp second, to ensure sharp is on top of blur in z-order
-spawn-sh-at-startup "awww-daemon --namespace blur & until awww query --namespace blur >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace blur $HOME/dotfiles/assets/wallpaper/1-blur.png"
-spawn-sh-at-startup "awww-daemon --namespace sharp & until awww query --namespace sharp >/dev/null 2>&1; do sleep 0.1; done; awww img --namespace sharp $HOME/dotfiles/assets/wallpaper/1.png"
 spawn-at-startup "fcitx5" "-d"
-spawn-at-startup "lxqt-policykit-agent"
+spawn-at-startup "noctalia"
 
 gestures {
   hot-corners {
@@ -119,29 +105,27 @@ hotkey-overlay {
     skip-at-startup
 }
 
-// —— Default niri keybinds below (terminal/launcher replaced with kitty / fuzzel) ——
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
-    // fuzzel launcher
-    Mod+D { spawn "fuzzel"; }
-    Mod+Space { spawn "fuzzel"; }
-    // hyprlock screen lock
-    Super+Alt+L { spawn "hyprlock"; }
-    // swaync notification center
-    Mod+Shift+N { spawn "swaync-client" "--toggle-panel"; }
 
-    // swayosd: volume / brightness / mic + OSD display
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "raise"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume" "lower"; }
-    XF86AudioMute        allow-when-locked=true { spawn "swayosd-client" "--output-volume" "mute-toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn "swayosd-client" "--input-volume" "mute-toggle"; }
+    Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+D { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
 
-    XF86MonBrightnessUp   allow-when-locked=true { spawn "swayosd-client" "--brightness" "raise"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "swayosd-client" "--brightness" "lower"; }
+    Super+Alt+L { spawn-sh "noctalia msg session lock-and-suspend"; }
+    Mod+Shift+N { spawn-sh "noctalia msg panel-toggle notifications"; }
 
-    // Media keys
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "noctalia msg volume-mute"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "noctalia msg mic-mute"; }
+
+    XF86MonBrightnessUp   allow-when-locked=true { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia msg brightness-down"; }
+
     XF86AudioPlay  allow-when-locked=true { spawn-sh "playerctl play-pause"; }
     XF86AudioPause allow-when-locked=true { spawn-sh "playerctl play-pause"; }
     XF86AudioStop  allow-when-locked=true { spawn-sh "playerctl stop"; }
@@ -151,19 +135,11 @@ binds {
     Mod+O repeat=false { toggle-overview; }
     Mod+Q repeat=false { close-window; }
 
-//    Mod+Left  { focus-column-left; }
-//    Mod+Down  { focus-window-down; }
-//    Mod+Up    { focus-window-up; }
-//    Mod+Right { focus-column-right; }
     Mod+H     { focus-column-left; }
     Mod+J     { focus-window-down; }
     Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
 
-//    Mod+Ctrl+Left  { move-column-left; }
-//    Mod+Ctrl+Down  { move-window-down; }
-//    Mod+Ctrl+Up    { move-window-up; }
-//    Mod+Ctrl+Right { move-column-right; }
     Mod+Ctrl+H     { move-column-left; }
     Mod+Ctrl+J     { move-window-down; }
     Mod+Ctrl+K     { move-window-up; }
@@ -174,19 +150,11 @@ binds {
     Mod+Ctrl+Home { move-column-to-first; }
     Mod+Ctrl+End  { move-column-to-last; }
 
-//    Mod+Shift+Left  { focus-monitor-left; }
-//    Mod+Shift+Down  { focus-monitor-down; }
-//    Mod+Shift+Up    { focus-monitor-up; }
-//    Mod+Shift+Right { focus-monitor-right; }
     Mod+Shift+H     { focus-monitor-left; }
     Mod+Shift+J     { focus-monitor-down; }
     Mod+Shift+K     { focus-monitor-up; }
     Mod+Shift+L     { focus-monitor-right; }
 
-//    Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
-//    Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
-//    Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
-//    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
     Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
     Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
@@ -243,7 +211,7 @@ binds {
     Mod+BracketLeft  { consume-or-expel-window-left; }
     Mod+BracketRight { consume-or-expel-window-right; }
 
-    Mod+Comma  { consume-window-into-column; }
+    Mod+Shift+Comma  { consume-window-into-column; }
     Mod+Period { expel-window-from-column; }
 
     Mod+R { switch-preset-column-width; }
